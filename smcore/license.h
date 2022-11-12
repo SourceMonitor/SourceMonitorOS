@@ -31,9 +31,13 @@ namespace sourcemonitoros
         class SMLicense
         {
         public:
+            /**
+             * @brief Get the license text
+             *
+             * @return QString
+             */
             static QString getLicense(void);
 
-        protected:
         private:
             /**
              * @brief Hide constructor to avoid instances

@@ -31,19 +31,33 @@ namespace Ui
 }
 QT_END_NAMESPACE
 
-class SMMainWindow : public QMainWindow
+namespace sourcemonitoros
 {
-    Q_OBJECT
+    namespace smgui
+    {
+        class SMMainWindow : public QMainWindow
+        {
+            Q_OBJECT
 
-public:
-    SMMainWindow(QWidget *parent = nullptr);
-    ~SMMainWindow();
+        public:
+            SMMainWindow(QWidget *parent = nullptr);
+            ~SMMainWindow();
 
-private slots:
-    void on_actionExit_triggered();
+        private slots:
+            /**
+             * @brief Called when menu entry 'File - Exit' is triggered
+             *
+             */
+            void on_actionExit_triggered();
 
-    void on_actionView_License_triggered();
+            /**
+             * @brief Called when menu entry 'Help - View License' is triggered
+             *
+             */
+            void on_actionView_License_triggered();
 
-private:
-    Ui::SMMainWindow *ui;
-};
+        private:
+            Ui::SMMainWindow *ui;
+        };
+    }
+}
