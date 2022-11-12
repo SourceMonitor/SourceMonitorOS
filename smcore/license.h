@@ -20,26 +20,31 @@
 // DEALINGS IN THE SOFTWARE.
 //***************************************************************************
 
-#include <string>
+#pragma once
 
-namespace sourcemonitor
+#include <QString>
+
+namespace sourcemonitoros
 {
-    class SMLicense
+    namespace smcore
     {
-    public:
-        static std::string getLicense(void);
+        class SMLicense
+        {
+        public:
+            static QString getLicense(void);
 
-    protected:
-    private:
-        /**
-         * @brief Hide constructor to avoid instances
-         *
-         */
-        SMLicense(void);
-        /**
-         * @brief Hide destructor to avoid instances
-         *
-         */
-        ~SMLicense(void);
-    };
+        protected:
+        private:
+            /**
+             * @brief Hide constructor to avoid instances
+             *
+             */
+            SMLicense(void);
+            /**
+             * @brief Hide destructor to avoid instances
+             *
+             */
+            ~SMLicense(void);
+        };
+    }
 }
