@@ -25,7 +25,7 @@
 #include <QtCore/qglobal.h>
 
 #if defined(SMCORE_LIBRARY)
-#  define SMCORE_EXPORT Q_DECL_EXPORT
+#define SMCORE_EXPORT Q_DECL_EXPORT
 #else
-#  define SMCORE_EXPORT Q_DECL_IMPORT
+#define SMCORE_EXPORT Q_DECL_IMPORT
 #endif

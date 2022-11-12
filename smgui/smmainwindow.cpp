@@ -24,25 +24,30 @@
 #include "./ui_smmainwindow.h"
 #include "./../smcore/license.h"
 
-SMMainWindow::SMMainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::SMMainWindow)
+namespace sourcemonitoros
 {
-    ui->setupUi(this);
+    namespace smgui
+    {
+        //******************************************************************************
+        SMMainWindow::SMMainWindow(QWidget *parent)
+            : QMainWindow(parent), ui(new Ui::SMMainWindow)
+        {
+            ui->setupUi(this);
+        }
+        //******************************************************************************
+        SMMainWindow::~SMMainWindow()
+        {
+            delete ui;
+        }
+        //******************************************************************************
+        void SMMainWindow::on_actionExit_triggered()
+        {
+            QCoreApplication::quit();
+        }
+        //******************************************************************************
+        void SMMainWindow::on_actionView_License_triggered()
+        {
+            QString license = sourcemonitoros::smcore::SMLicense::getLicense();
+        }
+    }
 }
-
-SMMainWindow::~SMMainWindow()
-{
-    delete ui;
-}
-
-void SMMainWindow::on_actionExit_triggered()
-{
-    QCoreApplication::quit();
-}
-
-
-void SMMainWindow::on_actionView_License_triggered()
-{
-    QString license = sourcemonitoros::smcore::SMLicense::getLicense();
-}
-
