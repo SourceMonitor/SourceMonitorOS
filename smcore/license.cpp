@@ -22,11 +22,13 @@
 
 #include "license.h"
 
-namespace sourcemonitor
+namespace sourcemonitoros
 {
-    std::string SMLicense::getLicense(void)
+    namespace smcore
     {
-        std::string licenseText = R"~~~~(
+        QString SMLicense::getLicense(void)
+        {
+            QString licenseText = R"~~~~(
 Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
 
 Permission is hereby granted, free of charge, to any person obtaining a
@@ -46,8 +48,9 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
-)~~~~";
+    )~~~~";
 
-            return licenseText;
+                return licenseText;
+        }
     }
 }
