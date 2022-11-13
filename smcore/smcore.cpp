@@ -22,7 +22,7 @@
 
 #include "smcore.h"
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smcore
     {

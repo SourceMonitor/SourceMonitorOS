@@ -24,7 +24,7 @@
 #include <QLocale>
 #include <QString>
 #include <QTranslator>
-#include "./../smcore/license.h"
+#include <license.h>
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    QString license = sourcemonitoros::smcore::SMLicense::getLicense();
+    QString license = smos::smcore::SMLicense::getLicense();
 
     return a.exec();
 }

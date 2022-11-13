@@ -24,6 +24,20 @@ cmake_minimum_required(VERSION 3.5)
 
 project(SourceMonitorOS VERSION 0.1 LANGUAGES CXX)
 
+# ******************************************************************************
+# Settings for smcore
+# ******************************************************************************
 add_subdirectory(smcore)
+
+# ******************************************************************************
+# Settings for smcli
+# ******************************************************************************
 add_subdirectory(smcli)
+target_include_directories(smcli PRIVATE smcore)
+
+# ******************************************************************************
+# Settings for smgui
+# ******************************************************************************
 add_subdirectory(smgui)
+target_include_directories(smgui PRIVATE smcore)
+

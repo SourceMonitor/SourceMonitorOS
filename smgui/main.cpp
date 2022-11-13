@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    sourcemonitoros::smgui::SMMainWindow w;
+    smos::smgui::SMMainWindow w;
     w.show();
     return a.exec();
 }

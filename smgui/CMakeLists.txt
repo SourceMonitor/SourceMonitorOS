@@ -44,6 +44,7 @@ set(PROJECT_SOURCES
     smmainwindow.h
     smmainwindow.ui
     ${TS_FILES}
+    ${SMCORE_INCLUDE}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

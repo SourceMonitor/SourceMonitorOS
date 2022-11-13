@@ -22,9 +22,9 @@
 
 #include "smmainwindow.h"
 #include "./ui_smmainwindow.h"
-#include "./../smcore/license.h"
+#include <license.h>
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smgui
     {
@@ -47,7 +47,7 @@ namespace sourcemonitoros
         //******************************************************************************
         void SMMainWindow::on_actionView_License_triggered()
         {
-            QString license = sourcemonitoros::smcore::SMLicense::getLicense();
+            QString license = smos::smcore::SMLicense::getLicense();
         }
     }
 }
