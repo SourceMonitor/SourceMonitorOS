@@ -24,7 +24,7 @@
 
 #include "smcore_global.h"
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smcore
     {

@@ -22,7 +22,7 @@
 
 #include "license.h"
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smcore
     {

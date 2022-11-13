@@ -35,10 +35,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
-add_library(smcore SHARED
+set(SMCORE_INCLUDE
     smcore_global.h
-    license.cpp
     license.h
+)
+
+add_library(smcore SHARED
+    license.cpp
+    ${SMCORE_INCLUDE}
 )
 
 target_link_libraries(smcore PRIVATE Qt${QT_VERSION_MAJOR}::Core)

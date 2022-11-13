@@ -31,7 +31,7 @@ namespace Ui
 }
 QT_END_NAMESPACE
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smgui
     {

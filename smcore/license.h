@@ -24,7 +24,7 @@
 
 #include <QString>
 
-namespace sourcemonitoros
+namespace smos
 {
     namespace smcore
     {

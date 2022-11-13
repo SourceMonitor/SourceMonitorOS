@@ -41,6 +41,7 @@ set(TS_FILES smcli_en_150.ts)
 add_executable(smcli
     main.cpp
     ${TS_FILES}
+    ${SMCORE_INCLUDE}
 )
 target_link_libraries(smcli Qt${QT_VERSION_MAJOR}::Core smcore)
 
