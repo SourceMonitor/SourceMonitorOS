@@ -36,12 +36,14 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 set(SMCORE_INCLUDE
-    smcore_global.h
     license.h
+    smcore_global.h
+    settings.h
 )
 
 add_library(smcore SHARED
     license.cpp
+    settings.cpp
     ${SMCORE_INCLUDE}
 )
 

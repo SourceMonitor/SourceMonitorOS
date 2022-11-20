@@ -20,34 +20,55 @@
 // DEALINGS IN THE SOFTWARE.
 //***************************************************************************
 
-#include "smmainwindow.h"
-#include "./ui_smmainwindow.h"
-#include <license.h>
-#include <settings.h>
+#include "settings.h"
+#include <QCoreApplication>
+#include <QDir>
 
 namespace smos
 {
-    namespace smgui
+    namespace smcore
     {
         //******************************************************************************
-        SMMainWindow::SMMainWindow(QWidget *parent)
-            : QMainWindow(parent), ui(new Ui::SMMainWindow)
+        SMSettings::SMSettings(QString settingsfile) : m_filename(settingsfile)
         {
-            ui->setupUi(this);
+            this->settingsInit();
         }
         //******************************************************************************
-        SMMainWindow::~SMMainWindow(void)
+        SMSettings::~SMSettings(void)
         {
-            delete ui;
         }
         //******************************************************************************
-        void SMMainWindow::on_actionExit_triggered(void)
+        QString SMSettings::getMapKey(QString section, QString key)
         {
-            QCoreApplication::quit();
+            QString tmpSection = section.replace("/", "").replace("\\", "").toUpper();
+            QString tmpKey = key.replace("/", "").replace("\\", "").toLower();
+            QString mapKey = tmpSection + "/" + tmpKey;
+            return mapKey;
         }
         //******************************************************************************
-        void SMMainWindow::on_actionView_License_triggered(void)
+        void SMSettings::settingsInit(void)
         {
+            if (nullptr == this->m_settings)
+            {
+                this->m_settings = std::unique_ptr<QSettings>(new QSettings(this->m_filename, QSettings::IniFormat));
+                this->m_filename = QDir::cleanPath(QCoreApplication::applicationDirPath() + QDir::separator() + this->m_filename);
+            }
+        }
+        //******************************************************************************
+        QString SMSettings::getLogfileName(void)
+        {
+            QString logfileDefault = QDir::cleanPath(QCoreApplication::applicationDirPath() + QDir::separator() + "smos.log");
+            QString logfile = this->valueGet<QString>("Logging", "Logfilename", logfileDefault);
+            if (logfile == logfileDefault)
+            {
+                this->setLogfileName(logfileDefault);
+            }
+            return logfile;
+        }
+        //******************************************************************************
+        void SMSettings::setLogfileName(QString logfilename)
+        {
+            this->valueSet<QString>("Logging", "Logfilename", logfilename);
         }
     }
 }
