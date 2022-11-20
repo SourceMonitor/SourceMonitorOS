@@ -40,23 +40,36 @@ namespace smos
             Q_OBJECT
 
         public:
+            /**
+             * @brief Default constructor
+             *
+             * @param parent
+             */
             SMMainWindow(QWidget *parent = nullptr);
-            ~SMMainWindow();
+            /**
+             * @brief Default desctructor
+             *
+             */
+            ~SMMainWindow(void);
 
         private slots:
             /**
              * @brief Called when menu entry 'File - Exit' is triggered
              *
              */
-            void on_actionExit_triggered();
+            void on_actionExit_triggered(void);
 
             /**
              * @brief Called when menu entry 'Help - View License' is triggered
              *
              */
-            void on_actionView_License_triggered();
+            void on_actionView_License_triggered(void);
 
         private:
+            /**
+             * @brief Instance of UI
+             *
+             */
             Ui::SMMainWindow *ui;
         };
     }
