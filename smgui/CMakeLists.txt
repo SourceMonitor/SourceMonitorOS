@@ -22,7 +22,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(smgui VERSION 0.1 LANGUAGES CXX)
+project(smgui LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor UI")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

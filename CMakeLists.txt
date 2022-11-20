@@ -22,7 +22,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(SourceMonitorOS VERSION 0.1 LANGUAGES CXX)
+project(SourceMonitorOS LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor OpenSource")
 
 # ******************************************************************************
 # Settings for smcore

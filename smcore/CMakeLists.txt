@@ -20,10 +20,9 @@
 # DEALINGS IN THE SOFTWARE.
 # ******************************************************************************
 
-# cmake_minimum_required(VERSION 3.14)
 cmake_minimum_required(VERSION 3.5)
 
-project(smcore LANGUAGES CXX)
+project(smcore LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor Core Functionality")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)

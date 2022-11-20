@@ -22,7 +22,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(smcli LANGUAGES CXX)
+project(smcli LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor CLI")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

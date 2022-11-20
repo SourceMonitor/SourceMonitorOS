@@ -23,12 +23,13 @@
 #pragma once
 
 #include <QString>
+#include "smcore_global.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMLicense
+        class SMCORE_EXPORT SMLicense
         {
         public:
             /**

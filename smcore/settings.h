@@ -26,12 +26,13 @@
 #include <QSettings>
 #include <QVariant>
 #include <memory>
+#include "smcore_global.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMSettings
+        class SMCORE_EXPORT SMSettings
         {
         public:
             /**
