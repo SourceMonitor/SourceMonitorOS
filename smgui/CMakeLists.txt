@@ -1,4 +1,4 @@
-# ******************************************************************************
+# *******************************************************************************
 # Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -18,7 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-# ******************************************************************************
+# *******************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -36,44 +36,34 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-set(TS_FILES smgui_en_150.ts)
+set(SMGUI_TS_FILES
+    smgui_en_150.ts
+)
+
+set(SMGUI_INCLUDE
+    smmainwindow.h
+)
 
 set(PROJECT_SOURCES
     main.cpp
     smmainwindow.cpp
-    smmainwindow.h
     smmainwindow.ui
-    ${TS_FILES}
+    ${SMGUI_TS_FILES}
+    ${SMGUI_INCLUDE}
     ${SMCORE_INCLUDE}
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(smgui
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
+qt_add_executable(smgui
+    MANUAL_FINALIZATION
+    ${PROJECT_SOURCES}
+)
 
-    # Define target properties for Android with Qt 6 as:
-    # set_property(TARGET smgui APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-    # ${CMAKE_CURRENT_SOURCE_DIR}/android)
-    # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    if(ANDROID)
-        add_library(smgui SHARED
-            ${PROJECT_SOURCES}
-        )
+target_compile_options(smgui PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+)
 
-    # Define properties for Android with Qt 5 after find_package() calls as:
-    # set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(smgui
-            ${PROJECT_SOURCES}
-        )
-    endif()
-
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})
 
 target_link_libraries(smgui PRIVATE Qt${QT_VERSION_MAJOR}::Widgets smcore)
 
@@ -89,6 +79,4 @@ install(TARGETS smgui
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(smgui)
-endif()
+qt_finalize_executable(smgui)

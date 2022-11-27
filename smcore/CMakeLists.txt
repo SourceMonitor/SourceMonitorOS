@@ -1,4 +1,4 @@
-# ******************************************************************************
+# *******************************************************************************
 # Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -18,7 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-# ******************************************************************************
+# *******************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -31,8 +31,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
+
+set(SMCORE_TS_FILES
+    smcore_en_150.ts
+)
 
 set(SMCORE_INCLUDE
     license.h
@@ -40,10 +44,18 @@ set(SMCORE_INCLUDE
     settings.h
 )
 
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})
+
 add_library(smcore SHARED
     license.cpp
     settings.cpp
+    ${SMCORE_TS_FILES}
     ${SMCORE_INCLUDE}
+)
+
+target_compile_options(smcore PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
 target_link_libraries(smcore PRIVATE Qt${QT_VERSION_MAJOR}::Core)

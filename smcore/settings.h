@@ -1,4 +1,4 @@
-//***************************************************************************
+//******************************************************************************
 // Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18,7 +18,10 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-//***************************************************************************
+//******************************************************************************
+
+// Think about this:
+// http://katecpp.github.io/qsettings/
 
 #pragma once
 
@@ -47,18 +50,25 @@ namespace smos
              */
             ~SMSettings(void);
             /**
+             * @brief Load settings from INI file
+             */
+            void settingsLoad(void);
+            /**
+             * @brief Save settings to INI file
+             */
+            void settingsSave(void);
+            /**
              * @brief Get the absolute path to the logfile
              *
              * @return QString The absolute path to the logfile
              */
-            QString getLogfileName(void);
+            QString logfileNameGet(void);
             /**
-             * @brief Set the absolute path to the logfile
+             * @brief Set the name (and path) of the logfile
              *
-             * @param logfilename
-             * @return QString
+             * @param logfileName Name (and path) of the logfile to use
              */
-            void setLogfileName(QString logfilename);
+            void logfileNameSet(QString logfileName);
 
         protected:
             /**
@@ -70,12 +80,7 @@ namespace smos
              * @brief Name of used ini file
              *
              */
-            QString m_filename;
-            /**
-             * @brief Internal method for initialization, used in constructor
-             *
-             */
-            void settingsInit(void);
+            QString m_logfileName;
             /**
              * @brief Method to build the key for accessing QSettings
              *
@@ -91,6 +96,7 @@ namespace smos
              * @param section Section to set value
              * @param key Key to set value
              * @param defaultValue Default value
+             * @return argumentType The requested value
              */
             template <typename argumentType>
             argumentType valueGet(QString section, QString key, argumentType defaultValue)

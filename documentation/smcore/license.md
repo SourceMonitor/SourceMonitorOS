@@ -6,14 +6,14 @@ This is a static function to get the license text to display. Actually this is a
 
 This is a functionality of `smcore` and located in `smcore/license.*`.
 
-### API
+### Public API
 
 ```c++
 namespace smos
 {
     namespace smcore
     {
-        class SMLicense
+        class SMCORE_EXPORT SMLicense
         {
         public:
             /**
@@ -22,6 +22,7 @@ namespace smos
              * @return QString
              */
             static QString getLicense(void);
+        }
     }
 }
 ```

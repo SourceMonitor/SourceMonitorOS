@@ -20,50 +20,50 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "settings.h"
-#include <QDir>
+#include "test_license.h"
+
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
 
 namespace smos
 {
-    namespace smcore
+    namespace smtest
     {
         //******************************************************************************
-        SMSettings::SMSettings(QString settingsfile)
+        QString TestLicense::readLicenseFromFile(void)
         {
-            this->m_settings = std::unique_ptr<QSettings>(new QSettings(settingsfile, QSettings::IniFormat));
+            QString licenseText = "";
+            QString filename = "LICENSE";
+            QFile licenseFile(filename);
+            if (!licenseFile.open(QFile::ReadOnly | QFile::Text))
+            {
+                // Cannot open or read file containing license text, abort
+                return licenseText;
+            }
+            // Read license from file
+            QTextStream licenseFileStream(&licenseFile);
+            licenseText = licenseFileStream.readAll();
+            licenseFile.close();
+            return licenseText;
         }
         //******************************************************************************
-        SMSettings::~SMSettings(void)
+        void TestLicense::initTestCase(void)
         {
         }
         //******************************************************************************
-        void SMSettings::settingsLoad(void)
+        void TestLicense::TestGetLicense(void)
         {
-            this->m_logfileName = this->valueGet<QString>("program", "logfile", "smos.log");
+            // Read license from given license file (part of project)
+            QString licenseFile = this->readLicenseFromFile();
+            // Get license text from application
+            QString licenseApplication = smos::smcore::SMLicense::getLicense();
+            // They must be equal
+            QCOMPARE(licenseFile, licenseApplication);
         }
         //******************************************************************************
-        void SMSettings::settingsSave(void)
+        void TestLicense::cleanupTestCase(void)
         {
-            this->valueSet<QString>("program", "logfile", this->m_logfileName);
-            this->m_settings->sync();
-        }
-        //******************************************************************************
-        QString SMSettings::getMapKey(QString section, QString key)
-        {
-            QString tmpSection = section.replace("/", "").replace("\\", "").toUpper();
-            QString tmpKey = key.replace("/", "").replace("\\", "").toLower();
-            QString mapKey = tmpSection + "/" + tmpKey;
-            return mapKey;
-        }
-        //******************************************************************************
-        QString SMSettings::logfileNameGet(void)
-        {
-            return this->m_logfileName;
-        }
-        //******************************************************************************
-        void SMSettings::logfileNameSet(QString logfileName)
-        {
-            this->m_logfileName = logfileName;
         }
     }
 }

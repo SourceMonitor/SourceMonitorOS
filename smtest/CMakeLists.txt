@@ -22,27 +22,54 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(SourceMonitorOS LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor OpenSource")
+project(smtest LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor tests")
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Test Widgets)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # *******************************************************************************
-# Settings for smcore
-# *******************************************************************************
-add_subdirectory(smcore)
+enable_testing(true)
 
-# *******************************************************************************
-# Settings for smcli
-# *******************************************************************************
-add_subdirectory(smcli)
-target_include_directories(smcli PRIVATE smcore)
+set(SMTEST_INCLUDE
+    test_license.h
+    test_settings.h
+)
 
-# *******************************************************************************
-# Settings for smgui
-# *******************************************************************************
-add_subdirectory(smgui)
-target_include_directories(smgui PRIVATE smcore)
+set(PROJECT_SOURCES
+    main.cpp
+    test_license.cpp
+    test_settings.cpp
+    ${SMTEST_INCLUDE}
+    ${SMCORE_INCLUDE}
+)
 
-# *******************************************************************************
-# Settings for smtest
-# *******************************************************************************
-add_subdirectory(smtest)
-target_include_directories(smtest PRIVATE smcore)
+add_executable(
+    smtest
+    ${PROJECT_SOURCES}
+)
+
+# Copy license file required in test_license
+configure_file(./../LICENSE LICENSE COPYONLY)
+
+target_compile_options(smtest PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+)
+
+add_test(
+    NAME smtest
+    COMMAND
+    TestLicense
+)
+
+target_link_libraries(smtest PRIVATE Qt::Test smcore)

@@ -1,4 +1,4 @@
-# ******************************************************************************
+# *******************************************************************************
 # Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -18,7 +18,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
-# ******************************************************************************
+# *******************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -36,20 +36,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
 
-set(TS_FILES smcli_en_150.ts)
+set(SMCLI_TS_FILES
+    smcli_en_150.ts
+)
 
 add_executable(smcli
     main.cpp
-    ${TS_FILES}
+    ${SMCLI_TS_FILES}
     ${SMCORE_INCLUDE}
 )
+
+target_compile_options(smcli PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+)
+
 target_link_libraries(smcli Qt${QT_VERSION_MAJOR}::Core smcore)
 
 if(COMMAND qt_create_translation)
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCLI_TS_FILES})
 endif()
 
-install(TARGETS smcli
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS smcli LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+qt_finalize_executable(smcli)

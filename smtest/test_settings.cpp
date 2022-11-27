@@ -20,50 +20,55 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "settings.h"
+#include "test_settings.h"
+
+#include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 
 namespace smos
 {
-    namespace smcore
+    namespace smtest
     {
         //******************************************************************************
-        SMSettings::SMSettings(QString settingsfile)
+        void TestSettings::initTestCase(void)
         {
-            this->m_settings = std::unique_ptr<QSettings>(new QSettings(settingsfile, QSettings::IniFormat));
+            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            if (QFile::exists(configfileName))
+            {
+                QFile configfile(configfileName);
+                configfile.remove();
+            }
         }
         //******************************************************************************
-        SMSettings::~SMSettings(void)
+        void TestSettings::TestSettingsSaveLoad(void)
         {
+            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+
+            smos::smcore::SMSettings settings(configfileName);
+
+            bool configfileExistsBefore = QFile::exists(configfileName);
+            QCOMPARE(false, configfileExistsBefore);
+
+            settings.settingsSave();
+            bool configfileExistsAfter = QFile::exists(configfileName);
+            QCOMPARE(true, configfileExistsAfter);
         }
         //******************************************************************************
-        void SMSettings::settingsLoad(void)
+        void TestSettings::TestLogfileNameGetSet(void)
         {
-            this->m_logfileName = this->valueGet<QString>("program", "logfile", "smos.log");
+            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            QString logfileNameExpected = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.log");
+
+            smos::smcore::SMSettings settings(configfileName);
+            settings.logfileNameSet(logfileNameExpected);
+
+            QString logfileName = settings.logfileNameGet();
+            QCOMPARE(logfileNameExpected, logfileName);
         }
         //******************************************************************************
-        void SMSettings::settingsSave(void)
+        void TestSettings::cleanupTestCase(void)
         {
-            this->valueSet<QString>("program", "logfile", this->m_logfileName);
-            this->m_settings->sync();
-        }
-        //******************************************************************************
-        QString SMSettings::getMapKey(QString section, QString key)
-        {
-            QString tmpSection = section.replace("/", "").replace("\\", "").toUpper();
-            QString tmpKey = key.replace("/", "").replace("\\", "").toLower();
-            QString mapKey = tmpSection + "/" + tmpKey;
-            return mapKey;
-        }
-        //******************************************************************************
-        QString SMSettings::logfileNameGet(void)
-        {
-            return this->m_logfileName;
-        }
-        //******************************************************************************
-        void SMSettings::logfileNameSet(QString logfileName)
-        {
-            this->m_logfileName = logfileName;
         }
     }
 }
