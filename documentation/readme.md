@@ -8,9 +8,11 @@ To get an information about the history of SourceMonitorOS, please see [here][fi
 
 ## Available descriptions
 
+- [About][doc_about]
 - [Licsense][doc_license]
 - [Settings][doc_settings]
 
+[doc_about]: ./smcore/about.md
 [doc_license]: ./smcore/license.md
 [doc_settings]: ./smcore/settings.md
 [file_history]: ./history.md

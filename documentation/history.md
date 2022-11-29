@@ -1,5 +1,14 @@
 # History of SourceMonitorOS
 
+2022-11-29
+
+* Added dialog box for "View License
+* Added "About" class
+* Added dialog box for "About SourceMonitorOS"
+* Added test for "About" class
+* Added documentation for "About"
+* Removed ".vscode" folder
+
 2022-11-23
 
 * Added documentation for settings.

@@ -41,12 +41,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 enable_testing(true)
 
 set(SMTEST_INCLUDE
+    test_about.h
     test_license.h
     test_settings.h
 )
 
 set(PROJECT_SOURCES
     main.cpp
+    test_about.cpp
     test_license.cpp
     test_settings.cpp
     ${SMTEST_INCLUDE}

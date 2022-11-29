@@ -61,7 +61,7 @@ namespace smos
 ### Usage
 
 ```c++
-#include <settings.h>
+#include "settings.h"
 
 smos::smcore::SMSettings settings = smos::smcore::SMSettings("smos_core.ini");
 

@@ -30,7 +30,7 @@ namespace smos
 ### Usage
 
 ```c++
-#include <license.h>
+#include "license.h"
 
 QString license = smos::smcore::SMLicense::getLicense();
 ```

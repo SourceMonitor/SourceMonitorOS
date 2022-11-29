@@ -22,8 +22,9 @@
 
 #include "smmainwindow.h"
 #include "./ui_smmainwindow.h"
-#include <license.h>
-#include <settings.h>
+#include <QMessageBox>
+#include "about.h"
+#include "license.h"
 
 namespace smos
 {
@@ -48,6 +49,12 @@ namespace smos
         //******************************************************************************
         void SMMainWindow::on_actionView_License_triggered(void)
         {
+            QMessageBox::about(this, "SourceMonitorOS License", smos::smcore::SMLicense::getLicense());
+        }
+        //******************************************************************************
+        void SMMainWindow::on_actionAbout_SourceMonitor_triggered()
+        {
+            QMessageBox::about(this, "About SourceMonitorOS", smos::smcore::SMAbout::getAbout());
         }
     }
 }

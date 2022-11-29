@@ -45,6 +45,7 @@ namespace smos
              *
              */
             SMLicense(void);
+
             /**
              * @brief Hide destructor to avoid instances
              *

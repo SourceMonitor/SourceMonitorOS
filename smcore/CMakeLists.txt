@@ -39,6 +39,7 @@ set(SMCORE_TS_FILES
 )
 
 set(SMCORE_INCLUDE
+    about.h
     license.h
     smcore_global.h
     settings.h
@@ -47,6 +48,7 @@ set(SMCORE_INCLUDE
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})
 
 add_library(smcore SHARED
+    about.cpp
     license.cpp
     settings.cpp
     ${SMCORE_TS_FILES}
@@ -54,8 +56,8 @@ add_library(smcore SHARED
 )
 
 target_compile_options(smcore PRIVATE
-  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
-  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
 target_link_libraries(smcore PRIVATE Qt${QT_VERSION_MAJOR}::Core)

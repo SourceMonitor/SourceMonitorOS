@@ -44,25 +44,30 @@ namespace smos
              * @param settingsfile Name of settings file
              */
             SMSettings(QString settingsfile);
+
             /**
              * @brief Default destructor
              *
              */
             ~SMSettings(void);
+
             /**
              * @brief Load settings from INI file
              */
             void settingsLoad(void);
+
             /**
              * @brief Save settings to INI file
              */
             void settingsSave(void);
+
             /**
              * @brief Get the absolute path to the logfile
              *
              * @return QString The absolute path to the logfile
              */
             QString logfileNameGet(void);
+
             /**
              * @brief Set the name (and path) of the logfile
              *
@@ -76,11 +81,13 @@ namespace smos
              *
              */
             std::unique_ptr<QSettings> m_settings;
+
             /**
              * @brief Name of used ini file
              *
              */
             QString m_logfileName;
+
             /**
              * @brief Method to build the key for accessing QSettings
              *
@@ -89,6 +96,7 @@ namespace smos
              * @return QString The key
              */
             QString getMapKey(QString section, QString key);
+
             /**
              * @brief Templated method to get a value
              *
@@ -107,6 +115,7 @@ namespace smos
                 argumentType value = valueRaw.value<argumentType>();
                 return value;
             }
+
             /**
              * @brief Templated method to set a value
              *
