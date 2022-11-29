@@ -73,5 +73,5 @@ Thumbs.db
 
 ### Added by ThirtySomething
 CMakeLists.txt.user
-build*
+**/build/
 .vscode
