@@ -6,7 +6,7 @@ The help menu offers an entry named "About SourceMonitorOS". This will fire up a
 
 ## Implementation
 
-This is a functionality of `smcore` and located in `smcore/license.*`.
+This is a functionality of `smcore` and located in `smcore/about.*`.
 
 ### Public API
 
