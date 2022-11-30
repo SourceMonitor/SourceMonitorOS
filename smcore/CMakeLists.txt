@@ -24,15 +24,23 @@ cmake_minimum_required(VERSION 3.5)
 
 project(smcore LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor Core Functionality")
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON) # Find includes in corresponding build directories
 set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOMOC ON) # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTORCC ON)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
+#set(Qt6Core_DIR "C:/Qt/6.4.0/msvc2013_64/lib/cmake/Qt5Core")
+#set(Qt5_DIR "C:/Qt/5.6/msvc2013_64/lib/cmake/Qt5")
+#set(QT_QMAKE_EXECUTABLE "C:/Qt/5.6/msvc2013_64/bin/qmake.exe")
+
+set(CMAKE_PREFIX)
+
+#find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
+#find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
+find_package(Qt6Widgets)
 
 set(SMCORE_TS_FILES
     smcore_en_150.ts
