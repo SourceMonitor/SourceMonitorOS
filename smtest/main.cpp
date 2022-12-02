@@ -22,6 +22,7 @@
 
 #include "testrunner.h"
 
+#include "test_about.h"
 #include "test_license.h"
 #include "test_settings.h"
 
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 
     int status = 0;
 
+    RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
     RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
     RUN_TESTS(smos::smtest::TestSettings, argc, argv, &status);
 

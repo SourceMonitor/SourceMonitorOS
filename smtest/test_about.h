@@ -20,26 +20,26 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include <QCoreApplication>
-#include <QLocale>
-#include <QString>
-#include <QTranslator>
+#pragma once
 
-int main(int argc, char *argv[])
+#include <QTest>
+#include "about.h"
+
+namespace smos
 {
-    QCoreApplication a(argc, argv);
-
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages)
+    namespace smtest
     {
-        const QString baseName = "smcli_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName))
+        class TestAbout : public QObject
         {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
+            Q_OBJECT
 
-    return a.exec();
+        private:
+            QString buildAboutString(void);
+
+        private slots:
+            void initTestCase(void);
+            void TestGetAbout(void);
+            void cleanupTestCase(void);
+        };
+    }
 }

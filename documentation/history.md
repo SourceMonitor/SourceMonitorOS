@@ -2,8 +2,16 @@
 
 2022-12-02
 
-- Updated readmes
+- Updated readme files
 - Added SourceMonitor project file
+
+2022-11-29
+
+- Added dialog box for "View License
+- Added "About" class
+- Added dialog box for "About SourceMonitorOS"
+- Added documentation for "About"
+- Removed ".vscode" folder
 
 2022-11-27
 

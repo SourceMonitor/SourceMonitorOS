@@ -65,6 +65,12 @@ namespace smos
              */
             void on_actionView_License_triggered(void);
 
+            /**
+             * @brief Called when menu entry 'Help - About SourceMonitor' is triggered
+             *
+             */
+            void on_actionAbout_SourceMonitor_triggered();
+
         private:
             /**
              * @brief Instance of UI
