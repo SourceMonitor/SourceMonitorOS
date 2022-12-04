@@ -1,5 +1,10 @@
 # History of SourceMonitorOS
 
+2022-12-04
+
+- Extended the readme with a hint about compilation
+- Updated the readme with informations about the used technologies
+
 2022-12-02
 
 - Updated readme files

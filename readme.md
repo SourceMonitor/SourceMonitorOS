@@ -17,11 +17,21 @@ _A journey of a thousand miles begins with a single step. - Laotse_
 - License: [MIT][licensemit]
 - Framework: [QT][qt] in verison 6.2 LTS
 
+### How to compile
+
+For compiling the project you have to open the [CMakeLists.txt project][project_file] file of the root folder in [QT Creator][tool_qt_creator].
+
 ## Required skills
 
 To support the project there is a need of at least one of the listed skills.
 
-[![My Skills](https://skillicons.dev/icons?i=cpp,cmake,git,github,githubactions,md,qt)](https://skillicons.dev)
+- [![CPP](https://skillicons.dev/icons?i=cpp)](https://skillicons.dev) - the basic programming language
+- [![CMake](https://skillicons.dev/icons?i=cmake)](https://skillicons.dev) - the used build system used
+- [![git](https://skillicons.dev/icons?i=git)](https://skillicons.dev) - the used code versioning system
+- [![GitHub](https://skillicons.dev/icons?i=github)](https://skillicons.dev) - the hoster of the project code
+- [![GitHubActions](https://skillicons.dev/icons?i=githubactions)](https://skillicons.dev) - used for CI/CD processes
+- [![Markdown](https://skillicons.dev/icons?i=md)](https://skillicons.dev) - used for documentation
+- [![QT](https://skillicons.dev/icons?i=qt)](https://skillicons.dev) - the used framework
 
 ## Project folder organization
 
@@ -43,4 +53,6 @@ Allthough there are CMake files existing up to know you need to run them using Q
 [folder_smtest]: ./smtest/readme.md^
 [licensemit]: https://opensource.org/licenses/MIT
 [qt]: https://www.qt.io/
+[tool_qt_creator]: https://www.qt.io/product/development-tools
 [wannerjim]: https://campwoodsw.com/emcomp/about-us/
+[project_file]: ./CMakeLists.txt
