@@ -17,6 +17,10 @@ In this directory the core functionality of SourceMonitorOS is located.
 
 See how this is used in [smgui][smgui] and [smcli][smcli]. The corresponding tests are located in [smtest][smtest].
 
+## Technical information
+
+smcore is a designed as a library which is statically linked to [smgui][smgui], [smcli][smcli] and [smtest][smtest].
+
 [smcli]: ./../smcli/readme.md
 [smgui]: ./../smgui/readme.md
 [smtest]: ./../smtest/readme.md

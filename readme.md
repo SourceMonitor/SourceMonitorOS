@@ -26,7 +26,7 @@ For compiling the project you have to open the [CMakeLists.txt project][project_
 To support the project there is a need of at least one of the listed skills.
 
 - [![CPP](https://skillicons.dev/icons?i=cpp)](https://skillicons.dev) - the basic programming language
-- [![CMake](https://skillicons.dev/icons?i=cmake)](https://skillicons.dev) - the used build system used
+- [![CMake](https://skillicons.dev/icons?i=cmake)](https://skillicons.dev) - the build system used
 - [![git](https://skillicons.dev/icons?i=git)](https://skillicons.dev) - the used code versioning system
 - [![GitHub](https://skillicons.dev/icons?i=github)](https://skillicons.dev) - the hoster of the project code
 - [![GitHubActions](https://skillicons.dev/icons?i=githubactions)](https://skillicons.dev) - used for CI/CD processes
@@ -50,7 +50,7 @@ Allthough there are CMake files existing up to know you need to run them using Q
 [folder_smcli]: ./smcli/readme.md
 [folder_smcore]: ./smcore/readme.md
 [folder_smgui]: ./smgui/readme.md
-[folder_smtest]: ./smtest/readme.md^
+[folder_smtest]: ./smtest/readme.md
 [licensemit]: https://opensource.org/licenses/MIT
 [qt]: https://www.qt.io/
 [tool_qt_creator]: https://www.qt.io/product/development-tools
