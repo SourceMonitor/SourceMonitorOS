@@ -27,7 +27,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        QString SMAbout::getAbout(void)
+        QString About::getAbout(void)
         {
             QString aboutText = R"~~~~(SourceMonitor Tracks Source Code Quality and Quantity
 Version <InsertVersionInfoHere> [InsertBuildInformationHere]

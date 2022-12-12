@@ -32,7 +32,7 @@ namespace smos
         class SMCORE_EXPORT SMCore
         {
         public:
-            SMCore();
+            SMCore(void);
         };
 
     }

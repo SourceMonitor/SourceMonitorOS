@@ -20,4 +20,8 @@ In this directory the UI of SourceMonitorOS is located.
 
 The functionality called is located in [smcore][smcore].
 
+## Technical information
+
+- The classes of `smgui` are prefixed with `sg` to avoid complications with the classes of `smcore`
+
 [smcore]: ./../smcore/readme.md

@@ -20,39 +20,63 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "test_about.h"
+#include "sggui.h"
 
-#include <QDebug>
-#include <QFile>
-#include <QTextStream>
+#include <QDir>
+#include <QMessageBox>
+
 #include "about.h"
+#include "factory.h"
+#include "license.h"
+#include "options.h"
+#include "sgoptions.h"
+#include "ui_sggui.h"
 
 namespace smos
 {
-    namespace smtest
+    namespace smgui
     {
         //******************************************************************************
-        QString TestAbout::buildAboutString(void)
+        SGGUI::SGGUI(QWidget *parent)
+            : QMainWindow(parent), ui(new Ui::SGGUI)
         {
-            return "SourceMonitor Tracks Source Code Quality and Quantity\nVersion <InsertVersionInfoHere> [InsertBuildInformationHere]\n\nSourceMonitor Team\nhttp://www.github.com/SourceMonitor\n© SourceMonitor Team";
+            ui->setupUi(this);
         }
         //******************************************************************************
-        void TestAbout::initTestCase(void)
+        SGGUI::~SGGUI(void)
         {
+            delete ui;
         }
         //******************************************************************************
-        void TestAbout::TestGetAbout(void)
+        bool SGGUI::initUI(void)
         {
-            // Build about string
-            QString aboutData = this->buildAboutString();
-            // Get about string from application
-            QString aboutApplication = smos::smcore::About::getAbout();
-            // They must be equal
-            QCOMPARE(aboutData, aboutApplication);
+            QString optionfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            // std::shared_ptr<SMOptions> smOptions = smos::smcore::SMFactory::getOptions(optionfileName);
+            this->options = smos::smcore::Factory::getOptions(optionfileName);
+            return true;
         }
         //******************************************************************************
-        void TestAbout::cleanupTestCase(void)
+        void SGGUI::on_actionExit_triggered(void)
         {
+            QCoreApplication::quit();
+        }
+        //******************************************************************************
+        void SGGUI::on_actionView_License_triggered(void)
+        {
+            QMessageBox::about(this, "SourceMonitorOS License", smos::smcore::License::getLicense());
+        }
+        //******************************************************************************
+        void SGGUI::on_actionAbout_SourceMonitor_triggered(void)
+        {
+            QMessageBox::about(this, "About SourceMonitorOS", smos::smcore::About::getAbout());
+        }
+        //******************************************************************************
+        void SGGUI::on_actionOptions_triggered(void)
+        {
+            smos::smgui::SGOptions optionsDialog(this, this->options);
+
+            optionsDialog.setModal(true);
+            optionsDialog.exec();
         }
     }
 }

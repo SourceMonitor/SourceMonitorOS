@@ -29,7 +29,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMLicense
+        class SMCORE_EXPORT License
         {
         public:
             /**
@@ -44,13 +44,13 @@ namespace smos
              * @brief Hide constructor to avoid instances
              *
              */
-            SMLicense(void);
+            License(void);
 
             /**
              * @brief Hide destructor to avoid instances
              *
              */
-            ~SMLicense(void);
+            ~License(void);
         };
     }
 }

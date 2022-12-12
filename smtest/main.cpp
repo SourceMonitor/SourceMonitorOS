@@ -24,7 +24,7 @@
 
 #include "test_about.h"
 #include "test_license.h"
-#include "test_settings.h"
+#include "test_options.h"
 
 // QTEST_MAIN(smos::smtest::TestLicense)
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
     RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestSettings, argc, argv, &status);
+    RUN_TESTS(smos::smtest::TestOptions, argc, argv, &status);
 
     return status;
 }

@@ -37,17 +37,24 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(SMGUI_TS_FILES
-    smgui_en_150.ts
+    sggui_en_150.ts
+)
+
+set(SMGUI_UI_DEFINITIONS
+    sggui.ui
+    sgoptions.ui
 )
 
 set(SMGUI_INCLUDE
-    smmainwindow.h
+    sggui.h
+    sgoptions.h
 )
 
 set(PROJECT_SOURCES
     main.cpp
-    smmainwindow.cpp
-    smmainwindow.ui
+    sggui.cpp
+    sgoptions.cpp
+    ${SMGUI_UI_DEFINITIONS}
     ${SMGUI_TS_FILES}
     ${SMGUI_INCLUDE}
     ${SMCORE_INCLUDE}
@@ -59,8 +66,8 @@ qt_add_executable(smgui
 )
 
 target_compile_options(smgui PRIVATE
-  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
-  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})

@@ -15,7 +15,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMAbout
+        class SMCORE_EXPORT About
         {
         public:
             /**
@@ -35,7 +35,7 @@ namespace smos
 ```c++
 #include "about.h"
 
-QString about = smos::smcore::SMAbout::getAbout();
+QString about = smos::smcore::About::getAbout();
 ```
 
 [smabout]: ./About%20SourceMonitor.png

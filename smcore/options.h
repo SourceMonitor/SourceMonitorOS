@@ -35,31 +35,45 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMSettings
+        class SMCORE_EXPORT Options
         {
         public:
             /**
              * @brief Default constructor
              *
-             * @param settingsfile Name of settings file
+             * @param optionsfile Name of options file
              */
-            SMSettings(QString settingsfile);
+            Options(QString optionsfile);
 
             /**
              * @brief Default destructor
              *
              */
-            ~SMSettings(void);
+            ~Options(void);
 
             /**
-             * @brief Load settings from INI file
+             * @brief Load options from INI file
              */
-            void settingsLoad(void);
+            void optionsLoad(void);
 
             /**
-             * @brief Save settings to INI file
+             * @brief Save options to INI file
              */
-            void settingsSave(void);
+            void optionsSave(void);
+
+            /**
+             * @brief Get the editor call with filename templated
+             *
+             * @return QString
+             */
+            QString codeEditorGet(void);
+
+            /**
+             * @brief Get the editor call with filename templated
+             *
+             * @return QString
+             */
+            void codeEditorSet(QString codeeditor);
 
             /**
              * @brief Get the absolute path to the logfile
@@ -78,15 +92,18 @@ namespace smos
         protected:
             /**
              * @brief Instance of QSettings object
-             *
              */
             std::unique_ptr<QSettings> m_settings;
 
             /**
              * @brief Name of used ini file
-             *
              */
             QString m_logfileName;
+
+            /**
+             * @brief Absolute path to editor for code files
+             */
+            QString m_general_CodeEditor;
 
             /**
              * @brief Method to build the key for accessing QSettings

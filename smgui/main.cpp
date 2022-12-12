@@ -20,7 +20,7 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "smmainwindow.h"
+#include "sggui.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -41,7 +41,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    smos::smgui::SMMainWindow w;
+    smos::smgui::SGGUI w;
+    w.initUI();
     w.show();
     return a.exec();
 }

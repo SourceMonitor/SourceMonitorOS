@@ -19,7 +19,8 @@ See how this is used in [smgui][smgui] and [smcli][smcli]. The corresponding tes
 
 ## Technical information
 
-smcore is a designed as a library which is statically linked to [smgui][smgui], [smcli][smcli] and [smtest][smtest].
+- `smcore` is a designed as a library which is statically linked to [smgui][smgui], [smcli][smcli] and [smtest][smtest].
+- Each class is named without any prefix.
 
 [smcli]: ./../smcli/readme.md
 [smgui]: ./../smgui/readme.md

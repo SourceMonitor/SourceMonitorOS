@@ -27,7 +27,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        SMCore::SMCore()
+        SMCore::SMCore(void)
         {
         }
     }

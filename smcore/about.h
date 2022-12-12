@@ -29,7 +29,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMAbout
+        class SMCORE_EXPORT About
         {
         public:
             /**
@@ -44,13 +44,13 @@ namespace smos
              * @brief Hide constructor to avoid instances
              *
              */
-            SMAbout(void);
+            About(void);
 
             /**
              * @brief Hide destructor to avoid instances
              *
              */
-            ~SMAbout(void);
+            ~About(void);
         };
     }
 }

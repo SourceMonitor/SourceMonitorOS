@@ -22,61 +22,20 @@
 
 #pragma once
 
-#include <QMainWindow>
-
-QT_BEGIN_NAMESPACE
-namespace Ui
-{
-    class SMMainWindow;
-}
-QT_END_NAMESPACE
+#include "smcore_global.h"
+#include "options.h"
+#include <memory.h>
+#include <QString.h>
 
 namespace smos
 {
-    namespace smgui
+    namespace smcore
     {
-        class SMMainWindow : public QMainWindow
+
+        class SMCORE_EXPORT Factory
         {
-            Q_OBJECT
-
         public:
-            /**
-             * @brief Default constructor
-             *
-             * @param parent
-             */
-            SMMainWindow(QWidget *parent = nullptr);
-            /**
-             * @brief Default desctructor
-             *
-             */
-            ~SMMainWindow(void);
-
-        private slots:
-            /**
-             * @brief Called when menu entry 'File - Exit' is triggered
-             *
-             */
-            void on_actionExit_triggered(void);
-
-            /**
-             * @brief Called when menu entry 'Help - View License' is triggered
-             *
-             */
-            void on_actionView_License_triggered(void);
-
-            /**
-             * @brief Called when menu entry 'Help - About SourceMonitor' is triggered
-             *
-             */
-            void on_actionAbout_SourceMonitor_triggered();
-
-        private:
-            /**
-             * @brief Instance of UI
-             *
-             */
-            Ui::SMMainWindow *ui;
+            static Options *getOptions(QString optionsfile);
         };
     }
 }

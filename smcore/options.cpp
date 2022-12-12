@@ -20,7 +20,7 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "settings.h"
+#include "options.h"
 #include <QDir>
 
 namespace smos
@@ -28,27 +28,30 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        SMSettings::SMSettings(QString settingsfile)
+        Options::Options(QString optionsfile)
         {
-            this->m_settings = std::unique_ptr<QSettings>(new QSettings(settingsfile, QSettings::IniFormat));
+            this->m_settings = std::unique_ptr<QSettings>(new QSettings(optionsfile, QSettings::IniFormat));
+            this->optionsLoad();
         }
         //******************************************************************************
-        SMSettings::~SMSettings(void)
+        Options::~Options(void)
         {
         }
         //******************************************************************************
-        void SMSettings::settingsLoad(void)
+        void Options::optionsLoad(void)
         {
+            this->m_general_CodeEditor = this->valueGet<QString>("program", "codeeditor", "${filename}");
             this->m_logfileName = this->valueGet<QString>("program", "logfile", "smos.log");
         }
         //******************************************************************************
-        void SMSettings::settingsSave(void)
+        void Options::optionsSave(void)
         {
+            this->valueSet<QString>("program", "codeeditor", this->m_general_CodeEditor);
             this->valueSet<QString>("program", "logfile", this->m_logfileName);
             this->m_settings->sync();
         }
         //******************************************************************************
-        QString SMSettings::getMapKey(QString section, QString key)
+        QString Options::getMapKey(QString section, QString key)
         {
             QString tmpSection = section.replace("/", "").replace("\\", "").toUpper();
             QString tmpKey = key.replace("/", "").replace("\\", "").toLower();
@@ -56,12 +59,22 @@ namespace smos
             return mapKey;
         }
         //******************************************************************************
-        QString SMSettings::logfileNameGet(void)
+        QString Options::codeEditorGet(void)
+        {
+            return this->m_general_CodeEditor;
+        }
+        //******************************************************************************
+        void Options::codeEditorSet(QString codeeditor)
+        {
+            this->m_general_CodeEditor = codeeditor;
+        }
+        //******************************************************************************
+        QString Options::logfileNameGet(void)
         {
             return this->m_logfileName;
         }
         //******************************************************************************
-        void SMSettings::logfileNameSet(QString logfileName)
+        void Options::logfileNameSet(QString logfileName)
         {
             this->m_logfileName = logfileName;
         }

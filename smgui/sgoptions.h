@@ -22,22 +22,56 @@
 
 #pragma once
 
-#include <QTest>
-#include "settings.h"
+#include <QDialog>
+#include "options.h"
+
+namespace Ui
+{
+    class SGOptions;
+}
 
 namespace smos
 {
-    namespace smtest
+    namespace smgui
     {
-        class TestSettings : public QObject
+        class SGOptions : public QDialog
         {
             Q_OBJECT
 
+        public:
+            /**
+             * @brief Default constructor
+             *
+             * @param parent
+             */
+            explicit SGOptions(QWidget *parent, smos::smcore::Options *options);
+            /**
+             * @brief Default desctructor
+             *
+             */
+            ~SGOptions(void);
+
         private slots:
-            void initTestCase(void);
-            void TestSettingsSaveLoad(void);
-            void TestLogfileNameGetSet(void);
-            void cleanupTestCase(void);
+            /**
+             * @brief Called when button 'General - ...' is triggered
+             *
+             */
+            void on_btnEditor_clicked(void);
+
+        private:
+            Ui::SGOptions *ui;
+
+            /**
+             * @brief Temporary options object
+             *
+             */
+            smos::smcore::Options *m_options = nullptr;
+
+            /**
+             * @brief Called for initialization
+             *
+             */
+            void dialogInit(void);
         };
     }
 }

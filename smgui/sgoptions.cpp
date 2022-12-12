@@ -20,55 +20,37 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "test_settings.h"
+#include "sgoptions.h"
 
-#include <QCoreApplication>
-#include <QDir>
-#include <QFile>
+#include <QFileDialog>
+
+#include "ui_sgoptions.h"
 
 namespace smos
 {
-    namespace smtest
+    namespace smgui
     {
         //******************************************************************************
-        void TestSettings::initTestCase(void)
+        SGOptions::SGOptions(QWidget *parent, smos::smcore::Options *options) : QDialog(parent), ui(new Ui::SGOptions), m_options(options)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
-            if (QFile::exists(configfileName))
-            {
-                QFile configfile(configfileName);
-                configfile.remove();
-            }
+            ui->setupUi(this);
+            this->dialogInit();
         }
         //******************************************************************************
-        void TestSettings::TestSettingsSaveLoad(void)
+        SGOptions::~SGOptions(void)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
-
-            smos::smcore::SMSettings settings(configfileName);
-
-            bool configfileExistsBefore = QFile::exists(configfileName);
-            QCOMPARE(false, configfileExistsBefore);
-
-            settings.settingsSave();
-            bool configfileExistsAfter = QFile::exists(configfileName);
-            QCOMPARE(true, configfileExistsAfter);
+            delete ui;
         }
         //******************************************************************************
-        void TestSettings::TestLogfileNameGetSet(void)
+        void SGOptions::dialogInit(void)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
-            QString logfileNameExpected = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.log");
-
-            smos::smcore::SMSettings settings(configfileName);
-            settings.logfileNameSet(logfileNameExpected);
-
-            QString logfileName = settings.logfileNameGet();
-            QCOMPARE(logfileNameExpected, logfileName);
+            QString editorOld = this->m_options->codeEditorGet();
+            ui->lineEditEditor->setText(editorOld);
         }
         //******************************************************************************
-        void TestSettings::cleanupTestCase(void)
+        void SGOptions::on_btnEditor_clicked(void)
         {
+            QString fileName = QFileDialog::getOpenFileName(this, "Select editor", "", "Executable Files (*.exe);;All files (*.*)");
         }
     }
 }

@@ -20,41 +20,24 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "smmainwindow.h"
-#include "./ui_smmainwindow.h"
-#include <QMessageBox>
-#include "about.h"
-#include "license.h"
+#pragma once
+
+#include <QTest>
 
 namespace smos
 {
-    namespace smgui
+    namespace smtest
     {
-        //******************************************************************************
-        SMMainWindow::SMMainWindow(QWidget *parent)
-            : QMainWindow(parent), ui(new Ui::SMMainWindow)
+        class TestOptions : public QObject
         {
-            ui->setupUi(this);
-        }
-        //******************************************************************************
-        SMMainWindow::~SMMainWindow(void)
-        {
-            delete ui;
-        }
-        //******************************************************************************
-        void SMMainWindow::on_actionExit_triggered(void)
-        {
-            QCoreApplication::quit();
-        }
-        //******************************************************************************
-        void SMMainWindow::on_actionView_License_triggered(void)
-        {
-            QMessageBox::about(this, "SourceMonitorOS License", smos::smcore::SMLicense::getLicense());
-        }
-        //******************************************************************************
-        void SMMainWindow::on_actionAbout_SourceMonitor_triggered()
-        {
-            QMessageBox::about(this, "About SourceMonitorOS", smos::smcore::SMAbout::getAbout());
-        }
+            Q_OBJECT
+
+        private slots:
+            void initTestCase(void);
+            void TestOptionsSaveLoad(void);
+            void TestCodeEditorGetSet(void);
+            void TestLogfileNameGetSet(void);
+            void cleanupTestCase(void);
+        };
     }
 }
