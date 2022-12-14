@@ -23,6 +23,7 @@
 #pragma once
 
 #include <QMainWindow>
+
 #include "options.h"
 
 QT_BEGIN_NAMESPACE
@@ -61,11 +62,80 @@ namespace smos
             bool initUI(void);
 
         private slots:
+            //******************************************************************************
+            // Menu File
+            //******************************************************************************
+            /**
+             * @brief Called when menu entry 'File - New project' is triggered
+             *
+             */
+            void on_actionNew_Project_triggered();
+
+            /**
+             * @brief Called when menu entry 'File - Open project' is triggered
+             *
+             */
+            void on_actionOpen_Project_triggered();
+
+            /**
+             * @brief Called when menu entry 'File - Options' is triggered
+             *
+             */
+            void on_actionOptions_triggered(void);
+
+            /**
+             * @brief Called when menu entry 'File - Print setup' is triggered
+             *
+             */
+            void on_actionPrint_Setup_triggered();
+
             /**
              * @brief Called when menu entry 'File - Exit' is triggered
              *
              */
             void on_actionExit_triggered(void);
+
+            //******************************************************************************
+            // Menu View
+            //******************************************************************************
+            /**
+             * @brief Called when menu entry 'View - Toolbar' is triggered
+             *
+             */
+            void on_actionToolbar_triggered();
+
+            /**
+             * @brief Called when menu entry 'View - Status' is triggered
+             *
+             */
+            void on_actionStatus_triggered();
+
+            /**
+             * @brief Called when menu entry 'View - View log File' is triggered
+             *
+             */
+            void on_actionView_log_file_triggered();
+
+            //******************************************************************************
+            // Menu Help
+            //******************************************************************************
+            /**
+             * @brief Called when menu entry 'Help - Help Topics' is triggered
+             *
+             */
+            void on_actionHelp_Topics_triggered();
+
+            /**
+             * @brief Called when menu entry 'Help - Context Help' is triggered
+             *
+             */
+            void on_actionContext_Help_triggered();
+
+            /**
+             * @brief Called when menu entry 'Help - Check for SourceMonitorOS Update' is triggered
+             *
+             */
+            void on_actionCheck_SourceMonitor_Update_triggered();
 
             /**
              * @brief Called when menu entry 'Help - View License' is triggered
@@ -79,12 +149,6 @@ namespace smos
              */
             void on_actionAbout_SourceMonitor_triggered(void);
 
-            /**
-             * @brief Called when menu entry 'File - Options' is triggered
-             *
-             */
-            void on_actionOptions_triggered(void);
-
         private:
             /**
              * @brief Instance of UI
@@ -97,6 +161,11 @@ namespace smos
              */
             // std::shared_ptr<smos::smcore::SMOptions> smOptions = nullptr;
             smos::smcore::Options *options = nullptr;
+            /**
+             * @brief Dialog to show "Currently not implemented!" message
+             *
+             */
+            void notImplemented(QString featurename);
         };
     }
 }

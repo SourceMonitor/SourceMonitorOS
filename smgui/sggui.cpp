@@ -21,6 +21,7 @@
 //******************************************************************************
 
 #include "sggui.h"
+#include "ui_sggui.h"
 
 #include <QDir>
 #include <QMessageBox>
@@ -30,7 +31,6 @@
 #include "license.h"
 #include "options.h"
 #include "sgoptions.h"
-#include "ui_sggui.h"
 
 namespace smos
 {
@@ -56,9 +56,73 @@ namespace smos
             return true;
         }
         //******************************************************************************
+        void SGGUI::notImplemented(QString featurename)
+        {
+            QMessageBox::about(this, featurename, "Currently not implemented!");
+        }
+        //******************************************************************************
+        // Menu File
+        //******************************************************************************
+        void SGGUI::on_actionNew_Project_triggered()
+        {
+            this->notImplemented("New project");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionOpen_Project_triggered()
+        {
+            this->notImplemented("Open project");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionOptions_triggered(void)
+        {
+            smos::smgui::SGOptions optionsDialog(this, this->options);
+
+            optionsDialog.setModal(true);
+            optionsDialog.exec();
+        }
+        //******************************************************************************
+        void SGGUI::on_actionPrint_Setup_triggered()
+        {
+            this->notImplemented("Print setup");
+        }
+        //******************************************************************************
         void SGGUI::on_actionExit_triggered(void)
         {
             QCoreApplication::quit();
+        }
+        //******************************************************************************
+        // Menu View
+        //******************************************************************************
+        void SGGUI::on_actionToolbar_triggered()
+        {
+            this->notImplemented("Toolbar");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionStatus_triggered()
+        {
+            this->notImplemented("Status");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionView_log_file_triggered()
+        {
+            this->notImplemented("View log file");
+        }
+        //******************************************************************************
+        // Menu Help
+        //******************************************************************************
+        void SGGUI::on_actionHelp_Topics_triggered()
+        {
+            this->notImplemented("Help Topics");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionContext_Help_triggered()
+        {
+            this->notImplemented("Context Help");
+        }
+        //******************************************************************************
+        void SGGUI::on_actionCheck_SourceMonitor_Update_triggered()
+        {
+            this->notImplemented("Check SourceMonitorOS Update");
         }
         //******************************************************************************
         void SGGUI::on_actionView_License_triggered(void)
@@ -69,14 +133,6 @@ namespace smos
         void SGGUI::on_actionAbout_SourceMonitor_triggered(void)
         {
             QMessageBox::about(this, "About SourceMonitorOS", smos::smcore::About::getAbout());
-        }
-        //******************************************************************************
-        void SGGUI::on_actionOptions_triggered(void)
-        {
-            smos::smgui::SGOptions optionsDialog(this, this->options);
-
-            optionsDialog.setModal(true);
-            optionsDialog.exec();
         }
     }
 }
