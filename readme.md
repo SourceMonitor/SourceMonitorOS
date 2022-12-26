@@ -45,6 +45,7 @@ This project is open source. Every kind of contribution is welcome. Usually by a
 Allthough there are CMake files existing up to know you need to run them using QT Creator.
 
 - In the folder [documentation][folder_documentation] you can find the documentation of SourceMonitorOS
+- In the folder [playground][folder_playground] you can find small programs for several tests
 - In the folder [smcli][folder_smcli] you can find the command line client of SourceMonitorOS
 - In the folder [smcore][folder_smcore] you can find the core functionality of SourceMonitorOS
 - In the folder [smgui][folder_smgui] you can find the UI of SourceMonitorOS
@@ -54,6 +55,7 @@ Allthough there are CMake files existing up to know you need to run them using Q
 [cmake]: https://www.cmake.org
 [cpp17]: https://en.wikipedia.org/wiki/C%2B%2B17
 [folder_documentation]: ./documentation/readme.md
+[folder_playground]: ./playground/readme.md
 [folder_smcli]: ./smcli/readme.md
 [folder_smcore]: ./smcore/readme.md
 [folder_smgui]: ./smgui/readme.md
