@@ -27,9 +27,9 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        QString About::getAbout(void)
+        smos::smcore::SMSring About::getAbout(void)
         {
-            QString aboutText = R"~~~~(SourceMonitor Tracks Source Code Quality and Quantity
+            smos::smcore::SMSring aboutText = R"~~~~(SourceMonitor Tracks Source Code Quality and Quantity
 Version <InsertVersionInfoHere> [InsertBuildInformationHere]
 
 SourceMonitor Team

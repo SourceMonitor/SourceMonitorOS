@@ -52,7 +52,7 @@ namespace smos
         {
             QString optionfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
             // std::shared_ptr<SMOptions> smOptions = smos::smcore::SMFactory::getOptions(optionfileName);
-            this->options = smos::smcore::Factory::getOptions(optionfileName);
+            this->options = smos::smcore::Factory::getOptions(optionfileName.toStdString());
             return true;
         }
         //******************************************************************************
@@ -127,12 +127,13 @@ namespace smos
         //******************************************************************************
         void SGGUI::on_actionView_License_triggered(void)
         {
-            QMessageBox::about(this, "SourceMonitorOS License", smos::smcore::License::getLicense());
+            QMessageBox::about(this, "SourceMonitorOS License", QString::fromUtf8(smos::smcore::License::getLicense().c_str()));
         }
         //******************************************************************************
         void SGGUI::on_actionAbout_SourceMonitor_triggered(void)
         {
-            QMessageBox::about(this, "About SourceMonitorOS", smos::smcore::About::getAbout());
+            QString str = QString::fromUtf8(smos::smcore::About::getAbout().c_str());
+            QMessageBox::about(this, "About SourceMonitorOS", str);
         }
     }
 }

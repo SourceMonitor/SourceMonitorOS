@@ -20,36 +20,11 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#pragma once
-
 #include "smstring.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class About
-        {
-        public:
-            /**
-             * @brief Get the about text
-             *
-             * @return QString
-             */
-            static smos::smcore::SMSring getAbout(void);
-
-        private:
-            /**
-             * @brief Hide constructor to avoid instances
-             *
-             */
-            About(void);
-
-            /**
-             * @brief Hide destructor to avoid instances
-             *
-             */
-            ~About(void);
-        };
     }
 }

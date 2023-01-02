@@ -22,10 +22,12 @@
 
 #pragma once
 
-#include <QtCore/qglobal.h>
+#include <string>
 
-#if defined(SMCORE_LIBRARY)
-#define SMCORE_EXPORT Q_DECL_EXPORT
-#else
-#define SMCORE_EXPORT Q_DECL_IMPORT
-#endif
+namespace smos
+{
+    namespace smcore
+    {
+        typedef std::string SMSring;
+    }
+}

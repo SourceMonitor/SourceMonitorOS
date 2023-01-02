@@ -34,7 +34,6 @@ namespace smos
 
         private slots:
             void initTestCase(void);
-            void TestOptionsSaveLoad(void);
             void TestCodeEditorGetSet(void);
             void TestLogfileNameGetSet(void);
             void cleanupTestCase(void);

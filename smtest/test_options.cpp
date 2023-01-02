@@ -42,33 +42,19 @@ namespace smos
             }
         }
         //******************************************************************************
-        void TestOptions::TestOptionsSaveLoad(void)
-        {
-            QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
-
-            smos::smcore::Options options(optionsfileName);
-
-            bool configfileExistsBefore = QFile::exists(optionsfileName);
-            QCOMPARE(false, configfileExistsBefore);
-
-            options.optionsSave();
-            bool configfileExistsAfter = QFile::exists(optionsfileName);
-            QCOMPARE(true, configfileExistsAfter);
-        }
-        //******************************************************************************
         void TestOptions::TestCodeEditorGetSet(void)
         {
             QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
             QString codeEditorExpected = "${filename}";
 
-            smos::smcore::Options options(optionsfileName);
+            smos::smcore::Options options(optionsfileName.toStdString());
 
-            QString value = options.codeEditorGet();
+            QString value = QString::fromUtf8(options.codeEditorGet().c_str());
             QCOMPARE(codeEditorExpected, value);
 
             codeEditorExpected = "something else";
-            options.codeEditorSet(codeEditorExpected);
-            value = options.codeEditorGet();
+            options.codeEditorSet(codeEditorExpected.toStdString());
+            value = QString::fromUtf8(options.codeEditorGet().c_str());
             QCOMPARE(codeEditorExpected, value);
         }
         //******************************************************************************
@@ -77,10 +63,10 @@ namespace smos
             QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
             QString logfileNameExpected = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.log");
 
-            smos::smcore::Options options(optionsfileName);
-            options.logfileNameSet(logfileNameExpected);
+            smos::smcore::Options options(optionsfileName.toStdString());
+            options.logfileNameSet(logfileNameExpected.toStdString());
 
-            QString logfileName = options.logfileNameGet();
+            QString logfileName = QString::fromUtf8(options.logfileNameGet().c_str());
             QCOMPARE(logfileNameExpected, logfileName);
         }
         //******************************************************************************

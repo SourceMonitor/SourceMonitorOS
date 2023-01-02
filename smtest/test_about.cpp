@@ -46,7 +46,7 @@ namespace smos
             // Build about string
             QString aboutData = this->buildAboutString();
             // Get about string from application
-            QString aboutApplication = smos::smcore::About::getAbout();
+            QString aboutApplication = QString::fromUtf8(smos::smcore::About::getAbout().c_str());
             // They must be equal
             QCOMPARE(aboutData, aboutApplication);
         }

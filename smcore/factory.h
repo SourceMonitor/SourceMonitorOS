@@ -22,20 +22,19 @@
 
 #pragma once
 
-#include "smcore_global.h"
 #include "options.h"
 #include <memory.h>
-#include <QString.h>
+#include "smstring.h"
 
 namespace smos
 {
     namespace smcore
     {
 
-        class SMCORE_EXPORT Factory
+        class Factory
         {
         public:
-            static Options *getOptions(QString optionsfile);
+            static Options *getOptions(smos::smcore::SMSring optionsfile);
         };
     }
 }

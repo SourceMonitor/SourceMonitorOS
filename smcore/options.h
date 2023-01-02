@@ -25,17 +25,14 @@
 
 #pragma once
 
-#include <QString>
-#include <QSettings>
-#include <QVariant>
+#include "smstring.h"
 #include <memory>
-#include "smcore_global.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT Options
+        class Options
         {
         public:
             /**
@@ -43,7 +40,7 @@ namespace smos
              *
              * @param optionsfile Name of options file
              */
-            Options(QString optionsfile);
+            Options(smos::smcore::SMSring optionsfile);
 
             /**
              * @brief Default destructor
@@ -52,101 +49,48 @@ namespace smos
             ~Options(void);
 
             /**
-             * @brief Load options from INI file
+             * @brief Get the editor call with filename templated
+             *
+             * @return smos::smcore::SMSring
              */
-            void optionsLoad(void);
-
-            /**
-             * @brief Save options to INI file
-             */
-            void optionsSave(void);
+            smos::smcore::SMSring codeEditorGet(void);
 
             /**
              * @brief Get the editor call with filename templated
              *
-             * @return QString
+             * @param codeeditor smos::smcore::SMSring
              */
-            QString codeEditorGet(void);
-
-            /**
-             * @brief Get the editor call with filename templated
-             *
-             * @return QString
-             */
-            void codeEditorSet(QString codeeditor);
+            void codeEditorSet(smos::smcore::SMSring codeeditor);
 
             /**
              * @brief Get the absolute path to the logfile
              *
-             * @return QString The absolute path to the logfile
+             * @return smos::smcore::SMSring The absolute path to the logfile
              */
-            QString logfileNameGet(void);
+            smos::smcore::SMSring logfileNameGet(void);
 
             /**
              * @brief Set the name (and path) of the logfile
              *
              * @param logfileName Name (and path) of the logfile to use
              */
-            void logfileNameSet(QString logfileName);
+            void logfileNameSet(smos::smcore::SMSring logfileName);
 
         protected:
             /**
-             * @brief Instance of QSettings object
+             * @brief Absolute path to editor for code files
              */
-            std::unique_ptr<QSettings> m_settings;
+            smos::smcore::SMSring m_general_CodeEditor;
 
             /**
              * @brief Name of used ini file
              */
-            QString m_logfileName;
+            smos::smcore::SMSring m_logfileName;
 
             /**
-             * @brief Absolute path to editor for code files
+             * @brief Name of options file
              */
-            QString m_general_CodeEditor;
-
-            /**
-             * @brief Method to build the key for accessing QSettings
-             *
-             * @param section Section name
-             * @param key Key name
-             * @return QString The key
-             */
-            QString getMapKey(QString section, QString key);
-
-            /**
-             * @brief Templated method to get a value
-             *
-             * @tparam argumentType Datatype of value
-             * @param section Section to set value
-             * @param key Key to set value
-             * @param defaultValue Default value
-             * @return argumentType The requested value
-             */
-            template <typename argumentType>
-            argumentType valueGet(QString section, QString key, argumentType defaultValue)
-            {
-                QString mapKey = this->getMapKey(section, key);
-                QVariant defaultValueArgument(defaultValue);
-                QVariant valueRaw = this->m_settings->value(mapKey, defaultValueArgument);
-                argumentType value = valueRaw.value<argumentType>();
-                return value;
-            }
-
-            /**
-             * @brief Templated method to set a value
-             *
-             * @tparam argumentType Datatype of value
-             * @param section Section to set value
-             * @param key Key to set value
-             * @param value Value itself
-             */
-            template <typename argumentType>
-            void valueSet(QString section, QString key, argumentType value)
-            {
-                QString mapKey = this->getMapKey(section, key);
-                this->m_settings->setValue(mapKey, value);
-            }
+            smos::smcore::SMSring m_optionsFile;
         };
     }
 }

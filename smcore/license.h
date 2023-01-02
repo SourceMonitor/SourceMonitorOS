@@ -22,22 +22,21 @@
 
 #pragma once
 
-#include <QString>
-#include "smcore_global.h"
+#include "smstring.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT License
+        class License
         {
         public:
             /**
              * @brief Get the license text
              *
-             * @return QString
+             * @return smos::smcore::SMSring
              */
-            static QString getLicense(void);
+            static smos::smcore::SMSring getLicense(void);
 
         private:
             /**

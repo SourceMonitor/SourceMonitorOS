@@ -44,7 +44,7 @@ namespace smos
         //******************************************************************************
         void SGOptions::dialogInit(void)
         {
-            QString editorOld = this->m_options->codeEditorGet();
+            QString editorOld = QString::fromUtf8(this->m_options->codeEditorGet().c_str());
             ui->lineEditEditor->setText(editorOld);
         }
         //******************************************************************************

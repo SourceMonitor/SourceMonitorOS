@@ -25,36 +25,28 @@ cmake_minimum_required(VERSION 3.5)
 project(smcore LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor Core Functionality")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
-
-set(SMCORE_TS_FILES
-    smcore_en_150.ts
-)
 
 set(SMCORE_INCLUDE
     about.h
     factory.h
     license.h
-    smcore_global.h
     options.h
+    smstring.h
 )
 
-qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})
-
-add_library(smcore SHARED
+set(SMCORE_BODY
     about.cpp
     factory.cpp
     license.cpp
     options.cpp
-    ${SMCORE_TS_FILES}
+    smstring.cpp
+)
+
+add_library(smcore SHARED
     ${SMCORE_INCLUDE}
+    ${SMCORE_BODY}
 )
 
 target_compile_options(smcore PRIVATE
@@ -62,6 +54,6 @@ target_compile_options(smcore PRIVATE
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
-target_link_libraries(smcore PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(smcore)
 
 target_compile_definitions(smcore PRIVATE SMCORE_LIBRARY)

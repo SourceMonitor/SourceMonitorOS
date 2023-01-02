@@ -27,7 +27,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Options *Factory::getOptions(QString optionsfile)
+        Options *Factory::getOptions(smos::smcore::SMSring optionsfile)
         {
             static Options *smOptions = nullptr;
             if (nullptr == smOptions)
