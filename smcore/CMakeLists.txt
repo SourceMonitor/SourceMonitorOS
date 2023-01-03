@@ -40,19 +40,23 @@ set(SMCORE_TS_FILES
 
 set(SMCORE_INCLUDE
     about.h
+    error.h
     factory.h
     license.h
-    smcore_global.h
     options.h
+    project.h
+    smcore_global.h
 )
 
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCORE_TS_FILES})
 
 add_library(smcore SHARED
     about.cpp
+    error.cpp
     factory.cpp
     license.cpp
     options.cpp
+    project.cpp
     ${SMCORE_TS_FILES}
     ${SMCORE_INCLUDE}
 )
