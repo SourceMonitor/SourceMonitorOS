@@ -44,7 +44,7 @@ set(SMCORE_BODY
     smstring.cpp
 )
 
-add_library(smcore SHARED
+add_library(smcore STATIC
     ${SMCORE_INCLUDE}
     ${SMCORE_BODY}
 )
