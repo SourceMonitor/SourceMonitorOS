@@ -20,7 +20,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMOptions
+        class Options
         {
         public:
             /**
@@ -28,52 +28,42 @@ namespace smos
              *
              * @param optionsfile Name of options file
              */
-            SMOptions(QString optionsfile);
+            Options(smos::smcore::SMSring optionsfile);
 
             /**
              * @brief Default destructor
              *
              */
-            ~SMOptions(void);
-
-            /**
-             * @brief Load options from INI file
-             */
-            void optionsLoad(void);
-
-            /**
-             * @brief Save options to INI file
-             */
-            void optionsSave(void);
+            ~Options(void);
 
             /**
              * @brief Get the editor call with filename templated
              *
-             * @return QString
+             * @return smos::smcore::SMSring
              */
-            QString codeEditorGet(void);
+            smos::smcore::SMSring codeEditorGet(void);
 
             /**
              * @brief Get the editor call with filename templated
              *
-             * @return QString
+             * @param codeeditor smos::smcore::SMSring
              */
-            void codeEditorSet(QString codeeditor);
+            void codeEditorSet(smos::smcore::SMSring codeeditor);
 
             /**
              * @brief Get the absolute path to the logfile
              *
-             * @return QString The absolute path to the logfile
+             * @return smos::smcore::SMSring The absolute path to the logfile
              */
-            QString logfileNameGet(void);
+            smos::smcore::SMSring logfileNameGet(void);
 
             /**
              * @brief Set the name (and path) of the logfile
              *
              * @param logfileName Name (and path) of the logfile to use
              */
-            void logfileNameSet(QString logfileName);
-        }
+            void logfileNameSet(smos::smcore::SMSring logfileName);
+        };
     }
 }
 ```
@@ -85,7 +75,7 @@ namespace smos
 
 smos::smcore::SMSettings settings = smos::smcore::SMSettings("smos_core.ini");
 
-QString logfileOld = settings.logfileNameGet();
+smos::smcore::SMSring logfileOld = settings.logfileNameGet();
 settings.logfileNameSet("logfilenew.log");
 ```
 

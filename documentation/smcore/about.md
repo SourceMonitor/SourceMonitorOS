@@ -15,7 +15,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT About
+        class About
         {
         public:
             /**
@@ -23,11 +23,10 @@ namespace smos
              *
              * @return QString
              */
-            static QString getAbout(void);
+            static smos::smcore::SMSring getAbout(void);
         };
     }
 }
-
 ```
 
 ### Usage
@@ -35,7 +34,7 @@ namespace smos
 ```c++
 #include "about.h"
 
-QString about = smos::smcore::About::getAbout();
+smos::smcore::SMSring about = smos::smcore::About::getAbout();
 ```
 
 [smabout]: ./About%20SourceMonitor.png

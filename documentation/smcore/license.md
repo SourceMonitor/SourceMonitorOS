@@ -13,18 +13,19 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT License
+        class License
         {
         public:
             /**
              * @brief Get the license text
              *
-             * @return QString
+             * @return smos::smcore::SMSring
              */
-            static QString getLicense(void);
-        }
+            static smos::smcore::SMSring getLicense(void);
+        };
     }
 }
+
 ```
 
 ### Usage
@@ -32,7 +33,7 @@ namespace smos
 ```c++
 #include "license.h"
 
-QString license = smos::smcore::License::getLicense();
+smos::smcore::SMSring license = smos::smcore::License::getLicense();
 ```
 
 ## Possible issues
