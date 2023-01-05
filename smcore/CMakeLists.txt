@@ -30,14 +30,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SMCORE_INCLUDE
     about.h
+    error.h
     factory.h
     license.h
     options.h
-    smstring.h
+    project.h
+    smcore_global.h
 )
 
 set(SMCORE_BODY
     about.cpp
+    error.cpp
     factory.cpp
     license.cpp
     options.cpp
