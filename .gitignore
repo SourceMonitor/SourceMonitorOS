@@ -76,3 +76,4 @@ CMakeLists.txt.user
 build*
 .vscode
 /.vscode
+*.bak

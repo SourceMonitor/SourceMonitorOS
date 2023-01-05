@@ -35,7 +35,6 @@ set(SMCORE_INCLUDE
     license.h
     options.h
     project.h
-    smcore_global.h
 )
 
 set(SMCORE_BODY

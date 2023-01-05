@@ -32,9 +32,9 @@ namespace smos
         {
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::loadProject(QString filename)
+        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMSring filename)
         {
-            if (!std::filesystem::exists(filename.toStdString()))
+            if (!std::filesystem::exists(filename))
             {
                 return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
             }

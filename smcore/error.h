@@ -22,8 +22,7 @@
 
 #pragma once
 
-#include <QString>
-#include "smcore_global.h"
+#include "smstring.h"
 
 // See error class in C++ with enum
 // https://stackoverflow.com/questions/21295935/can-a-c-enum-class-have-methods
@@ -34,7 +33,7 @@ namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT Error
+        class Error
         {
         public:
             enum ErrorCode

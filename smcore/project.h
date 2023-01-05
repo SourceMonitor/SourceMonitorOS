@@ -22,15 +22,14 @@
 
 #pragma once
 
-#include <QString>
-#include "smcore_global.h"
+#include "smstring.h"
 #include "error.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT Project
+        class Project
         {
         public:
             /**
@@ -46,7 +45,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            smos::smcore::Error::ErrorCode loadProject(QString filename);
+            smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMSring filename);
         };
     }
 }
