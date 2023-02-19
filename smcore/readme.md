@@ -21,7 +21,9 @@ See how this is used in [smgui][smgui] and [smcli][smcli]. The corresponding tes
 
 - `smcore` is a designed as a library which is statically linked to [smgui][smgui], [smcli][smcli] and [smtest][smtest].
 - Each class is named without any prefix.
+- `Project` class will be serialized, see [here][serialization] for details
 
 [smcli]: ./../smcli/readme.md
 [smgui]: ./../smgui/readme.md
 [smtest]: ./../smtest/readme.md
+[serialization]: https://stackoverflow.com/questions/37038909/c-read-write-class-from-to-binary-file

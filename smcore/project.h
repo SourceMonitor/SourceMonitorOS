@@ -34,7 +34,6 @@ namespace smos
         public:
             /**
              * @brief Construct a new Project object
-             *
              */
             Project(void);
 
@@ -46,6 +45,60 @@ namespace smos
              * @return smos::smcore::Error::ErrorCode
              */
             smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMSring filename);
+
+        private:
+            /**
+             * @brief Name of project
+             */
+            smos::smcore::SMSring m_sName;
+            /**
+             * @brief Location of project source code
+             */
+            smos::smcore::SMSring m_sDirectory;
+            /**
+             * @brief Filename of project file
+             */
+            smos::smcore::SMSring m_sProjectFileName;
+            /**
+             * @brief Location of project file
+             */
+            smos::smcore::SMSring m_sProjectFileDirectory;
+            /**
+             * @brief Project setting: Include subdirectories yes/no
+             */
+            bool m_fIncludeSubdirectories;
+            /**
+             * @brief Some options - need more inspection for knowing kind of options and what they tweak
+             */
+            int m_eOptionFlags;
+            /**
+             * @brief Reference to language object
+             */
+            // SMLanguage *m_poLanguageExemplar; // exemplar is used to build all project language objects
+            /**
+             * @brief Version object
+             */
+            // SMVersion m_oVersion;             // version of SourceMonitor that created this project
+            /**
+             * @brief List of project checkpoints, ordered list?
+             *
+             */
+            // CheckpointList m_oCheckpoints;    // list of checkponts in the project
+
+            // transient (non-persisted) members
+            // CStringArray m_saFilesXmlPathNames;   // Xml files that holds the paths to all project files
+            // CStringArray m_saXmlFileXPathFilters; // XPath specifications that define locations of project files in xml file
+            // CString m_sBaseDirectory;             // base directory for source files with relative references resolved
+            // CString m_sRootDirectory;             // base directory as read from project file - may be relative
+            // CString m_sXmlFileDirectory;          // directory where the current XML file is located
+            // CStringArray m_saSubDirectories;      // list of (relative) sub-directories
+            // SubdirectoryMode m_eSubdirectoryMode;
+            // CStringArray m_saIncludeExtensionList;  // list of file extensions to search for
+            // CStringArray m_saExcludeExtensionList;  // list of file extensions to exclude (subset of the include list)
+            // CWordArray m_waExcludeExtensionLengths; // lengths of the extensions in the exclude list
+            // CheckpointList m_oDeletedCheckpoints;   // list of deleted checkponts
+            // bool m_fNewFileFormat;                  // true if project is saved in the new binary format instead of the MFC Serialize format
+            // bool m_fProcessingXMLTest;              // controls display of XML extraction errors only when user is testing an XML specification
         };
     }
 }
