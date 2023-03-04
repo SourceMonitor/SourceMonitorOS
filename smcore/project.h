@@ -38,6 +38,11 @@ namespace smos
             Project(void);
 
             /**
+             * @brief Destroy the Project object
+             */
+            ~Project(void);
+
+            /**
              * @brief Load project data
              *
              * @param filename Name of project file
@@ -46,11 +51,23 @@ namespace smos
              */
             smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMSring filename);
 
+            /**
+             * @brief Save project data
+             *
+             * @param filename Name of project file
+             *
+             * @return smos::smcore::Error::ErrorCode
+             */
+            smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMSring filename);
+
+            smos::smcore::SMSring getProjectName(void);
+            void setProjectName(smos::smcore::SMSring projectName);
+
         private:
             /**
              * @brief Name of project
              */
-            smos::smcore::SMSring m_sName;
+            smos::smcore::SMSring m_ProjectName;
             /**
              * @brief Location of project source code
              */

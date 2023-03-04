@@ -20,24 +20,22 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "testrunner.h"
+#pragma once
 
-#include "test_about.h"
-#include "test_license.h"
-#include "test_options.h"
-#include "test_project.h"
+#include <QTest>
 
-// QTEST_MAIN(smos::smtest::TestLicense)
-
-int main(int argc, char *argv[])
+namespace smos
 {
+    namespace smtest
+    {
+        class TestProject : public QObject
+        {
+            Q_OBJECT
 
-    int status = 0;
-
-    RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestOptions, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestProject, argc, argv, &status);
-
-    return status;
+        private slots:
+            void initTestCase(void);
+            void TestProjectName(void);
+            void cleanupTestCase(void);
+        };
+    }
 }

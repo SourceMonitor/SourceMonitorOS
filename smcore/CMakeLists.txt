@@ -35,6 +35,7 @@ set(SMCORE_INCLUDE
     license.h
     options.h
     project.h
+    smstring.h
 )
 
 set(SMCORE_BODY
@@ -43,6 +44,7 @@ set(SMCORE_BODY
     factory.cpp
     license.cpp
     options.cpp
+    project.cpp
     smstring.cpp
 )
 

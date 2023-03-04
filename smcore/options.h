@@ -80,7 +80,7 @@ namespace smos
             /**
              * @brief Absolute path to editor for code files
              */
-            smos::smcore::SMSring m_general_CodeEditor;
+            smos::smcore::SMSring m_general_CodeEditor = "${filename}";
 
             /**
              * @brief Name of used ini file

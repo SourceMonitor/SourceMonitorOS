@@ -20,49 +20,35 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
+#include "test_project.h"
+
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
 #include "project.h"
-#include <filesystem>
+#include "smstring.h"
 
 namespace smos
 {
-    namespace smcore
+    namespace smtest
     {
         //******************************************************************************
-        Project::Project(void)
+        void TestProject::initTestCase(void)
         {
         }
         //******************************************************************************
-        Project::~Project(void)
+        void TestProject::TestProjectName(void)
         {
+            // Build about string
+            smos::smcore::SMSring projectNameSet = smos::smcore::SMSring("ProjectName");
+            smos::smcore::Project objProject;
+            objProject.setProjectName(projectNameSet);
+            smos::smcore::SMSring projectNameGet = objProject.getProjectName();
+            QCOMPARE(projectNameSet, projectNameGet);
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMSring filename)
+        void TestProject::cleanupTestCase(void)
         {
-            if (!std::filesystem::exists(filename))
-            {
-                return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
-            }
-            return smos::smcore::Error::ERR_EVERYTHING_OK;
         }
-        //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMSring filename)
-        {
-            if (!std::filesystem::exists(filename))
-            {
-                return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
-            }
-            return smos::smcore::Error::ERR_EVERYTHING_OK;
-        }
-        //******************************************************************************
-        smos::smcore::SMSring Project::getProjectName(void)
-        {
-            return m_ProjectName;
-        }
-        //******************************************************************************
-        void Project::setProjectName(smos::smcore::SMSring projectName)
-        {
-            m_ProjectName = projectName;
-        }
-        //******************************************************************************
     }
 }
