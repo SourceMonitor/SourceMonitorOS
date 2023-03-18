@@ -27,7 +27,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Options::Options(smos::smcore::SMSring optionsfile) :m_optionsFile(optionsfile)
+        Options::Options(smos::smcore::SMString optionsfile) : m_optionsFile(optionsfile)
         {
         }
         //******************************************************************************
@@ -35,22 +35,22 @@ namespace smos
         {
         }
         //******************************************************************************
-        smos::smcore::SMSring Options::codeEditorGet(void)
+        smos::smcore::SMString Options::codeEditorGet(void)
         {
             return this->m_general_CodeEditor;
         }
         //******************************************************************************
-        void Options::codeEditorSet(smos::smcore::SMSring codeeditor)
+        void Options::codeEditorSet(smos::smcore::SMString codeeditor)
         {
             this->m_general_CodeEditor = codeeditor;
         }
         //******************************************************************************
-        smos::smcore::SMSring Options::logfileNameGet(void)
+        smos::smcore::SMString Options::logfileNameGet(void)
         {
             return this->m_logfileName;
         }
         //******************************************************************************
-        void Options::logfileNameSet(smos::smcore::SMSring logfileName)
+        void Options::logfileNameSet(smos::smcore::SMString logfileName)
         {
             this->m_logfileName = logfileName;
         }

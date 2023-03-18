@@ -40,10 +40,10 @@ namespace smos
         void TestProject::TestProjectName(void)
         {
             // Build about string
-            smos::smcore::SMSring projectNameSet = smos::smcore::SMSring("ProjectName");
+            smos::smcore::SMString projectNameSet = smos::smcore::SMString("ProjectName");
             smos::smcore::Project objProject;
             objProject.setProjectName(projectNameSet);
-            smos::smcore::SMSring projectNameGet = objProject.getProjectName();
+            smos::smcore::SMString projectNameGet = objProject.getProjectName();
             QCOMPARE(projectNameSet, projectNameGet);
         }
         //******************************************************************************

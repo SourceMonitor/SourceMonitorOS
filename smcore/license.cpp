@@ -27,9 +27,9 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        smos::smcore::SMSring License::getLicense(void)
+        smos::smcore::SMString License::getLicense(void)
         {
-            smos::smcore::SMSring licenseText = R"~~~~(MIT License
+            smos::smcore::SMString licenseText = R"~~~~(MIT License
 
 Copyright (C) 1999 by Jim Wanner and the SourceMonitor team
 

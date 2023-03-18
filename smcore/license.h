@@ -36,7 +36,7 @@ namespace smos
              *
              * @return smos::smcore::SMSring
              */
-            static smos::smcore::SMSring getLicense(void);
+            static smos::smcore::SMString getLicense(void);
 
         private:
             /**

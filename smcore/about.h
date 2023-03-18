@@ -36,7 +36,7 @@ namespace smos
              *
              * @return QString
              */
-            static smos::smcore::SMSring getAbout(void);
+            static smos::smcore::SMString getAbout(void);
 
         private:
             /**

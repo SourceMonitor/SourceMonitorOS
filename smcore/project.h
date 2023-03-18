@@ -49,7 +49,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMSring filename);
+            smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMString filename);
 
             /**
              * @brief Save project data
@@ -58,28 +58,28 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMSring filename);
+            smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMString filename);
 
-            smos::smcore::SMSring getProjectName(void);
-            void setProjectName(smos::smcore::SMSring projectName);
+            smos::smcore::SMString getProjectName(void);
+            void setProjectName(smos::smcore::SMString projectName);
 
         private:
             /**
              * @brief Name of project
              */
-            smos::smcore::SMSring m_ProjectName;
+            smos::smcore::SMString m_ProjectName;
             /**
              * @brief Location of project source code
              */
-            smos::smcore::SMSring m_sDirectory;
+            smos::smcore::SMString m_sDirectory;
             /**
              * @brief Filename of project file
              */
-            smos::smcore::SMSring m_sProjectFileName;
+            smos::smcore::SMString m_sProjectFileName;
             /**
              * @brief Location of project file
              */
-            smos::smcore::SMSring m_sProjectFileDirectory;
+            smos::smcore::SMString m_sProjectFileDirectory;
             /**
              * @brief Project setting: Include subdirectories yes/no
              */

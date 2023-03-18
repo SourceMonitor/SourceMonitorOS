@@ -40,7 +40,7 @@ namespace smos
              *
              * @param optionsfile Name of options file
              */
-            Options(smos::smcore::SMSring optionsfile);
+            Options(smos::smcore::SMString optionsfile);
 
             /**
              * @brief Default destructor
@@ -53,44 +53,44 @@ namespace smos
              *
              * @return smos::smcore::SMSring
              */
-            smos::smcore::SMSring codeEditorGet(void);
+            smos::smcore::SMString codeEditorGet(void);
 
             /**
              * @brief Get the editor call with filename templated
              *
              * @param codeeditor smos::smcore::SMSring
              */
-            void codeEditorSet(smos::smcore::SMSring codeeditor);
+            void codeEditorSet(smos::smcore::SMString codeeditor);
 
             /**
              * @brief Get the absolute path to the logfile
              *
              * @return smos::smcore::SMSring The absolute path to the logfile
              */
-            smos::smcore::SMSring logfileNameGet(void);
+            smos::smcore::SMString logfileNameGet(void);
 
             /**
              * @brief Set the name (and path) of the logfile
              *
              * @param logfileName Name (and path) of the logfile to use
              */
-            void logfileNameSet(smos::smcore::SMSring logfileName);
+            void logfileNameSet(smos::smcore::SMString logfileName);
 
         protected:
             /**
              * @brief Absolute path to editor for code files
              */
-            smos::smcore::SMSring m_general_CodeEditor = "${filename}";
+            smos::smcore::SMString m_general_CodeEditor = "${filename}";
 
             /**
              * @brief Name of used ini file
              */
-            smos::smcore::SMSring m_logfileName;
+            smos::smcore::SMString m_logfileName;
 
             /**
              * @brief Name of options file
              */
-            smos::smcore::SMSring m_optionsFile;
+            smos::smcore::SMString m_optionsFile;
         };
     }
 }

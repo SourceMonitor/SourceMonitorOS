@@ -34,7 +34,7 @@ namespace smos
         class Factory
         {
         public:
-            static Options *getOptions(smos::smcore::SMSring optionsfile);
+            static Options *getOptions(smos::smcore::SMString optionsfile);
         };
     }
 }

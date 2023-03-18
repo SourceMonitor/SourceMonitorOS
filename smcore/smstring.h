@@ -28,6 +28,6 @@ namespace smos
 {
     namespace smcore
     {
-        typedef std::string SMSring;
+        typedef std::string SMString;
     }
 }

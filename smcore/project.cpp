@@ -36,7 +36,7 @@ namespace smos
         {
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMSring filename)
+        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMString filename)
         {
             if (!std::filesystem::exists(filename))
             {
@@ -45,7 +45,7 @@ namespace smos
             return smos::smcore::Error::ERR_EVERYTHING_OK;
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMSring filename)
+        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMString filename)
         {
             if (!std::filesystem::exists(filename))
             {
@@ -54,12 +54,12 @@ namespace smos
             return smos::smcore::Error::ERR_EVERYTHING_OK;
         }
         //******************************************************************************
-        smos::smcore::SMSring Project::getProjectName(void)
+        smos::smcore::SMString Project::getProjectName(void)
         {
             return m_ProjectName;
         }
         //******************************************************************************
-        void Project::setProjectName(smos::smcore::SMSring projectName)
+        void Project::setProjectName(smos::smcore::SMString projectName)
         {
             m_ProjectName = projectName;
         }
