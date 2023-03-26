@@ -35,6 +35,7 @@ namespace smos
         private slots:
             void initTestCase(void);
             void TestProjectName(void);
+            void TestPersistence(void);
             void cleanupTestCase(void);
         };
     }

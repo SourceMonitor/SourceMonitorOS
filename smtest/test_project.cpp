@@ -25,6 +25,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <filesystem>
 #include "project.h"
 #include "smstring.h"
 
@@ -35,6 +36,8 @@ namespace smos
         //******************************************************************************
         void TestProject::initTestCase(void)
         {
+            smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
+            std::filesystem::remove(filename);
         }
         //******************************************************************************
         void TestProject::TestProjectName(void)
@@ -47,8 +50,26 @@ namespace smos
             QCOMPARE(projectNameSet, projectNameGet);
         }
         //******************************************************************************
+        void TestProject::TestPersistence(void)
+        {
+            smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
+            smos::smcore::SMString projectNameSet = smos::smcore::SMString("ProjectName");
+            smos::smcore::Project objProjectSave;
+            objProjectSave.setProjectName(projectNameSet);
+            QCOMPARE(false, std::filesystem::exists(filename));
+            smos::smcore::Error::ErrorCode result = smos::smcore::Project::saveProject(filename, &objProjectSave);
+            QCOMPARE(smos::smcore::Error::ErrorCode::ERR_NONE, result);
+            QCOMPARE(true, std::filesystem::exists(filename));
+            smos::smcore::Project objProjectLoad;
+            result = smos::smcore::Project::loadProject(filename, &objProjectLoad);
+            QCOMPARE(smos::smcore::Error::ErrorCode::ERR_NONE, result);
+            QCOMPARE(objProjectLoad.getProjectName(), objProjectSave.getProjectName());
+        }
+        //******************************************************************************
         void TestProject::cleanupTestCase(void)
         {
+            smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
+            std::filesystem::remove(filename);
         }
     }
 }

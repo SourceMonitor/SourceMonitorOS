@@ -38,7 +38,8 @@ namespace smos
         public:
             enum ErrorCode
             {
-                ERR_EVERYTHING_OK = 0,
+                ERR_NONE = 0,
+                ERR_PROJECT_ALREADY_EXIST,
                 ERR_PROJECT_DOES_NOT_EXIST,
                 ERR_PROJECT_INVALID,
             };

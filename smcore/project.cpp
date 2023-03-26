@@ -36,25 +36,32 @@ namespace smos
         {
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMString filename)
+        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMString filename, Project *project)
         {
             if (!std::filesystem::exists(filename))
             {
                 return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
             }
-            return smos::smcore::Error::ERR_EVERYTHING_OK;
+            std::ifstream in(filename, std::ios::binary);
+            in >> *project;
+            in.close();
+
+            return smos::smcore::Error::ERR_NONE;
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMString filename)
+        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMString filename, Project *project, bool force)
         {
-            if (!std::filesystem::exists(filename))
+            if (std::filesystem::exists(filename) && !force)
             {
-                return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
+                return smos::smcore::Error::ERR_PROJECT_ALREADY_EXIST;
             }
-            return smos::smcore::Error::ERR_EVERYTHING_OK;
+            std::ofstream out(filename, std::ios::binary);
+            out << *project;
+            out.close();
+            return smos::smcore::Error::ERR_NONE;
         }
         //******************************************************************************
-        smos::smcore::SMString Project::getProjectName(void)
+        smos::smcore::SMString Project::getProjectName(void) const
         {
             return m_ProjectName;
         }
@@ -62,6 +69,18 @@ namespace smos
         void Project::setProjectName(smos::smcore::SMString projectName)
         {
             m_ProjectName = projectName;
+        }
+        //******************************************************************************
+        std::ostream &operator<<(std::ostream &os, const Project &obj)
+        {
+            os << obj.m_ProjectName << std::endl;
+            return os;
+        }
+        //******************************************************************************
+        std::istream &operator>>(std::istream &is, Project &obj)
+        {
+            is >> obj.m_ProjectName;
+            return is;
         }
         //******************************************************************************
     }

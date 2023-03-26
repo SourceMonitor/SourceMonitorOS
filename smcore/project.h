@@ -22,6 +22,9 @@
 
 #pragma once
 
+#include <iostream>
+#include <fstream>
+
 #include "smstring.h"
 #include "error.h"
 
@@ -46,22 +49,56 @@ namespace smos
              * @brief Load project data
              *
              * @param filename Name of project file
+             * @param project Pointer to project object
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMString filename);
+            static smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMString filename, Project *project);
 
             /**
              * @brief Save project data
              *
              * @param filename Name of project file
+             * @param project Pointer to project object
+             * @param force Force saving in case project file already exist
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMString filename);
+            static smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMString filename, Project *project, bool force = false);
 
-            smos::smcore::SMString getProjectName(void);
+            /**
+             * @brief Get the Project Name
+             *
+             * @return smos::smcore::SMString
+             */
+            smos::smcore::SMString getProjectName(void) const;
+
+            /**
+             * @brief Set the Project Name
+             *
+             * @param projectName
+             */
             void setProjectName(smos::smcore::SMString projectName);
+
+            /**
+             * @brief Enable writing to stream
+             *
+             * @param os Outputstream to write to
+             * @param obj Project object to write to stream
+             *
+             * @return std::ostream&
+             */
+            friend std::ostream &operator<<(std::ostream &os, const Project &obj);
+
+            /**
+             * @brief Enable reading from stream
+             *
+             * @param is Inputstream to read from
+             * @param obj Project object to read from stream
+             *
+             * @return std::istream&
+             */
+            friend std::istream &operator>>(std::istream &is, Project &obj);
 
         private:
             /**
