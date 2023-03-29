@@ -36,27 +36,27 @@ namespace smos
         {
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::loadProject(smos::smcore::SMString filename, Project *project)
+        smos::smcore::Error::ErrorCode Project::loadProject(const smos::smcore::SMString &filename, Project &project)
         {
             if (!std::filesystem::exists(filename))
             {
                 return smos::smcore::Error::ERR_PROJECT_DOES_NOT_EXIST;
             }
             std::ifstream in(filename, std::ios::binary);
-            in >> *project;
+            in >> project;
             in.close();
 
             return smos::smcore::Error::ERR_NONE;
         }
         //******************************************************************************
-        smos::smcore::Error::ErrorCode Project::saveProject(smos::smcore::SMString filename, Project *project, bool force)
+        smos::smcore::Error::ErrorCode Project::saveProject(const smos::smcore::SMString &filename, Project &project, bool force)
         {
             if (std::filesystem::exists(filename) && !force)
             {
                 return smos::smcore::Error::ERR_PROJECT_ALREADY_EXIST;
             }
             std::ofstream out(filename, std::ios::binary);
-            out << *project;
+            out << project;
             out.close();
             return smos::smcore::Error::ERR_NONE;
         }

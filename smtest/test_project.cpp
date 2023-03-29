@@ -57,11 +57,11 @@ namespace smos
             smos::smcore::Project objProjectSave;
             objProjectSave.setProjectName(projectNameSet);
             QCOMPARE(false, std::filesystem::exists(filename));
-            smos::smcore::Error::ErrorCode result = smos::smcore::Project::saveProject(filename, &objProjectSave);
+            smos::smcore::Error::ErrorCode result = smos::smcore::Project::saveProject(filename, objProjectSave);
             QCOMPARE(smos::smcore::Error::ErrorCode::ERR_NONE, result);
             QCOMPARE(true, std::filesystem::exists(filename));
             smos::smcore::Project objProjectLoad;
-            result = smos::smcore::Project::loadProject(filename, &objProjectLoad);
+            result = smos::smcore::Project::loadProject(filename, objProjectLoad);
             QCOMPARE(smos::smcore::Error::ErrorCode::ERR_NONE, result);
             QCOMPARE(objProjectLoad.getProjectName(), objProjectSave.getProjectName());
         }

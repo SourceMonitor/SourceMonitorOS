@@ -38,7 +38,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            static smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMString filename, Project *project);
+            static smos::smcore::Error::ErrorCode loadProject(const smos::smcore::SMString &filename, Project &project);
 
             /**
              * @brief Save project data
@@ -49,7 +49,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            static smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMString filename, Project *project, bool force = false);
+            static smos::smcore::Error::ErrorCode saveProject(const smos::smcore::SMString &filename, Project &project, bool force = false);
 
             /**
              * @brief Get the Project Name
@@ -104,8 +104,8 @@ smos::smcore::SMString projectNameGet = objProject.getProjectName();
 
 // Save and load project
 smos::smcore::SMString filename = smos::smcore::SMString("project.dat");
-smos::smcore::Error::ErrorCode result = smos::smcore::Project::saveProject(filename, &objProject);
-result = smos::smcore::Project::loadProject(filename, &objProject);
+smos::smcore::Error::ErrorCode result = smos::smcore::Project::saveProject(filename, objProject);
+result = smos::smcore::Project::loadProject(filename, objProject);
 ```
 
 ## Possible issues

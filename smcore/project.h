@@ -53,7 +53,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            static smos::smcore::Error::ErrorCode loadProject(smos::smcore::SMString filename, Project *project);
+            static smos::smcore::Error::ErrorCode loadProject(const smos::smcore::SMString &filename, Project &project);
 
             /**
              * @brief Save project data
@@ -64,7 +64,7 @@ namespace smos
              *
              * @return smos::smcore::Error::ErrorCode
              */
-            static smos::smcore::Error::ErrorCode saveProject(smos::smcore::SMString filename, Project *project, bool force = false);
+            static smos::smcore::Error::ErrorCode saveProject(const smos::smcore::SMString &filename, Project &project, bool force = false);
 
             /**
              * @brief Get the Project Name
