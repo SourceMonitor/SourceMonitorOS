@@ -30,7 +30,6 @@ namespace smos
 {
     namespace smcore
     {
-
         class Factory
         {
         public:

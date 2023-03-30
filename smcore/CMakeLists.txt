@@ -36,6 +36,7 @@ set(SMCORE_INCLUDE
     options.h
     project.h
     smstring.h
+    version.h
 )
 
 set(SMCORE_BODY
@@ -46,6 +47,7 @@ set(SMCORE_BODY
     options.cpp
     project.cpp
     smstring.cpp
+    version.cpp
 )
 
 add_library(smcore STATIC

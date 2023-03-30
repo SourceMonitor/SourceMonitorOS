@@ -45,6 +45,7 @@ set(SMTEST_INCLUDE
     test_license.h
     test_options.h
     test_project.h
+    test_version.h
 )
 
 set(PROJECT_SOURCES
@@ -53,6 +54,7 @@ set(PROJECT_SOURCES
     test_license.cpp
     test_options.cpp
     test_project.cpp
+    test_version.cpp
     ${SMTEST_INCLUDE}
     ${SMCORE_INCLUDE}
 )

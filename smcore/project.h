@@ -108,23 +108,23 @@ namespace smos
             /**
              * @brief Location of project source code
              */
-            smos::smcore::SMString m_sDirectory;
+            smos::smcore::SMString m_Directory;
             /**
              * @brief Filename of project file
              */
-            smos::smcore::SMString m_sProjectFileName;
+            smos::smcore::SMString m_ProjectFileName;
             /**
              * @brief Location of project file
              */
-            smos::smcore::SMString m_sProjectFileDirectory;
+            smos::smcore::SMString m_ProjectFileDirectory;
             /**
              * @brief Project setting: Include subdirectories yes/no
              */
-            bool m_fIncludeSubdirectories;
+            bool m_includeSubdirectories;
             /**
              * @brief Some options - need more inspection for knowing kind of options and what they tweak
              */
-            int m_eOptionFlags;
+            int m_OptionFlags;
             /**
              * @brief Reference to language object
              */
