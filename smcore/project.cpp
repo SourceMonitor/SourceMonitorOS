@@ -21,6 +21,7 @@
 //******************************************************************************
 
 #include "project.h"
+
 #include <filesystem>
 
 namespace smos
@@ -28,7 +29,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Project::Project(void)
+        Project::Project(void) : m_ClassVersion(0)
         {
         }
         //******************************************************************************
@@ -73,13 +74,13 @@ namespace smos
         //******************************************************************************
         std::ostream &operator<<(std::ostream &os, const Project &obj)
         {
-            os << obj.m_ProjectName << std::endl;
+            os << obj.m_ClassVersion << obj.m_ProjectName;
             return os;
         }
         //******************************************************************************
         std::istream &operator>>(std::istream &is, Project &obj)
         {
-            is >> obj.m_ProjectName;
+            is >> obj.m_ClassVersion >> obj.m_ProjectName;
             return is;
         }
         //******************************************************************************

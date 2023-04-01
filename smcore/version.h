@@ -22,8 +22,11 @@
 
 #pragma once
 
-#include "smstring.h"
 #include <ctime>
+#include <fstream>
+#include <iostream>
+
+#include "smstring.h"
 
 namespace smos
 {
@@ -87,7 +90,27 @@ namespace smos
              * @param minor Minor version information
              * @param revision Revision version informationi
              */
-            void SetVersion(const short &major, const short &minor, const short &revision);
+            void SetVersion(const short major, const short minor, const short revision);
+
+            /**
+             * @brief Enable writing to stream
+             *
+             * @param os Outputstream to write to
+             * @param obj Version object to write to stream
+             *
+             * @return std::ostream&
+             */
+            friend std::ostream &operator<<(std::ostream &os, const Version &obj);
+
+            /**
+             * @brief Enable reading from stream
+             *
+             * @param is Inputstream to read from
+             * @param obj Version object to read from stream
+             *
+             * @return std::istream&
+             */
+            friend std::istream &operator>>(std::istream &is, Version &obj);
 
         private:
             /**

@@ -22,18 +22,37 @@
 
 #pragma once
 
-#include "options.h"
 #include <memory.h>
+
+#include "options.h"
 #include "smstring.h"
+#include "version.h"
 
 namespace smos
 {
     namespace smcore
     {
+        /**
+         * @brief Factory class to retrieve specific objects from
+         */
         class Factory
         {
         public:
+            /**
+             * @brief Get the options object
+             *
+             * @param optionsfile Name of options file
+             *
+             * @return Options* Pointer to options object
+             */
             static Options *getOptions(smos::smcore::SMString optionsfile);
+
+            /**
+             * @brief Get the version object
+             *
+             * @return Version* Pointer to version object
+             */
+            static Version *getVersion(void);
         };
     }
 }
