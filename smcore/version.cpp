@@ -82,7 +82,7 @@ namespace smos
             return result;
         }
         //******************************************************************************
-        void Version::SetVersion(const short major, const short minor, const short revision)
+        void Version::SetVersion(const uint16_t major, const uint16_t minor, const uint16_t revision)
         {
             this->m_major = major;
             this->m_minor = minor;

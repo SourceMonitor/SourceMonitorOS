@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include <cstdint>
 #include <ctime>
 #include <fstream>
 #include <iostream>
@@ -90,7 +91,7 @@ namespace smos
              * @param minor Minor version information
              * @param revision Revision version informationi
              */
-            void SetVersion(const short major, const short minor, const short revision);
+            void SetVersion(const uint16_t major, const uint16_t minor, const uint16_t revision);
 
             /**
              * @brief Enable writing to stream
@@ -116,15 +117,15 @@ namespace smos
             /**
              * @brief Major version number
              */
-            short m_major;
+            uint16_t m_major;
             /**
              * @brief Minor version number
              */
-            short m_minor;
+            uint16_t m_minor;
             /**
              * @brief Revision version number
              */
-            short m_revision;
+            uint16_t m_revision;
         };
     }
 }
