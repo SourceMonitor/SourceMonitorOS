@@ -22,11 +22,12 @@
 
 #pragma once
 
-#include <iostream>
+#include <ctime>
 #include <fstream>
+#include <iostream>
 
-#include "smstring.h"
 #include "error.h"
+#include "smstring.h"
 
 namespace smos
 {
@@ -101,6 +102,11 @@ namespace smos
             friend std::istream &operator>>(std::istream &is, Project &obj);
 
         private:
+            /**
+             * @brief Number of current class version for versioning
+             */
+            uint16_t m_ClassVersion;
+
             /**
              * @brief Name of project
              */
