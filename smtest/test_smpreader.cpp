@@ -20,28 +20,32 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "testrunner.h"
-
-#include "test_about.h"
-#include "test_license.h"
-#include "test_options.h"
-#include "test_project.h"
-#include "test_version.h"
 #include "test_smpreader.h"
 
-// QTEST_MAIN(smos::smtest::TestLicense)
+#include <QDebug>
+#include "smpreader.h"
 
-int main(int argc, char *argv[])
+namespace smos
 {
+    namespace smtest
+    {
+        //******************************************************************************
+        void TestSMPReader::initTestCase(void)
+        {
+        }
+        //******************************************************************************
+        void TestSMPReader::TestReadCppSMPoject(void)
+        {
+            smos::smcore::SMPReader smpReader;
+            QCOMPARE(smpReader.Open("osm.smp"), true);
+            smos::smcore::Project project;
+            QCOMPARE(smpReader.Read(project), true);
 
-    int status = 0;
-
-    RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestOptions, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestProject, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestVersion, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestSMPReader, argc, argv, &status);
-
-    return status;
+            QCOMPARE(project.getProjectName(), "osm");
+        }
+        //******************************************************************************
+        void TestSMPReader::cleanupTestCase(void)
+        {
+        }
+    }
 }

@@ -43,6 +43,11 @@ namespace smos
             ~Version(void);
 
             /**
+             * @brief Constructor
+             */
+            Version(short major, short minor, short revision = 0, std::time_t time = 0);
+
+            /**
              * @brief Copy constructor
              *
              * @param versionObject Version to copy data from
@@ -73,6 +78,8 @@ namespace smos
              */
             bool operator!=(const Version &versionObject) const;
 
+            bool operator>=(const Version &otherVersion) const;
+
             /**
              * @brief Get version information as string
              *
@@ -93,15 +100,17 @@ namespace smos
             /**
              * @brief Major version number
              */
-            short m_major;
+            short m_major = 0;
             /**
              * @brief Minor version number
              */
-            short m_minor;
+            short m_minor = 0;
             /**
              * @brief Revision version number
              */
-            short m_revision;
+            short m_revision = 0;
+
+            std::time_t m_time = 0;
         };
     }
 }

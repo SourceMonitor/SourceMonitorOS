@@ -34,10 +34,12 @@ namespace smos
 
         private slots:
             void initTestCase(void);
+            void TestVersionConstructor(void);
             void TestVersionCopyConstructor(void);
             void TestVersionAssignmentOperator(void);
             void TestVersionEqualOperator(void);
             void TestVersionNonEqualOperator(void);
+            void TestVersionGreaterEqualOperator(void);
             void TestVersionString(void);
             void cleanupTestCase(void);
         };

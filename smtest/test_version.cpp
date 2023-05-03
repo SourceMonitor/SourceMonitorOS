@@ -36,6 +36,13 @@ namespace smos
         {
         }
         //******************************************************************************
+        void TestVersion::TestVersionConstructor(void)
+        {
+            smos::smcore::Version verObject = {1, 2, 3};
+            smos::smcore::SMString versionString = verObject.AsString();
+            QCOMPARE(versionString, "1.2.3");
+        }
+        //******************************************************************************
         void TestVersion::TestVersionCopyConstructor(void)
         {
             smos::smcore::Version verObjectSrc;
@@ -80,6 +87,17 @@ namespace smos
 
             verObjectDst.SetVersion(1, 2, 3);
             QCOMPARE(false, (verObjectSrc != verObjectDst));
+        }
+        //******************************************************************************
+        void TestVersion::TestVersionGreaterEqualOperator(void)
+        {
+            QCOMPARE(true, (smos::smcore::Version(0, 0, 0) >= smos::smcore::Version(0, 0, 0)));
+            QCOMPARE(true, (smos::smcore::Version(1, 0, 0) >= smos::smcore::Version(0, 0, 0)));
+            QCOMPARE(true, (smos::smcore::Version(1, 1, 0) >= smos::smcore::Version(1, 0, 0)));
+            QCOMPARE(true, (smos::smcore::Version(1, 1, 1) >= smos::smcore::Version(1, 1, 0)));
+            QCOMPARE(false, (smos::smcore::Version(0, 0, 0) >= smos::smcore::Version(1, 0, 0)));
+            QCOMPARE(false, (smos::smcore::Version(0, 0, 0) >= smos::smcore::Version(0, 1, 0)));
+            QCOMPARE(false, (smos::smcore::Version(0, 0, 0) >= smos::smcore::Version(0, 0, 1)));
         }
         //******************************************************************************
         void TestVersion::TestVersionString(void)
