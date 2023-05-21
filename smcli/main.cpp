@@ -24,6 +24,10 @@
 #include <QLocale>
 #include <QString>
 #include <QTranslator>
+#include <QDirIterator>
+#include "smpreader.h"
+#include <QDir>
+#include <QStringList>
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +44,26 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    //smos::smcore::SMPReader smpReader;
+    //if (!smpReader.Open("d:\\SourceMonitor\\SourceMonitorOS\\test2.smp"))
+    //return 1;
 
-    return a.exec();
+    //QStringList strList();
+    QDirIterator it("d:\\SourceMonitor\\SM-Test-Files", QStringList() << "*.smp", QDir::Files, QDirIterator::Subdirectories);
+    while (it.hasNext())
+    {
+        QString filePath(it.next());
+        qDebug() << filePath;
+        smos::smcore::SMPReader smpReader;
+        if (!smpReader.Open(filePath.toStdString()))
+            return 1;
+        smos::smcore::Project project;
+        if (!smpReader.Read(project))
+            return 1;
+    }
+
+    //smos::smcore::Project project;
+    //if (!smpReader.Read(project))
+    //return 1;
+    return 0; //a.exec();
 }

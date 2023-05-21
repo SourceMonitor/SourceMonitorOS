@@ -1,3 +1,25 @@
+//******************************************************************************
+// Copyright (C) 1999 Jim Wanner and the SourceMonitor team.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+//******************************************************************************
+
 #include "smpreader.h"
 #include <iostream>
 #include <map>
@@ -36,25 +58,31 @@ template<> std::vector<std::uint32_t> ArchiveReader::Read()
 
 template<> std::time_t ArchiveReader::Read()
 {
+    //first we read only 32 bits time value
     __time32_t time_32;
     m_stream.read(reinterpret_cast<char*>(&time_32), sizeof(__time32_t));
-    const std::int32_t cTime64Mark = INT_MIN + 10;
+    const std::int32_t cTime64Mark = INT_MIN + 10; //this constant determines whether the value is 64 bits
+    //check if stored time is 64 bit value
     if (static_cast<std::int32_t>(time_32) == cTime64Mark)
     {
+        //if this is 64 bit, then we must read this value again - prevoiuse value is only a flag
         __time64_t time_64;
         m_stream.read(reinterpret_cast<char*>(&time_64), sizeof(__time64_t));
         return std::time_t(time_64);
     }
     else
+    {
+        //this is 32 bits value
         return std::time_t(time_32);
+    }
 }
 
 template<> Version ArchiveReader::Read()
 {
-
     std::int16_t major = Read<std::int16_t>();
     short minor = Read<short>();
     std::time_t time = Read<std::time_t>();
+    //revision number is set to zero because the original implementation did not have a revision number
     Version version = {major, minor, 0, time};
     return version;
 }
@@ -70,32 +98,34 @@ template<> std::string ArchiveReader::Read()
 template<> std::vector<std::string> ArchiveReader::Read()
 {
     unsigned int size = ReadCount();
-    std::vector<std::string> vec(size);
+    std::vector<std::string> vecValues;
     for (unsigned int i = 0; i < size; ++i)
     {
         std::string sValue = Read<std::string>();
-        vec[i] = sValue;
+        vecValues.push_back(sValue);
     }
-    return vec;
+    return vecValues;
 }
 
 template<> std::map<std::string, std::string> ArchiveReader::Read()
 {
     unsigned int size = ReadCount();
-    std::map<std::string, std::string> t;
-    while (size--)
+    std::map<std::string, std::string> mapValues;
+    //while (size--)
+    for (unsigned int i = 0; i < size; ++i)
     {
         std::string sKey = Read<std::string>();
         std::string sValue = Read<std::string>();
-        t[sKey] = sValue;
+        mapValues.insert(std::make_pair(sKey, sValue));
     }
-    return t;
+    return mapValues;
 }
 
 template<> ClassInfo ArchiveReader::Read()
 {
+    //the logic of this function is copied from the CArchive class
     std::uint16_t wTag = Read<std::uint16_t>();
-    const std::uint16_t wNewClassTag = (std::uint16_t)0xFFFF;
+    const std::uint16_t wNewClassTag = (std::uint16_t)UINT16_MAX;
     if (wTag == wNewClassTag)
     {
         std::uint16_t wTemp = Read<std::uint16_t>();
@@ -267,6 +297,7 @@ bool SMPReader::Read(Project& project)
 
 unsigned int ArchiveReader::ReadStringLength()
 {
+    //the logic of this function is copied from the CArchive class
     unsigned char byteLength = Read<unsigned char>();
     if (byteLength < 0xff)
         return byteLength;
@@ -277,7 +308,7 @@ unsigned int ArchiveReader::ReadStringLength()
         // UNICODE string prefix (length will follow)
         return (unsigned int)-1;
     }
-    else if (shortLength == 0xffff)
+    else if (shortLength == UINT16_MAX)
     {
         // read DWORD of length
         unsigned long longLength = Read<unsigned long>();
@@ -289,10 +320,12 @@ unsigned int ArchiveReader::ReadStringLength()
 
 unsigned int ArchiveReader::ReadCount()
 {
+    //reads the size of the container stored in the file
     std::uint16_t nCount = Read<std::uint16_t>();
-    if (nCount != 0xFFFF)
+    if (nCount != UINT16_MAX)
         return nCount;
 
+    //stored size is 32 bits and we need to read it again
     std::uint32_t dwCount = Read<std::uint32_t>();
     return dwCount;
 }
