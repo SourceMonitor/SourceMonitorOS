@@ -82,6 +82,12 @@ namespace smos
              */
             bool operator!=(const Version &versionObject) const;
 
+            /**
+             * @brief Object comparison greater than
+             *
+             * @param otherVersion Version to compare with
+             * @return bool True on equal, otherwise false
+             */
             bool operator>=(const Version &otherVersion) const;
 
             /**
@@ -133,6 +139,10 @@ namespace smos
              * @brief Revision version number
              */
             uint16_t m_revision;
+            /**
+             * @brief Timestamp
+             */
+            std::time_t m_time;
         };
     }
 }

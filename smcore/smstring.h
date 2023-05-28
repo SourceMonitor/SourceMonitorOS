@@ -28,6 +28,12 @@ namespace smos
 {
     namespace smcore
     {
+        //******************************************************************************
+        /**
+         * @brief Convenience typedef
+         *
+         * @attention std::string is used because of ANTLR will use std::string
+         */
         typedef std::string SMString;
     }
 }

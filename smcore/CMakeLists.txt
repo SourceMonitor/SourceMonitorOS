@@ -35,9 +35,9 @@ set(SMCORE_INCLUDE
     license.h
     options.h
     project.h
+    smpreader.h
     smstring.h
     version.h
-    smpreader.h
 )
 
 set(SMCORE_BODY
@@ -47,9 +47,9 @@ set(SMCORE_BODY
     license.cpp
     options.cpp
     project.cpp
+    smpreader.cpp
     smstring.cpp
     version.cpp
-    smpreader.cpp
 )
 
 add_library(smcore STATIC
@@ -65,6 +65,7 @@ target_compile_options(smcore PRIVATE
 target_link_libraries(smcore)
 
 target_compile_definitions(smcore PRIVATE SMCORE_LIBRARY)
+
 if(MSVC OR MINGW)
     target_compile_definitions(smcore PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
