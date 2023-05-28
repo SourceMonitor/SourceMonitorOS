@@ -20,50 +20,22 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include <QCoreApplication>
-#include <QLocale>
-#include <QString>
-#include <QTranslator>
-#include <QDirIterator>
-#include "smpreader.h"
-#include <QDir>
-#include <QStringList>
+#pragma once
 
-int main(int argc, char *argv[])
+#include <QTest>
+
+namespace smos
 {
-    QCoreApplication a(argc, argv);
-
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages)
+    namespace smtest
     {
-        const QString baseName = "smcli_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName))
+        class TestSMPReader : public QObject
         {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
-    //smos::smcore::SMPReader smpReader;
-    //if (!smpReader.Open("d:\\SourceMonitor\\SourceMonitorOS\\test2.smp"))
-    //return 1;
+            Q_OBJECT
 
-    //QStringList strList();
-    QDirIterator it("d:\\SourceMonitor\\SM-Test-Files", QStringList() << "*.smp", QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext())
-    {
-        QString filePath(it.next());
-        qDebug() << filePath;
-        smos::smcore::SMPReader smpReader;
-        if (!smpReader.Open(filePath.toStdString()))
-            return 1;
-        smos::smcore::Project project;
-        if (!smpReader.Read(project))
-            return 1;
+        private slots:
+            void initTestCase(void);
+            void TestReadCppSMPoject(void);
+            void cleanupTestCase(void);
+        };
     }
-
-    //smos::smcore::Project project;
-    //if (!smpReader.Read(project))
-    //return 1;
-    return 0; //a.exec();
 }

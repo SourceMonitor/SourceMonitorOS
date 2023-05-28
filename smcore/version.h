@@ -47,6 +47,11 @@ namespace smos
             ~Version(void);
 
             /**
+             * @brief Constructor
+             */
+            Version(short major, short minor, short revision = 0, std::time_t time = 0);
+
+            /**
              * @brief Copy constructor
              *
              * @param versionObject Version to copy data from
@@ -76,6 +81,8 @@ namespace smos
              * @return bool True on non equal, otherwise false
              */
             bool operator!=(const Version &versionObject) const;
+
+            bool operator>=(const Version &otherVersion) const;
 
             /**
              * @brief Get version information as string

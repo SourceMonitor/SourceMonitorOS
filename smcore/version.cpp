@@ -29,11 +29,16 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Version::Version(void) : m_major(0), m_minor(0), m_revision(0)
+        Version::Version(void)
         {
         }
         //******************************************************************************
         Version::~Version(void)
+        {
+        }
+        //******************************************************************************
+        Version::Version(short major, short minor, short revision, std::time_t time)
+            : m_major(major), m_minor(minor), m_revision(revision), m_time(time)
         {
         }
         //******************************************************************************
@@ -61,9 +66,8 @@ namespace smos
             {
                 return true;
             }
-            bool result = (this->m_major == versionObject.m_major) &&
-                          (this->m_minor == versionObject.m_minor) &&
-                          (this->m_revision == versionObject.m_revision);
+            bool result = (this->m_major == versionObject.m_major) && (this->m_minor == versionObject.m_minor)
+                && (this->m_revision == versionObject.m_revision);
             return result;
         }
         //******************************************************************************
@@ -71,6 +75,13 @@ namespace smos
         {
             bool result = !(*this == versionObject);
             return result;
+        }
+        //******************************************************************************
+        bool Version::operator>=(const Version &otherVersion) const
+        {
+            return (m_major > otherVersion.m_major) || (m_major == otherVersion.m_major && m_minor > otherVersion.m_minor)
+                || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision > otherVersion.m_revision)
+                || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision == otherVersion.m_revision);
         }
         //******************************************************************************
         smos::smcore::SMString Version::AsString(void) const

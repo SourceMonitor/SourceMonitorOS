@@ -20,50 +20,32 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include <QCoreApplication>
-#include <QLocale>
-#include <QString>
-#include <QTranslator>
-#include <QDirIterator>
+#include "test_smpreader.h"
+
+#include <QDebug>
 #include "smpreader.h"
-#include <QDir>
-#include <QStringList>
 
-int main(int argc, char *argv[])
+namespace smos
 {
-    QCoreApplication a(argc, argv);
-
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages)
+    namespace smtest
     {
-        const QString baseName = "smcli_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName))
+        //******************************************************************************
+        void TestSMPReader::initTestCase(void)
         {
-            a.installTranslator(&translator);
-            break;
+        }
+        //******************************************************************************
+        void TestSMPReader::TestReadCppSMPoject(void)
+        {
+            smos::smcore::SMPReader smpReader;
+            QCOMPARE(smpReader.Open("osm.smp"), true);
+            smos::smcore::Project project;
+            QCOMPARE(smpReader.Read(project), true);
+
+            QCOMPARE(project.getProjectName(), "osm");
+        }
+        //******************************************************************************
+        void TestSMPReader::cleanupTestCase(void)
+        {
         }
     }
-    //smos::smcore::SMPReader smpReader;
-    //if (!smpReader.Open("d:\\SourceMonitor\\SourceMonitorOS\\test2.smp"))
-    //return 1;
-
-    //QStringList strList();
-    QDirIterator it("d:\\SourceMonitor\\SM-Test-Files", QStringList() << "*.smp", QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext())
-    {
-        QString filePath(it.next());
-        qDebug() << filePath;
-        smos::smcore::SMPReader smpReader;
-        if (!smpReader.Open(filePath.toStdString()))
-            return 1;
-        smos::smcore::Project project;
-        if (!smpReader.Read(project))
-            return 1;
-    }
-
-    //smos::smcore::Project project;
-    //if (!smpReader.Read(project))
-    //return 1;
-    return 0; //a.exec();
 }
