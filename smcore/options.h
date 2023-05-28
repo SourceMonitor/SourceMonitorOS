@@ -25,8 +25,9 @@
 
 #pragma once
 
-#include "smstring.h"
 #include <memory>
+
+#include "smstring.h"
 
 namespace smos
 {

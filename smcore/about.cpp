@@ -35,8 +35,8 @@ Version <InsertVersionInfoHere> [InsertBuildInformationHere]
 SourceMonitor Team
 http://www.github.com/SourceMonitor
 © SourceMonitor Team)~~~~";
-
             return aboutText;
         }
+        //******************************************************************************
     }
 }

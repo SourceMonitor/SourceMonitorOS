@@ -22,6 +22,9 @@
 
 #include "factory.h"
 
+#include <map>
+#include <unordered_map>
+
 namespace smos
 {
     namespace smcore
@@ -29,12 +32,19 @@ namespace smos
         //******************************************************************************
         Options *Factory::getOptions(smos::smcore::SMString optionsfile)
         {
-            static Options *smOptions = nullptr;
-            if (nullptr == smOptions)
+            static std::unordered_map<smos::smcore::SMString, Options *> programOptions;
+            if (programOptions.find(optionsfile) == programOptions.end())
             {
-                smOptions = new Options(optionsfile);
+                programOptions.insert(std::make_pair(optionsfile, new Options(optionsfile)));
             }
-            return smOptions;
+            return programOptions[optionsfile];
         }
+        //******************************************************************************
+        Version *Factory::getVersion(void)
+        {
+            static Version smVersion;
+            return &smVersion;
+        }
+        //******************************************************************************
     }
 }
