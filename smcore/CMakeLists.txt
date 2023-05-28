@@ -30,6 +30,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SMCORE_INCLUDE
     about.h
+    classinfo.h
     error.h
     factory.h
     license.h

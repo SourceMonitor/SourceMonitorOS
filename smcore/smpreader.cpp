@@ -25,6 +25,7 @@
 #include <map>
 #include <assert.h>
 #include "version.h"
+#include "classinfo.h"
 
 namespace smos
 {
