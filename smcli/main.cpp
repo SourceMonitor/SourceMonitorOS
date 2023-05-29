@@ -28,6 +28,8 @@
 #include "smpreader.h"
 #include <QDir>
 #include <QStringList>
+#include <filesystem>
+#include <string>
 
 int main(int argc, char *argv[])
 {
@@ -44,12 +46,15 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    //smos::smcore::SMPReader smpReader;
-    //if (!smpReader.Open("d:\\SourceMonitor\\SourceMonitorOS\\test2.smp"))
-    //return 1;
+    // smos::smcore::SMPReader smpReader;
+    // if (!smpReader.Open("d:\\SourceMonitor\\SourceMonitorOS\\test2.smp"))
+    // return 1;
 
-    //QStringList strList();
-    QDirIterator it("d:\\SourceMonitor\\SM-Test-Files", QStringList() << "*.smp", QDir::Files, QDirIterator::Subdirectories);
+    std::string workingdir_raw = std::filesystem::u8path(argv[0]).remove_filename().string();
+    QString workingdir = QString::fromStdString(workingdir_raw);
+
+    // QStringList strList();
+    QDirIterator it(workingdir, QStringList() << "*.smp", QDir::Files, QDirIterator::Subdirectories);
     while (it.hasNext())
     {
         QString filePath(it.next());
@@ -62,8 +67,8 @@ int main(int argc, char *argv[])
             return 1;
     }
 
-    //smos::smcore::Project project;
-    //if (!smpReader.Read(project))
-    //return 1;
-    return 0; //a.exec();
+    // smos::smcore::Project project;
+    // if (!smpReader.Read(project))
+    // return 1;
+    return 0; // a.exec();
 }
