@@ -21,11 +21,16 @@
 //******************************************************************************
 
 #include "smpreader.h"
+
+#include <assert.h>
 #include <iostream>
 #include <map>
-#include <assert.h>
-#include "version.h"
+#include <string>
+
+#include "checkpointsreader.h"
 #include "classinfo.h"
+#include "languagereader.h"
+#include "version.h"
 
 namespace smos
 {
@@ -165,89 +170,6 @@ namespace smos
             }
         }
         //******************************************************************************
-        template <typename T>
-        void printVector(const std::vector<T> &vec, std::string sep = " ")
-        {
-            for (auto elem : vec)
-            {
-                std::cout << elem << sep;
-            }
-            std::cout << std::endl;
-        }
-        //******************************************************************************
-        void SMLanguageReader::Read()
-        {
-            ClassInfo classInfo = m_archiveReader.Read<ClassInfo>();
-            std::cout << "class name: " << classInfo.m_name << std::endl;
-            if (classInfo.m_name.empty())
-                return;
-
-            if (classInfo.m_name == "SMCpp" || classInfo.m_name == "SMCs" || classInfo.m_name == "SMJava" || classInfo.m_name == "SMVBNET")
-            {
-                std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
-                std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
-
-                std::vector<std::uint32_t> m_iCounts = m_archiveReader.Read<std::vector<std::uint32_t>>();
-                std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
-                printVector(m_iCounts);
-
-                std::map<std::string, std::string> m_oClassList = m_archiveReader.Read<std::map<std::string, std::string>>();
-                std::cout << "m_oClassList: size = " << m_oClassList.size() << " elements: " << std::endl;
-            }
-            else if (classInfo.m_name == "SMC")
-            {
-                std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
-                std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
-
-                std::vector<std::uint32_t> m_iCounts = m_archiveReader.Read<std::vector<std::uint32_t>>();
-                std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
-                printVector(m_iCounts);
-
-                // m_oFunctionList.Serialize(ar);
-                std::map<std::string, std::string> m_oFunctionList = m_archiveReader.Read<std::map<std::string, std::string>>();
-                std::cout << "m_oFunctionList: size = " << m_oFunctionList.size() << " elements: " << std::endl;
-            }
-            else if (classInfo.m_name == "SMDelphi")
-            {
-                std::string m_sSubroutineName = m_archiveReader.Read<std::string>();
-                std::cout << "m_sSubroutineName: " << m_sSubroutineName << std::endl;
-
-                std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
-                std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
-
-                std::vector<std::uint32_t> m_iCounts = m_archiveReader.Read<std::vector<std::uint32_t>>();
-                std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
-                printVector(m_iCounts);
-
-                std::map<std::string, std::string> m_oClassList = m_archiveReader.Read<std::map<std::string, std::string>>();
-                std::cout << "m_oClassList: size = " << m_oClassList.size() << " elements: " << std::endl;
-            }
-            else if (classInfo.m_name == "SMHTML")
-            {
-                std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
-                std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
-
-                std::vector<std::uint32_t> m_iCounts = m_archiveReader.Read<std::vector<std::uint32_t>>();
-                std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
-                printVector(m_iCounts);
-            }
-            else if (classInfo.m_name == "SMVisualBasic")
-            {
-                std::string m_sSubroutineName = m_archiveReader.Read<std::string>();
-                std::cout << "m_sSubroutineName: " << m_sSubroutineName << std::endl;
-
-                std::int32_t m_iSubroutineStatements = m_archiveReader.Read<std::int32_t>();
-                std::cout << "m_iSubroutineStatements: " << m_iSubroutineStatements << std::endl;
-
-                std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
-                std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
-
-                std::vector<std::uint32_t> m_iCounts = m_archiveReader.Read<std::vector<std::uint32_t>>();
-                std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
-                printVector(m_iCounts);
-            }
-        }
-        //******************************************************************************
         bool SMPReader::Read(Project &project)
         {
             try
@@ -341,57 +263,6 @@ namespace smos
             // stored size is 32 bits and we need to read it again
             std::uint32_t dwCount = Read<std::uint32_t>();
             return dwCount;
-        }
-        //******************************************************************************
-        void SMCheckpointsReader::Read()
-        {
-            unsigned int sizeCheckpoints = m_archiveReader.ReadCount();
-            std::cout << "sizeCheckpoints: " << sizeCheckpoints << std::endl;
-            for (unsigned int i = 0; i < sizeCheckpoints; i++)
-            {
-                Version versionCheckpoint = m_archiveReader.Read<Version>();
-                std::cout << "Checkpoint version: " << versionCheckpoint.AsString() << std::endl;
-
-                // ar >> m_sName >> m_oDate >> m_fUseModifiedComplexity >> m_poLanguage;
-                std::string nameSMCheckpoint = m_archiveReader.Read<std::string>();
-                std::cout << "nameSMCheckpoint: " << nameSMCheckpoint << std::endl;
-                std::time_t t64_checkpointSMCheckpoint = m_archiveReader.Read<std::time_t>();
-                std::cout << "Checkpoint time: " << t64_checkpointSMCheckpoint << std::endl;
-
-                std::int32_t m_fUseModifiedComplexity = m_archiveReader.Read<std::int32_t>();
-                std::cout << "m_fUseModifiedComplexity: " << m_fUseModifiedComplexity << std::endl;
-
-                std::cout << "read SMLanguage" << std::endl;
-                SMLanguageReader languageReader(m_archiveReader);
-                languageReader.Read();
-
-                if (versionCheckpoint >= Version(3, 1))
-                {
-                    std::string m_sBaseDirectory = m_archiveReader.Read<std::string>();
-                    std::cout << "m_sBaseDirectory: " << m_sBaseDirectory << std::endl;
-                }
-
-                // if (!m_oVersion.IsOKVersion(2, 0))
-                if (!(versionCheckpoint >= Version(2, 0)))
-                {
-                    // m_poLanguage->Serialize(ar); // include redundant copy for older versions only
-                    languageReader.Read();
-                }
-
-                unsigned int m_iFileCount = m_archiveReader.ReadCount();
-                std::cout << "m_iFileCount: " << m_iFileCount << std::endl;
-                // m_oFiles.Serialize(ar);
-
-                for (unsigned int f = 0; f < m_iFileCount; f++)
-                {
-                    // void SMFile::Serialize(CArchive &ar)
-                    std::string m_sPathname = m_archiveReader.Read<std::string>();
-                    std::cout << "m_sPathname: " << m_sPathname << std::endl;
-                    std::cout << "read SMLanguage" << std::endl;
-                    SMLanguageReader languageReaderFile(m_archiveReader);
-                    languageReaderFile.Read();
-                }
-            }
         }
     }
 }

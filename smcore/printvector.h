@@ -22,25 +22,22 @@
 
 #pragma once
 
-#include <filesystem>
-#include <fstream>
-
-#include "project.h"
+#include <iostream>
+#include <string>
+#include <vector>
 
 namespace smos
 {
     namespace smcore
     {
-        class SMPReader
+        template <typename T>
+        void printVector(const std::vector<T> &vec, std::string sep = " ")
         {
-        public:
-            SMPReader() = default;
-            ~SMPReader();
-            bool Open(std::filesystem::path path);
-            bool Read(Project &project);
-
-        protected:
-            std::ifstream m_stream;
-        };
+            for (auto elem : vec)
+            {
+                std::cout << elem << sep;
+            }
+            std::cout << std::endl;
+        }
     }
 }

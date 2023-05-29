@@ -22,25 +22,20 @@
 
 #pragma once
 
-#include <filesystem>
-#include <fstream>
-
-#include "project.h"
+#include "archivereader.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMPReader
+        class SMLanguageReader
         {
         public:
-            SMPReader() = default;
-            ~SMPReader();
-            bool Open(std::filesystem::path path);
-            bool Read(Project &project);
+            SMLanguageReader(ArchiveReader &archiveReader) : m_archiveReader(archiveReader) {}
+            void Read();
 
-        protected:
-            std::ifstream m_stream;
+        private:
+            ArchiveReader &m_archiveReader;
         };
     }
 }

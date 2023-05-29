@@ -22,25 +22,28 @@
 
 #pragma once
 
-#include <filesystem>
 #include <fstream>
-
-#include "project.h"
+#include <string>
+#include <unordered_map>
 
 namespace smos
 {
     namespace smcore
     {
-        class SMPReader
+        class ArchiveReader
         {
         public:
-            SMPReader() = default;
-            ~SMPReader();
-            bool Open(std::filesystem::path path);
-            bool Read(Project &project);
+            ArchiveReader(std::ifstream &p_stream) : m_stream(p_stream){};
+            template <typename T>
+            T Read();
+            unsigned int ReadCount();
 
-        protected:
-            std::ifstream m_stream;
+        private:
+            std::unordered_map<unsigned int, std::string> m_classes;
+            unsigned int m_classesIndex = 1;
+            std::ifstream &m_stream;
+
+            unsigned int ReadStringLength();
         };
     }
 }
