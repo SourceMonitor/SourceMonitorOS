@@ -43,13 +43,13 @@ namespace smos
              * @brief Hide constructor to avoid instances
              *
              */
-            License(void);
+            License(void){};
 
             /**
              * @brief Hide destructor to avoid instances
              *
              */
-            ~License(void);
+            ~License(void){};
         };
     }
 }

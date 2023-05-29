@@ -22,18 +22,20 @@
 
 #pragma once
 
-#include <string>
+#include "archivereader.h"
 
 namespace smos
 {
     namespace smcore
     {
-        //******************************************************************************
-        /**
-         * @brief Convenience typedef
-         *
-         * @attention std::string is used because of ANTLR will use std::string
-         */
-        typedef std::string SMString;
+        class SMLanguageReader
+        {
+        public:
+            SMLanguageReader(ArchiveReader &archiveReader) : m_archiveReader(archiveReader) {}
+            void Read();
+
+        private:
+            ArchiveReader &m_archiveReader;
+        };
     }
 }

@@ -29,7 +29,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Version::Version(void)
+        Version::Version(void) : Version(0, 0, 0, 0)
         {
         }
         //******************************************************************************
@@ -66,7 +66,8 @@ namespace smos
             {
                 return true;
             }
-            bool result = (this->m_major == versionObject.m_major) && (this->m_minor == versionObject.m_minor)
+            bool result = (this->m_major == versionObject.m_major)
+                && (this->m_minor == versionObject.m_minor)
                 && (this->m_revision == versionObject.m_revision);
             return result;
         }
@@ -79,9 +80,11 @@ namespace smos
         //******************************************************************************
         bool Version::operator>=(const Version &otherVersion) const
         {
-            return (m_major > otherVersion.m_major) || (m_major == otherVersion.m_major && m_minor > otherVersion.m_minor)
+            bool result = (m_major > otherVersion.m_major)
+                || (m_major == otherVersion.m_major && m_minor > otherVersion.m_minor)
                 || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision > otherVersion.m_revision)
                 || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision == otherVersion.m_revision);
+            return result;
         }
         //******************************************************************************
         smos::smcore::SMString Version::AsString(void) const

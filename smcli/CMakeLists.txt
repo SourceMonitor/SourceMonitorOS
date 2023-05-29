@@ -46,9 +46,13 @@ add_executable(smcli
     ${SMCORE_INCLUDE}
 )
 
+# Copy required files
+configure_file(./../LICENSE LICENSE COPYONLY)
+configure_file(./../smtest/testfiles/osm.smp osm.smp COPYONLY)
+
 target_compile_options(smcli PRIVATE
-  $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
-  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
 target_link_libraries(smcli Qt${QT_VERSION_MAJOR}::Core smcore)

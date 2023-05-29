@@ -22,18 +22,28 @@
 
 #pragma once
 
+#include <fstream>
 #include <string>
+#include <unordered_map>
 
 namespace smos
 {
     namespace smcore
     {
-        //******************************************************************************
-        /**
-         * @brief Convenience typedef
-         *
-         * @attention std::string is used because of ANTLR will use std::string
-         */
-        typedef std::string SMString;
+        class ArchiveReader
+        {
+        public:
+            ArchiveReader(std::ifstream &p_stream) : m_stream(p_stream){};
+            template <typename T>
+            T Read();
+            unsigned int ReadCount();
+
+        private:
+            std::unordered_map<unsigned int, std::string> m_classes;
+            unsigned int m_classesIndex = 1;
+            std::ifstream &m_stream;
+
+            unsigned int ReadStringLength();
+        };
     }
 }

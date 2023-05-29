@@ -30,26 +30,33 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SMCORE_INCLUDE
     about.h
+    archivereader.h
+    checkpointsreader.h
+    classinfo.h
     error.h
     factory.h
+    languagereader.h
     license.h
     options.h
+    printvector.h
     project.h
+    smpreader.h
     smstring.h
     version.h
-    smpreader.h
 )
 
 set(SMCORE_BODY
     about.cpp
+    checkpointsreader.cpp
     error.cpp
     factory.cpp
+    languagereader.cpp
     license.cpp
     options.cpp
     project.cpp
+    smpreader.cpp
     smstring.cpp
     version.cpp
-    smpreader.cpp
 )
 
 add_library(smcore STATIC
@@ -65,6 +72,7 @@ target_compile_options(smcore PRIVATE
 target_link_libraries(smcore)
 
 target_compile_definitions(smcore PRIVATE SMCORE_LIBRARY)
+
 if(MSVC OR MINGW)
     target_compile_definitions(smcore PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
