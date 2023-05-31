@@ -47,6 +47,7 @@ set(SMCORE_INCLUDE
 
 set(SMCORE_BODY
     about.cpp
+    archivereader.cpp
     checkpointsreader.cpp
     error.cpp
     factory.cpp
