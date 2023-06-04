@@ -44,6 +44,7 @@ set(SMCORE_INCLUDE
     project.h
     smpreader.h
     smstring.h
+    subdirectorymode.h
     version.h
 )
 

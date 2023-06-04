@@ -31,7 +31,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Project::Project(void) : m_ClassVersion(0), m_includeSubdirectories(false)
+        Project::Project(void) : m_ClassVersion(0), m_includeSubdirectories(SubdirectoryMode::NoSubs)
         {
         }
         //******************************************************************************
@@ -87,12 +87,12 @@ namespace smos
             return is;
         }
         //******************************************************************************
-        bool Project::getIncludeSubdirectories(void)
+        SubdirectoryMode Project::getIncludeSubdirectories(void)
         {
             return m_includeSubdirectories;
         }
         //******************************************************************************
-        void Project::setIncludeSubdirectories(bool usage)
+        void Project::setIncludeSubdirectories(SubdirectoryMode usage)
         {
             m_includeSubdirectories = usage;
         }

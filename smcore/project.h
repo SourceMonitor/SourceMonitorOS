@@ -28,6 +28,7 @@
 
 #include "error.h"
 #include "smstring.h"
+#include "subdirectorymode.h"
 
 namespace smos
 {
@@ -104,16 +105,16 @@ namespace smos
             /**
              * @brief Get indicator of whether to use subdirectories
              *
-             * @return bool True use subdirectories, false don't use subdirectories
+             * @return SubdirectoryMode Kind of subdirectory usage
              */
-            bool getIncludeSubdirectories(void);
+            SubdirectoryMode getIncludeSubdirectories(void);
 
             /**
              * @brief Enable/disable usage of subdirectories
              *
-             * @param usage bool True use subdirectories, false don't use subdirectories
+             * @param usage SubdirectoryMode Kind of subdirectory usage
              */
-            void setIncludeSubdirectories(bool usage);
+            void setIncludeSubdirectories(SubdirectoryMode usage);
 
         private:
             /**
@@ -140,7 +141,7 @@ namespace smos
             /**
              * @brief Project setting: Include subdirectories yes/no
              */
-            bool m_includeSubdirectories;
+            SubdirectoryMode m_includeSubdirectories;
             /**
              * @brief Some options - need more inspection for knowing kind of options and what they tweak
              */

@@ -75,9 +75,12 @@ namespace smos
         void TestProject::TestIncludeSubdirectories(void)
         {
             smos::smcore::Project objProject;
-            bool flag = false;
+            smos::smcore::SubdirectoryMode flag = smos::smcore::SubdirectoryMode::NoSubs;
             QCOMPARE(flag, objProject.getIncludeSubdirectories());
-            flag = true;
+            flag = smos::smcore::SubdirectoryMode::SelectedSubs;
+            objProject.setIncludeSubdirectories(flag);
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+            flag = smos::smcore::SubdirectoryMode::AllSubs;
             objProject.setIncludeSubdirectories(flag);
             QCOMPARE(flag, objProject.getIncludeSubdirectories());
         }

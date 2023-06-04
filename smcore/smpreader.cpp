@@ -66,14 +66,7 @@ namespace smos
 
                 std::int32_t includeSubdirectories = archiveReader.Read<std::int32_t>();
                 std::cout << "m_fIncludeSubdirectories: " << includeSubdirectories << std::endl;
-                if (0 == includeSubdirectories)
-                {
-                    project.setIncludeSubdirectories(false);
-                }
-                else
-                {
-                    project.setIncludeSubdirectories(true);
-                }
+                project.setIncludeSubdirectories(static_cast<smos::smcore::SubdirectoryMode>(includeSubdirectories));
 
                 std::cout << "read SMLanguage" << std::endl;
                 SMLanguageReader languageReader(archiveReader);
