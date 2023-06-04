@@ -71,5 +71,15 @@ namespace smos
             smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
             std::filesystem::remove(filename);
         }
+        //******************************************************************************
+        void TestProject::TestIncludeSubdirectories(void)
+        {
+            smos::smcore::Project objProject;
+            bool flag = false;
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+            flag = true;
+            objProject.setIncludeSubdirectories(flag);
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+        }
     }
 }

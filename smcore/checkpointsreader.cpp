@@ -22,9 +22,10 @@
 
 #pragma once
 
+#include "checkpointsreader.h"
+
 #include <iostream>
 
-#include "checkpointsreader.h"
 #include "languagereader.h"
 #include "version.h"
 

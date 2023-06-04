@@ -101,6 +101,20 @@ namespace smos
              */
             friend std::istream &operator>>(std::istream &is, Project &obj);
 
+            /**
+             * @brief Get indicator of whether to use subdirectories
+             *
+             * @return bool True use subdirectories, false don't use subdirectories
+             */
+            bool getIncludeSubdirectories(void);
+
+            /**
+             * @brief Enable/disable usage of subdirectories
+             *
+             * @param usage bool True use subdirectories, false don't use subdirectories
+             */
+            void setIncludeSubdirectories(bool usage);
+
         private:
             /**
              * @brief Number of current class version for versioning
