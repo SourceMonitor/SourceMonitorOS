@@ -39,6 +39,7 @@ set(SMCORE_INCLUDE
     language.h
     languagereader.h
     license.h
+    optionflags.h
     options.h
     printvector.h
     project.h
