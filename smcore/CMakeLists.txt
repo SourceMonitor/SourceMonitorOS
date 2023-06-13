@@ -31,26 +31,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SMCORE_INCLUDE
     about.h
     archivereader.h
+    checkpoint.h
     checkpointsreader.h
     classinfo.h
     error.h
     factory.h
+    language.h
     languagereader.h
     license.h
+    optionflags.h
     options.h
     printvector.h
     project.h
     smpreader.h
     smstring.h
+    subdirectorymode.h
     version.h
 )
 
 set(SMCORE_BODY
     about.cpp
     archivereader.cpp
+    checkpoint.cpp
     checkpointsreader.cpp
     error.cpp
     factory.cpp
+    language.cpp
     languagereader.cpp
     license.cpp
     options.cpp

@@ -22,22 +22,19 @@
 
 #pragma once
 
-#include <QTest>
+#include <string>
 
 namespace smos
 {
-    namespace smtest
+    namespace smcore
     {
-        class TestProject : public QObject
+        //******************************************************************************
+        enum class SubdirectoryMode
         {
-            Q_OBJECT
-
-        private slots:
-            void initTestCase(void);
-            void TestProjectName(void);
-            void TestPersistence(void);
-            void TestIncludeSubdirectories(void);
-            void cleanupTestCase(void);
+            AllSubs = 0,
+            SelectedSubs = 1,
+            NoSubs = 2
         };
+        //******************************************************************************
     }
 }

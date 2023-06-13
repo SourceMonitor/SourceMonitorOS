@@ -22,22 +22,24 @@
 
 #pragma once
 
-#include <QTest>
+#include <string>
 
 namespace smos
 {
-    namespace smtest
+    namespace smcore
     {
-        class TestProject : public QObject
+        //******************************************************************************
+        enum class OptionFlags
         {
-            Q_OBJECT
-
-        private slots:
-            void initTestCase(void);
-            void TestProjectName(void);
-            void TestPersistence(void);
-            void TestIncludeSubdirectories(void);
-            void cleanupTestCase(void);
+            None = 0,
+            IgnoreCommentsOnly = 1,
+            IgnoreDOCCommentsOnly = 2,
+            IgnoreAllComments = 3,
+            ModifiedComplexity = 4,
+            IncludeSubdirectoriesFlag = 8,
+            FilesFromXmlFile = 16, // when set, m_sDirectory contains file path DIRECTORY_SEPARATOR XPath spec
+            IgnoreBlankLines = 32,
         };
+        //******************************************************************************
     }
 }

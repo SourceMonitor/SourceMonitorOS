@@ -22,22 +22,17 @@
 
 #pragma once
 
-#include <QTest>
+#include "archivereader.h"
 
 namespace smos
 {
-    namespace smtest
+    namespace smcore
     {
-        class TestProject : public QObject
+        class Language
         {
-            Q_OBJECT
-
-        private slots:
-            void initTestCase(void);
-            void TestProjectName(void);
-            void TestPersistence(void);
-            void TestIncludeSubdirectories(void);
-            void cleanupTestCase(void);
+        public:
+            virtual Language *MakeNew() const { return 0; } // no constructor - create w/ factory
+            virtual ~Language() { ; }
         };
     }
 }

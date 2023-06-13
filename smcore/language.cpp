@@ -22,22 +22,12 @@
 
 #pragma once
 
-#include <QTest>
+#include "checkpoint.h"
 
 namespace smos
 {
-    namespace smtest
+    namespace smcore
     {
-        class TestProject : public QObject
-        {
-            Q_OBJECT
-
-        private slots:
-            void initTestCase(void);
-            void TestProjectName(void);
-            void TestPersistence(void);
-            void TestIncludeSubdirectories(void);
-            void cleanupTestCase(void);
-        };
+        //******************************************************************************
     }
 }

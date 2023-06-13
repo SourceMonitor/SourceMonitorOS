@@ -28,6 +28,7 @@
 
 #include "error.h"
 #include "smstring.h"
+#include "subdirectorymode.h"
 
 namespace smos
 {
@@ -101,6 +102,20 @@ namespace smos
              */
             friend std::istream &operator>>(std::istream &is, Project &obj);
 
+            /**
+             * @brief Get indicator of whether to use subdirectories
+             *
+             * @return SubdirectoryMode Kind of subdirectory usage
+             */
+            SubdirectoryMode getIncludeSubdirectories(void);
+
+            /**
+             * @brief Enable/disable usage of subdirectories
+             *
+             * @param usage SubdirectoryMode Kind of subdirectory usage
+             */
+            void setIncludeSubdirectories(SubdirectoryMode usage);
+
         private:
             /**
              * @brief Number of current class version for versioning
@@ -126,7 +141,7 @@ namespace smos
             /**
              * @brief Project setting: Include subdirectories yes/no
              */
-            bool m_includeSubdirectories;
+            SubdirectoryMode m_includeSubdirectories;
             /**
              * @brief Some options - need more inspection for knowing kind of options and what they tweak
              */

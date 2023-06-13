@@ -24,12 +24,14 @@
 
 #include <filesystem>
 
+#include "version.h"
+
 namespace smos
 {
     namespace smcore
     {
         //******************************************************************************
-        Project::Project(void) : m_ClassVersion(0)
+        Project::Project(void) : m_ClassVersion(0), m_includeSubdirectories(SubdirectoryMode::NoSubs)
         {
         }
         //******************************************************************************
@@ -81,7 +83,18 @@ namespace smos
         std::istream &operator>>(std::istream &is, Project &obj)
         {
             is >> obj.m_ClassVersion >> obj.m_ProjectName;
+
             return is;
+        }
+        //******************************************************************************
+        SubdirectoryMode Project::getIncludeSubdirectories(void)
+        {
+            return m_includeSubdirectories;
+        }
+        //******************************************************************************
+        void Project::setIncludeSubdirectories(SubdirectoryMode usage)
+        {
+            m_includeSubdirectories = usage;
         }
         //******************************************************************************
     }
