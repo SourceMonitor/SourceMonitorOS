@@ -22,13 +22,10 @@
 
 #pragma once
 
-#include <string>
-
 namespace smos
 {
     namespace smcore
     {
-        //******************************************************************************
         enum class OptionFlags
         {
             None = 0,
@@ -40,6 +37,5 @@ namespace smos
             FilesFromXmlFile = 16, // when set, m_sDirectory contains file path DIRECTORY_SEPARATOR XPath spec
             IgnoreBlankLines = 32,
         };
-        //******************************************************************************
     }
 }

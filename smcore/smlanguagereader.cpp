@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "languagereader.h"
+#include "smlanguagereader.h"
 
 #include <iostream>
 #include <map>

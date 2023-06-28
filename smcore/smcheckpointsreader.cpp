@@ -22,11 +22,11 @@
 
 #pragma once
 
-#include "checkpointsreader.h"
+#include "smcheckpointsreader.h"
 
 #include <iostream>
 
-#include "languagereader.h"
+#include "smlanguagereader.h"
 #include "version.h"
 
 namespace smos
