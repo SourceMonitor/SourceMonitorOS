@@ -23,6 +23,7 @@
 #pragma once
 
 #include "smlanguagereader.h"
+#include "languages.h"
 
 #include <iostream>
 #include <map>
@@ -42,7 +43,10 @@ namespace smos
             if (classInfo.m_name.empty())
                 return;
 
-            if (classInfo.m_name == "SMCpp" || classInfo.m_name == "SMCs" || classInfo.m_name == "SMJava" || classInfo.m_name == "SMVBNET")
+            if (Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMCPP) ||
+                Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMCS) ||
+                Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMJAVA) ||
+                Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMVBNET))
             {
                 std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
                 std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
@@ -54,7 +58,7 @@ namespace smos
                 std::map<std::string, std::string> m_oClassList = m_archiveReader.Read<std::map<std::string, std::string>>();
                 std::cout << "m_oClassList: size = " << m_oClassList.size() << " elements: " << std::endl;
             }
-            else if (classInfo.m_name == "SMC")
+            else if (Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMC))
             {
                 std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
                 std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
@@ -67,7 +71,7 @@ namespace smos
                 std::map<std::string, std::string> m_oFunctionList = m_archiveReader.Read<std::map<std::string, std::string>>();
                 std::cout << "m_oFunctionList: size = " << m_oFunctionList.size() << " elements: " << std::endl;
             }
-            else if (classInfo.m_name == "SMDelphi")
+            else if (Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMDELPHI))
             {
                 std::string m_sSubroutineName = m_archiveReader.Read<std::string>();
                 std::cout << "m_sSubroutineName: " << m_sSubroutineName << std::endl;
@@ -82,7 +86,7 @@ namespace smos
                 std::map<std::string, std::string> m_oClassList = m_archiveReader.Read<std::map<std::string, std::string>>();
                 std::cout << "m_oClassList: size = " << m_oClassList.size() << " elements: " << std::endl;
             }
-            else if (classInfo.m_name == "SMHTML")
+            else if (Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMHTML))
             {
                 std::vector<std::string> m_saComplexMetrics = m_archiveReader.Read<std::vector<std::string>>();
                 std::cout << "m_saComplexMetrics: size = " << m_saComplexMetrics.size() << " skip" << std::endl;
@@ -91,7 +95,7 @@ namespace smos
                 std::cout << "m_iCounts: size = " << m_iCounts.size() << " elements: " << std::endl;
                 printVector(m_iCounts);
             }
-            else if (classInfo.m_name == "SMVisualBasic")
+            else if (Languages::isClassOfType(classInfo.m_name, smos::smcore::Languages::Type::SMVISUALBASIC))
             {
                 std::string m_sSubroutineName = m_archiveReader.Read<std::string>();
                 std::cout << "m_sSubroutineName: " << m_sSubroutineName << std::endl;

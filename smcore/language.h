@@ -22,8 +22,6 @@
 
 #pragma once
 
-#include "archivereader.h"
-
 namespace smos
 {
     namespace smcore

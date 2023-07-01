@@ -22,7 +22,7 @@
 
 #pragma once
 
-#include "language.h"
+#include "languagebase.h"
 
 namespace smos
 {

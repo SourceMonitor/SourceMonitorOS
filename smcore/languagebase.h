@@ -22,12 +22,14 @@
 
 #pragma once
 
-#include "language.h"
+#include "languages.h"
 
 namespace smos
 {
     namespace smcore
     {
-        //******************************************************************************
+        class LanguageBase
+        {
+        };
     }
 }

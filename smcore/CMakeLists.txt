@@ -36,6 +36,8 @@ set(SMCORE_INCLUDE
     error.h
     factory.h
     language.h
+    languages.h
+    languagebase.h
     license.h
     optionflags.h
     options.h
@@ -56,6 +58,8 @@ set(SMCORE_BODY
     error.cpp
     factory.cpp
     language.cpp
+    languages.cpp
+    languagebase.cpp
     license.cpp
     options.cpp
     project.cpp
