@@ -6,6 +6,8 @@ if exist cmake\ (
   rd /s /q cmake
 )
 
+set PATH=%PATH%;D:\dev\Qt
+
 mkdir cmake&&cd cmake
 cmake .. -G"Visual Studio 16 2019"
 cd ..

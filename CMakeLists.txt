@@ -24,6 +24,13 @@ cmake_minimum_required(VERSION 3.5)
 
 project(SourceMonitorOS LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor OpenSource")
 
+# Add Qt to path.
+set(CMAKE_PREFIX_PATH "D:/dev/Qt/6.5.1/msvc2019_64")
+
+# Look for Qt as first priority.
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
+
 # *******************************************************************************
 # Settings for smcore
 # *******************************************************************************
