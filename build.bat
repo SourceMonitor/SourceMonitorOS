@@ -7,5 +7,5 @@ if exist cmake\ (
 )
 
 mkdir cmake&&cd cmake
-cmake .. -G"Visual Studio 15 2017"
+cmake .. -G"Visual Studio 16 2019"
 cd ..
