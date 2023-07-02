@@ -23,7 +23,6 @@
 #pragma once
 
 #include <QTest>
-#include "license.h"
 
 namespace smos
 {

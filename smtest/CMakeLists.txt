@@ -41,14 +41,22 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 enable_testing(true)
 
 set(SMTEST_INCLUDE
+    test_about.h
     test_license.h
-    test_settings.h
+    test_options.h
+    test_project.h
+    test_version.h
+    test_smpreader.h
 )
 
 set(PROJECT_SOURCES
     main.cpp
+    test_about.cpp
     test_license.cpp
-    test_settings.cpp
+    test_options.cpp
+    test_project.cpp
+    test_version.cpp
+    test_smpreader.cpp
     ${SMTEST_INCLUDE}
     ${SMCORE_INCLUDE}
 )
@@ -60,6 +68,8 @@ add_executable(
 
 # Copy license file required in test_license
 configure_file(./../LICENSE LICENSE COPYONLY)
+configure_file(./testfiles/osm.smp osm.smp COPYONLY)
+
 
 target_compile_options(smtest PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>

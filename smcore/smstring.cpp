@@ -20,24 +20,12 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#pragma once
-
-#include <QTest>
-#include "settings.h"
+#include "smstring.h"
 
 namespace smos
 {
-    namespace smtest
+    namespace smcore
     {
-        class TestSettings : public QObject
-        {
-            Q_OBJECT
-
-        private slots:
-            void initTestCase(void);
-            void TestSettingsSaveLoad(void);
-            void TestLogfileNameGetSet(void);
-            void cleanupTestCase(void);
-        };
+        //******************************************************************************
     }
 }

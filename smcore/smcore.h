@@ -28,12 +28,10 @@ namespace smos
 {
     namespace smcore
     {
-
         class SMCORE_EXPORT SMCore
         {
         public:
-            SMCore();
+            SMCore(void);
         };
-
     }
 }

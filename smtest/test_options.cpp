@@ -20,7 +20,8 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "test_settings.h"
+#include "test_options.h"
+#include "options.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -31,43 +32,45 @@ namespace smos
     namespace smtest
     {
         //******************************************************************************
-        void TestSettings::initTestCase(void)
+        void TestOptions::initTestCase(void)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
-            if (QFile::exists(configfileName))
+            QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            if (QFile::exists(optionsfileName))
             {
-                QFile configfile(configfileName);
+                QFile configfile(optionsfileName);
                 configfile.remove();
             }
         }
         //******************************************************************************
-        void TestSettings::TestSettingsSaveLoad(void)
+        void TestOptions::TestCodeEditorGetSet(void)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            QString codeEditorExpected = "${filename}";
 
-            smos::smcore::SMSettings settings(configfileName);
+            smos::smcore::Options options(optionsfileName.toStdString());
 
-            bool configfileExistsBefore = QFile::exists(configfileName);
-            QCOMPARE(false, configfileExistsBefore);
+            QString value = QString::fromUtf8(options.codeEditorGet().c_str());
+            QCOMPARE(codeEditorExpected, value);
 
-            settings.settingsSave();
-            bool configfileExistsAfter = QFile::exists(configfileName);
-            QCOMPARE(true, configfileExistsAfter);
+            codeEditorExpected = "something else";
+            options.codeEditorSet(codeEditorExpected.toStdString());
+            value = QString::fromUtf8(options.codeEditorGet().c_str());
+            QCOMPARE(codeEditorExpected, value);
         }
         //******************************************************************************
-        void TestSettings::TestLogfileNameGetSet(void)
+        void TestOptions::TestLogfileNameGetSet(void)
         {
-            QString configfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
+            QString optionsfileName = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.ini");
             QString logfileNameExpected = QDir::cleanPath(QDir::currentPath() + QDir::separator() + "smos.log");
 
-            smos::smcore::SMSettings settings(configfileName);
-            settings.logfileNameSet(logfileNameExpected);
+            smos::smcore::Options options(optionsfileName.toStdString());
+            options.logfileNameSet(logfileNameExpected.toStdString());
 
-            QString logfileName = settings.logfileNameGet();
+            QString logfileName = QString::fromUtf8(options.logfileNameGet().c_str());
             QCOMPARE(logfileNameExpected, logfileName);
         }
         //******************************************************************************
-        void TestSettings::cleanupTestCase(void)
+        void TestOptions::cleanupTestCase(void)
         {
         }
     }

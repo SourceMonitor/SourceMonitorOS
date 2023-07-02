@@ -25,6 +25,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include "license.h"
 
 namespace smos
 {
@@ -57,7 +58,7 @@ namespace smos
             // Read license from given license file (part of project)
             QString licenseFile = this->readLicenseFromFile();
             // Get license text from application
-            QString licenseApplication = smos::smcore::SMLicense::getLicense();
+            QString licenseApplication = QString::fromUtf8(smos::smcore::License::getLicense().c_str());
             // They must be equal
             QCOMPARE(licenseFile, licenseApplication);
         }

@@ -22,55 +22,27 @@
 
 #pragma once
 
-#include <QMainWindow>
+#include "smstring.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui
-{
-    class SMMainWindow;
-}
-QT_END_NAMESPACE
+// See error class in C++ with enum
+// https://stackoverflow.com/questions/21295935/can-a-c-enum-class-have-methods
+// And how to convert enum to string
+// https://stackoverflow.com/questions/28828957/enum-to-string-in-modern-c11-c14-c17-and-future-c20
 
 namespace smos
 {
-    namespace smgui
+    namespace smcore
     {
-        class SMMainWindow : public QMainWindow
+        class Error
         {
-            Q_OBJECT
-
         public:
-            /**
-             * @brief Default constructor
-             *
-             * @param parent
-             */
-            SMMainWindow(QWidget *parent = nullptr);
-            /**
-             * @brief Default desctructor
-             *
-             */
-            ~SMMainWindow(void);
-
-        private slots:
-            /**
-             * @brief Called when menu entry 'File - Exit' is triggered
-             *
-             */
-            void on_actionExit_triggered(void);
-
-            /**
-             * @brief Called when menu entry 'Help - View License' is triggered
-             *
-             */
-            void on_actionView_License_triggered(void);
-
-        private:
-            /**
-             * @brief Instance of UI
-             *
-             */
-            Ui::SMMainWindow *ui;
+            enum ErrorCode
+            {
+                ERR_NONE = 0,
+                ERR_PROJECT_ALREADY_EXIST,
+                ERR_PROJECT_DOES_NOT_EXIST,
+                ERR_PROJECT_INVALID,
+            };
         };
     }
 }

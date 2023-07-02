@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>SGOptions</class>
+    <widget class="QDialog" name="SGOptions">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>640</width>
+                <height>480</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string comment="dlgOptionsTitle">SourceMonitorOS Options</string>
+        </property>
+        <property name="locale">
+            <locale language="English" country="Europe"/>
+        </property>
+        <widget class="QTabWidget" name="tabWidget">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>640</width>
+                    <height>430</height>
+                </rect>
+            </property>
+            <property name="locale">
+                <locale language="English" country="Europe"/>
+            </property>
+            <property name="currentIndex">
+                <number>0</number>
+            </property>
+            <widget class="QWidget" name="tagGeneral">
+                <attribute name="title">
+                    <string>General</string>
+                </attribute>
+                <widget class="QFrame" name="frameEditor">
+                    <property name="geometry">
+                        <rect>
+                            <x>0</x>
+                            <y>0</y>
+                            <width>641</width>
+                            <height>51</height>
+                        </rect>
+                    </property>
+                    <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                    </property>
+                    <widget class="QLabel" name="labelEditor">
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>0</y>
+                                <width>611</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Source Code File Editor (${filename} replaced with path to file):</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEditEditor">
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>20</y>
+                                <width>601</width>
+                                <height>22</height>
+                            </rect>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton" name="btnEditor">
+                        <property name="geometry">
+                            <rect>
+                                <x>610</x>
+                                <y>20</y>
+                                <width>25</width>
+                                <height>22</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>...</string>
+                        </property>
+                    </widget>
+                </widget>
+            </widget>
+            <widget class="QWidget" name="tab_2">
+                <attribute name="title">
+                    <string>Tab 2</string>
+                </attribute>
+            </widget>
+        </widget>
+        <widget class="QFrame" name="frameButtons">
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>430</y>
+                    <width>621</width>
+                    <height>41</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QPushButton" name="btnHelp">
+                <property name="geometry">
+                    <rect>
+                        <x>540</x>
+                        <y>10</y>
+                        <width>75</width>
+                        <height>24</height>
+                    </rect>
+                </property>
+                <property name="locale">
+                    <locale language="English" country="Europe"/>
+                </property>
+                <property name="text">
+                    <string>Help</string>
+                </property>
+            </widget>
+            <widget class="QPushButton" name="btnApply">
+                <property name="geometry">
+                    <rect>
+                        <x>460</x>
+                        <y>10</y>
+                        <width>75</width>
+                        <height>24</height>
+                    </rect>
+                </property>
+                <property name="locale">
+                    <locale language="English" country="Europe"/>
+                </property>
+                <property name="text">
+                    <string>Apply</string>
+                </property>
+            </widget>
+            <widget class="QPushButton" name="btnAbort">
+                <property name="geometry">
+                    <rect>
+                        <x>380</x>
+                        <y>10</y>
+                        <width>75</width>
+                        <height>24</height>
+                    </rect>
+                </property>
+                <property name="locale">
+                    <locale language="English" country="Europe"/>
+                </property>
+                <property name="text">
+                    <string>Abort</string>
+                </property>
+            </widget>
+            <widget class="QPushButton" name="btnOk">
+                <property name="geometry">
+                    <rect>
+                        <x>300</x>
+                        <y>10</y>
+                        <width>75</width>
+                        <height>24</height>
+                    </rect>
+                </property>
+                <property name="locale">
+                    <locale language="English" country="Europe"/>
+                </property>
+                <property name="text">
+                    <string>OK</string>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
+    <designerdata>
+        <property name="gridDeltaX">
+            <number>10</number>
+        </property>
+        <property name="gridDeltaY">
+            <number>10</number>
+        </property>
+        <property name="gridSnapX">
+            <bool>true</bool>
+        </property>
+        <property name="gridSnapY">
+            <bool>true</bool>
+        </property>
+        <property name="gridVisible">
+            <bool>true</bool>
+        </property>
+    </designerdata>
+</ui>

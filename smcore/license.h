@@ -22,34 +22,34 @@
 
 #pragma once
 
-#include <QString>
-#include "smcore_global.h"
+#include "smstring.h"
 
 namespace smos
 {
     namespace smcore
     {
-        class SMCORE_EXPORT SMLicense
+        class License
         {
         public:
             /**
              * @brief Get the license text
              *
-             * @return QString
+             * @return smos::smcore::SMSring
              */
-            static QString getLicense(void);
+            static smos::smcore::SMString getLicense(void);
 
         private:
             /**
              * @brief Hide constructor to avoid instances
              *
              */
-            SMLicense(void);
+            License(void){};
+
             /**
              * @brief Hide destructor to avoid instances
              *
              */
-            ~SMLicense(void);
+            ~License(void){};
         };
     }
 }

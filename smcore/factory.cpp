@@ -20,50 +20,31 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "settings.h"
-#include <QDir>
+#include "factory.h"
+
+#include <map>
+#include <unordered_map>
 
 namespace smos
 {
     namespace smcore
     {
         //******************************************************************************
-        SMSettings::SMSettings(QString settingsfile)
+        Options *Factory::getOptions(smos::smcore::SMString optionsfile)
         {
-            this->m_settings = std::unique_ptr<QSettings>(new QSettings(settingsfile, QSettings::IniFormat));
+            static std::unordered_map<smos::smcore::SMString, Options *> programOptions;
+            if (programOptions.find(optionsfile) == programOptions.end())
+            {
+                programOptions.insert(std::make_pair(optionsfile, new Options(optionsfile)));
+            }
+            return programOptions[optionsfile];
         }
         //******************************************************************************
-        SMSettings::~SMSettings(void)
+        Version *Factory::getVersion(void)
         {
+            static Version smVersion;
+            return &smVersion;
         }
         //******************************************************************************
-        void SMSettings::settingsLoad(void)
-        {
-            this->m_logfileName = this->valueGet<QString>("program", "logfile", "smos.log");
-        }
-        //******************************************************************************
-        void SMSettings::settingsSave(void)
-        {
-            this->valueSet<QString>("program", "logfile", this->m_logfileName);
-            this->m_settings->sync();
-        }
-        //******************************************************************************
-        QString SMSettings::getMapKey(QString section, QString key)
-        {
-            QString tmpSection = section.replace("/", "").replace("\\", "").toUpper();
-            QString tmpKey = key.replace("/", "").replace("\\", "").toLower();
-            QString mapKey = tmpSection + "/" + tmpKey;
-            return mapKey;
-        }
-        //******************************************************************************
-        QString SMSettings::logfileNameGet(void)
-        {
-            return this->m_logfileName;
-        }
-        //******************************************************************************
-        void SMSettings::logfileNameSet(QString logfileName)
-        {
-            this->m_logfileName = logfileName;
-        }
     }
 }

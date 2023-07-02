@@ -20,34 +20,22 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "smmainwindow.h"
-#include "./ui_smmainwindow.h"
-#include <license.h>
-#include <settings.h>
+#pragma once
+
+#include <QTest>
 
 namespace smos
 {
-    namespace smgui
+    namespace smtest
     {
-        //******************************************************************************
-        SMMainWindow::SMMainWindow(QWidget *parent)
-            : QMainWindow(parent), ui(new Ui::SMMainWindow)
+        class TestSMPReader : public QObject
         {
-            ui->setupUi(this);
-        }
-        //******************************************************************************
-        SMMainWindow::~SMMainWindow(void)
-        {
-            delete ui;
-        }
-        //******************************************************************************
-        void SMMainWindow::on_actionExit_triggered(void)
-        {
-            QCoreApplication::quit();
-        }
-        //******************************************************************************
-        void SMMainWindow::on_actionView_License_triggered(void)
-        {
-        }
+            Q_OBJECT
+
+        private slots:
+            void initTestCase(void);
+            void TestReadCppSMPoject(void);
+            void cleanupTestCase(void);
+        };
     }
 }
