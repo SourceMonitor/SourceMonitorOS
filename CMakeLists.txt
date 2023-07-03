@@ -19,40 +19,24 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 # *******************************************************************************
-
+#
 cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_PREFIX_PATH "D:/dev/Qt/6.5.1/msvc2019_64") # Add Qt to path.
 
 project(SourceMonitorOS LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "SourceMonitor OpenSource")
-
-# Add Qt to path.
-set(CMAKE_PREFIX_PATH "D:/dev/Qt/6.5.1/msvc2019_64")
-message(STATUS "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}")
-
-# Look for Qt as first priority.
 find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools)
 
-# *******************************************************************************
-# Settings for smcore
-# *******************************************************************************
-add_subdirectory(smcore)
+# Project directory definition.
+add_subdirectory(smcore) # SourceMonitor Core.
 
-# *******************************************************************************
-# Settings for smcli
-# *******************************************************************************
-add_subdirectory(smcli)
+add_subdirectory(smcli)  # SourceMonitor CLI.
 target_include_directories(smcli PRIVATE smcore)
 
-# *******************************************************************************
-# Settings for smgui
-# *******************************************************************************
-add_subdirectory(smgui)
+add_subdirectory(smgui)  # SourceMonitor GUI.
 target_include_directories(smgui PRIVATE smcore)
 
-# *******************************************************************************
-# Settings for smtest
-# *******************************************************************************
-add_subdirectory(smtest)
+add_subdirectory(smtest) # SourceMonitor Tests.
 target_include_directories(smtest PRIVATE smcore)
