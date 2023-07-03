@@ -70,9 +70,11 @@ add_executable(
 configure_file(./../LICENSE LICENSE COPYONLY)
 configure_file(./testfiles/osm.smp osm.smp COPYONLY)
 
-
+# Toggle "Warnings as Errors", add "/WX" to the MSVC compiler to treat
+# "Warnings as Errors", QtTest, marks compiled test cases with "Unreachable Code"
+# and therefore, this switch is pointless!
 target_compile_options(smtest PRIVATE
-    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4> # add " /WX"
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 

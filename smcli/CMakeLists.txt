@@ -33,13 +33,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools)
 
 set(SMCLI_TS_FILES
     smcli_en_150.ts
 )
 
+# Generate MOC for main.cpp & configure the executable.
+qt_generate_moc(main.cpp main.moc TARGET smcli)
 add_executable(smcli
     main.cpp
     ${SMCLI_TS_FILES}
@@ -55,12 +56,10 @@ target_compile_options(smcli PRIVATE
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>
 )
 
-target_link_libraries(smcli Qt${QT_VERSION_MAJOR}::Core smcore)
+target_link_libraries(smcli Qt6::Core smcore)
 
 if(COMMAND qt_create_translation)
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${SMCLI_TS_FILES})
 endif()
 
 install(TARGETS smcli LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-qt_finalize_executable(smcli)

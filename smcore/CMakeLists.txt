@@ -77,7 +77,6 @@ target_compile_options(smcore PRIVATE
 )
 
 target_link_libraries(smcore)
-
 target_compile_definitions(smcore PRIVATE SMCORE_LIBRARY)
 
 if(MSVC OR MINGW)
