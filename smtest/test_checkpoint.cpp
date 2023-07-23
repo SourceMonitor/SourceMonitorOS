@@ -20,30 +20,32 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "testrunner.h"
-
-#include "test_about.h"
 #include "test_checkpoint.h"
-#include "test_license.h"
-#include "test_options.h"
-#include "test_project.h"
-#include "test_version.h"
-#include "test_smpreader.h"
 
-// QTEST_MAIN(smos::smtest::TestLicense)
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
+#include "checkpoint.h"
 
-int main(int argc, char *argv[])
+namespace smos
 {
+    namespace smtest
+    {
+        //******************************************************************************
+        void TestCheckpoint::initTestCase(void)
+        {
+        }
+        //******************************************************************************
+        void TestCheckpoint::TestConstructor(void)
+        {
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            smos::smcore::Version version = smos::smcore::Version();
 
-    int status = 0;
-
-    RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestCheckpoint, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestOptions, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestProject, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestVersion, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestSMPReader, argc, argv, &status);
-
-    return status;
+            QCOMPARE(version, checkpoint.versionGet());
+        }
+        //******************************************************************************
+        void TestCheckpoint::cleanupTestCase(void)
+        {
+        }
+    }
 }

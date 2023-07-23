@@ -31,7 +31,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Project::Project(void) : m_ClassVersion(0), m_includeSubdirectories(SubdirectoryMode::NoSubs)
+        Project::Project(void) : m_ClassVersion(0), m_includeSubdirectories(SubdirectoryMode::NoSubs), m_OptionFlags(static_cast<int>(smos::smcore::OptionFlags::None))
         {
         }
         //******************************************************************************

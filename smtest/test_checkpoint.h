@@ -20,30 +20,22 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#include "testrunner.h"
+#pragma once
 
-#include "test_about.h"
-#include "test_checkpoint.h"
-#include "test_license.h"
-#include "test_options.h"
-#include "test_project.h"
-#include "test_version.h"
-#include "test_smpreader.h"
+#include <QTest>
 
-// QTEST_MAIN(smos::smtest::TestLicense)
-
-int main(int argc, char *argv[])
+namespace smos
 {
+    namespace smtest
+    {
+        class TestCheckpoint : public QObject
+        {
+            Q_OBJECT
 
-    int status = 0;
-
-    RUN_TESTS(smos::smtest::TestAbout, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestCheckpoint, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestLicense, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestOptions, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestProject, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestVersion, argc, argv, &status);
-    RUN_TESTS(smos::smtest::TestSMPReader, argc, argv, &status);
-
-    return status;
+        private slots:
+            void initTestCase(void);
+            void TestConstructor(void);
+            void cleanupTestCase(void);
+        };
+    }
 }

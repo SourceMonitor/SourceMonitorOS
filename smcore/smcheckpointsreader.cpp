@@ -26,6 +26,7 @@
 
 #include <iostream>
 
+#include "checkpoint.h"
 #include "smlanguagereader.h"
 #include "version.h"
 
@@ -40,8 +41,10 @@ namespace smos
             std::cout << "sizeCheckpoints: " << sizeCheckpoints << std::endl;
             for (unsigned int i = 0; i < sizeCheckpoints; i++)
             {
+                smos::smcore::Checkpoint curCheckpoint = smos::smcore::Checkpoint();
                 Version versionCheckpoint = m_archiveReader.Read<Version>();
                 std::cout << "Checkpoint version: " << versionCheckpoint.AsString() << std::endl;
+                curCheckpoint.versionSet(versionCheckpoint);
 
                 // ar >> m_sName >> m_oDate >> m_fUseModifiedComplexity >> m_poLanguage;
                 std::string nameSMCheckpoint = m_archiveReader.Read<std::string>();

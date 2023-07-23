@@ -42,6 +42,7 @@ enable_testing(true)
 
 set(SMTEST_INCLUDE
     test_about.h
+    test_checkpoint.h
     test_license.h
     test_options.h
     test_project.h
@@ -52,6 +53,7 @@ set(SMTEST_INCLUDE
 set(PROJECT_SOURCES
     main.cpp
     test_about.cpp
+    test_checkpoint.cpp
     test_license.cpp
     test_options.cpp
     test_project.cpp
@@ -69,7 +71,6 @@ add_executable(
 # Copy license file required in test_license
 configure_file(./../LICENSE LICENSE COPYONLY)
 configure_file(./testfiles/osm.smp osm.smp COPYONLY)
-
 
 target_compile_options(smtest PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
