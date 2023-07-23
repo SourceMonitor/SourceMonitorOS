@@ -29,7 +29,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        const char *langguagestrings[] = {
+        const char *Languages::languageStrings[] = {
             "SMC",
             "SMCpp",
             "SMCs",
@@ -41,17 +41,17 @@ namespace smos
         //******************************************************************************
         const char *Languages::getLanguageString(smos::smcore::Languages::Type lang)
         {
-            return smos::smcore::langguagestrings[static_cast<int>(lang)];
+            return smos::smcore::Languages::languageStrings[static_cast<int>(lang)];
         }
         //******************************************************************************
-        const bool Languages::caseInsCharCompareN(char a, char b)
+        bool Languages::caseInsCharCompareN(char a, char b)
         {
             char x = a;
             char y = b;
             return (toupper(x) == toupper(y));
         }
         //******************************************************************************
-        const bool Languages::isClassOfType(smos::smcore::SMString classString, smos::smcore::Languages::Type classType)
+        bool Languages::isClassOfType(smos::smcore::SMString classString, smos::smcore::Languages::Type classType)
         {
             smos::smcore::SMString workClass = classString;
             smos::smcore::SMString workType = smos::smcore::Languages::getLanguageString(classType);

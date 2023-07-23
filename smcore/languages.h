@@ -29,11 +29,6 @@ namespace smos
 {
     namespace smcore
     {
-        /**
-         * @brief Array of language strings, order equal to the enum here
-         */
-        extern const char *langguagestrings[];
-
         class Languages
         {
         public:
@@ -54,8 +49,8 @@ namespace smos
             };
 
             /**
-             * @brief Convert the enum to a char* as in the array languagestrings
-             * @see languagestrings
+             * @brief Convert the enum to a char* as in the array languageStrings
+             * @see languageStrings
              *
              * @param smos::smcore::Languages::Type Kind of language to get string for
              * @return const char* Language enum as string
@@ -69,7 +64,12 @@ namespace smos
              * @param classType Class as enum type
              * @return bool Result of case insensitive comparison
              */
-            static const bool isClassOfType(smos::smcore::SMString classString, smos::smcore::Languages::Type classType);
+            static bool isClassOfType(smos::smcore::SMString classString, smos::smcore::Languages::Type classType);
+
+            /**
+             * @brief Array of language strings, order equal to the enum here
+             */
+            static const char *languageStrings[];
 
         protected:
             /**
@@ -79,7 +79,7 @@ namespace smos
              * @param b Right character
              * @return bool Result of case insensitive comparison
              */
-            static const bool Languages::caseInsCharCompareN(char a, char b);
+            static bool Languages::caseInsCharCompareN(char a, char b);
         };
     }
 }
