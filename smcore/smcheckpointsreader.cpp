@@ -49,6 +49,8 @@ namespace smos
                 // ar >> m_sName >> m_oDate >> m_fUseModifiedComplexity >> m_poLanguage;
                 std::string nameSMCheckpoint = m_archiveReader.Read<std::string>();
                 std::cout << "nameSMCheckpoint: " << nameSMCheckpoint << std::endl;
+                curCheckpoint.checkpointNameSet(nameSMCheckpoint);
+
                 std::time_t t64_checkpointSMCheckpoint = m_archiveReader.Read<std::time_t>();
                 std::cout << "Checkpoint time: " << t64_checkpointSMCheckpoint << std::endl;
 

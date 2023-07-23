@@ -41,7 +41,39 @@ namespace smos
             smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
             smos::smcore::Version version = smos::smcore::Version();
 
-            QCOMPARE(version, checkpoint.versionGet());
+            QCOMPARE(checkpoint.versionGet(), version);
+
+            QString nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            smos::smcore::SMString nameExpectedRaw = "";
+            QString nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+
+            QCOMPARE(nameObject, nameExpected);
+        }
+        //******************************************************************************
+        void TestCheckpoint::TestVersion(void)
+        {
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            smos::smcore::Version version = smos::smcore::Version();
+
+            QCOMPARE(checkpoint.versionGet(), version);
+
+            smos::smcore::Version versionNew = smos::smcore::Version(2, 2, 2);
+            checkpoint.versionSet(versionNew);
+            QCOMPARE(checkpoint.versionGet(), versionNew);
+        }
+        //******************************************************************************
+        void TestCheckpoint::TestName(void)
+        {
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            QString nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            smos::smcore::SMString nameExpectedRaw = "";
+            QString nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+
+            nameExpectedRaw = "Hello world!";
+            checkpoint.checkpointNameSet(nameExpectedRaw);
+            nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+            QCOMPARE(nameObject, nameExpected);
         }
         //******************************************************************************
         void TestCheckpoint::cleanupTestCase(void)

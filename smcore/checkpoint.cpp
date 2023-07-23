@@ -29,7 +29,7 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
-        Checkpoint::Checkpoint(void) : m_version()
+        Checkpoint::Checkpoint(void) : m_version(), m_name("")
         {
         }
         //******************************************************************************
@@ -37,14 +37,24 @@ namespace smos
         {
         }
         //******************************************************************************
+        smos::smcore::Version Checkpoint::versionGet(void)
+        {
+            return this->m_version;
+        }
+        //******************************************************************************
         void Checkpoint::versionSet(const smos::smcore::Version &version)
         {
             this->m_version = version;
         }
         //******************************************************************************
-        smos::smcore::Version Checkpoint::versionGet(void)
+        smos::smcore::SMString Checkpoint::checkpointNameGet(void)
         {
-            return this->m_version;
+            return this->m_name;
+        }
+        //******************************************************************************
+        void Checkpoint::checkpointNameSet(const smos::smcore::SMString &checkpointName)
+        {
+            this->m_name = checkpointName;
         }
         //******************************************************************************
     }
