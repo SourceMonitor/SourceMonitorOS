@@ -20,42 +20,64 @@
 // DEALINGS IN THE SOFTWARE.
 //******************************************************************************
 
-#pragma once
+#include "test_checkpoint.h"
 
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
 #include "checkpoint.h"
 
 namespace smos
 {
-    namespace smcore
+    namespace smtest
     {
         //******************************************************************************
-        Checkpoint::Checkpoint(void) : m_version(), m_name("")
+        void TestCheckpoint::initTestCase(void)
         {
         }
         //******************************************************************************
-        Checkpoint::~Checkpoint(void)
+        void TestCheckpoint::TestConstructor(void)
         {
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            smos::smcore::Version version = smos::smcore::Version();
+
+            QCOMPARE(checkpoint.versionGet(), version);
+
+            QString nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            smos::smcore::SMString nameExpectedRaw = "";
+            QString nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+
+            QCOMPARE(nameObject, nameExpected);
         }
         //******************************************************************************
-        smos::smcore::Version Checkpoint::versionGet(void)
+        void TestCheckpoint::TestVersion(void)
         {
-            return this->m_version;
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            smos::smcore::Version version = smos::smcore::Version();
+
+            QCOMPARE(checkpoint.versionGet(), version);
+
+            smos::smcore::Version versionNew = smos::smcore::Version(2, 2, 2);
+            checkpoint.versionSet(versionNew);
+            QCOMPARE(checkpoint.versionGet(), versionNew);
         }
         //******************************************************************************
-        void Checkpoint::versionSet(const smos::smcore::Version &version)
+        void TestCheckpoint::TestName(void)
         {
-            this->m_version = version;
+            smos::smcore::Checkpoint checkpoint = smos::smcore::Checkpoint();
+            QString nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            smos::smcore::SMString nameExpectedRaw = "";
+            QString nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+
+            nameExpectedRaw = "Hello world!";
+            checkpoint.checkpointNameSet(nameExpectedRaw);
+            nameObject = QString::fromUtf8(checkpoint.checkpointNameGet().c_str());
+            nameExpected = QString::fromUtf8(nameExpectedRaw.c_str());
+            QCOMPARE(nameObject, nameExpected);
         }
         //******************************************************************************
-        smos::smcore::SMString Checkpoint::checkpointNameGet(void)
+        void TestCheckpoint::cleanupTestCase(void)
         {
-            return this->m_name;
         }
-        //******************************************************************************
-        void Checkpoint::checkpointNameSet(const smos::smcore::SMString &checkpointName)
-        {
-            this->m_name = checkpointName;
-        }
-        //******************************************************************************
     }
 }

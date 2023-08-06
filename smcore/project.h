@@ -27,6 +27,7 @@
 #include <iostream>
 
 #include "error.h"
+#include "optionflags.h"
 #include "smstring.h"
 #include "subdirectorymode.h"
 
@@ -46,6 +47,55 @@ namespace smos
              * @brief Destroy the Project object
              */
             ~Project(void);
+
+            /**
+             * @brief Get indicator of whether to use subdirectories
+             *
+             * @return SubdirectoryMode Kind of subdirectory usage
+             */
+            smos::smcore::SubdirectoryMode getIncludeSubdirectories(void);
+
+            /**
+             * @brief Get all option flags
+             *
+             * @return int
+             */
+            int GetOptionFlags(void) const;
+
+            /**
+             * @brief Get the Project Name
+             *
+             * @return smos::smcore::SMString
+             */
+            smos::smcore::SMString getProjectName(void) const;
+
+            /**
+             * @brief Get the path to the code for analysis
+             *
+             * @return smos::smcore::SMString
+             */
+            smos::smcore::SMString getSourcePath(void) const;
+
+            /**
+             * @brief Set flag to ignore header/footer
+             *
+             * @param ignore
+             */
+            void IgnoreHeaderFooter(int ignore);
+
+            /**
+             * @brief Get flag to ignore header/footer
+             *
+             * @return int
+             */
+            int IgnoreHeaderFooter(void) const;
+
+            /**
+             * @brief Get flag if file list is from XML file
+             *
+             * @return bool
+             */
+            bool IsFileListFromXmlFile(void) const;
 
             /**
              * @brief Load project data
@@ -69,11 +119,25 @@ namespace smos
             static smos::smcore::Error::ErrorCode saveProject(const smos::smcore::SMString &filename, Project &project, bool force = false);
 
             /**
-             * @brief Get the Project Name
+             * @brief Set flag if file list is from XML file
              *
-             * @return smos::smcore::SMString
+             * @param isFileListFromXmlFile
              */
-            smos::smcore::SMString getProjectName(void) const;
+            void SetFileListFromXmlFile(bool isFileListFromXmlFile);
+
+            /**
+             * @brief Enable/disable usage of subdirectories
+             *
+             * @param usage SubdirectoryMode Kind of subdirectory usage
+             */
+            void setIncludeSubdirectories(SubdirectoryMode usage);
+
+            /**
+             * @brief Set all option flags
+             *
+             * @param options
+             */
+            void SetOptionFlags(int options);
 
             /**
              * @brief Set the Project Name
@@ -81,6 +145,41 @@ namespace smos
              * @param projectName
              */
             void setProjectName(smos::smcore::SMString projectName);
+
+            /**
+             * @brief Set the path to the code for analysis
+             *
+             * @param directory Path to source code
+             */
+            void setSourcePath(smos::smcore::SMString directory);
+
+            /**
+             * @brief Set flag using of blank lines
+             *
+             * @param ignoreBlankLines
+             */
+            void UseIgnoreBlankLines(bool ignoreBlankLines);
+
+            /**
+             * @brief Get flag using of blank lines
+             *
+             * @return bool
+             */
+            bool UseIgnoreBlankLines(void) const;
+
+            /**
+             * @brief Set flag for modified complexity
+             *
+             * @param useModifiedComplexity
+             */
+            void UseModifiedComplexity(bool useModifiedComplexity);
+
+            /**
+             * @brief Get flag for modified complexity
+             *
+             * @return bool
+             */
+            bool UseModifiedComplexity(void) const;
 
             /**
              * @brief Enable writing to stream
@@ -102,20 +201,6 @@ namespace smos
              */
             friend std::istream &operator>>(std::istream &is, Project &obj);
 
-            /**
-             * @brief Get indicator of whether to use subdirectories
-             *
-             * @return SubdirectoryMode Kind of subdirectory usage
-             */
-            SubdirectoryMode getIncludeSubdirectories(void);
-
-            /**
-             * @brief Enable/disable usage of subdirectories
-             *
-             * @param usage SubdirectoryMode Kind of subdirectory usage
-             */
-            void setIncludeSubdirectories(SubdirectoryMode usage);
-
         private:
             /**
              * @brief Number of current class version for versioning
@@ -123,29 +208,35 @@ namespace smos
             uint16_t m_ClassVersion;
 
             /**
-             * @brief Name of project
-             */
-            smos::smcore::SMString m_ProjectName;
-            /**
-             * @brief Location of project source code
-             */
-            smos::smcore::SMString m_Directory;
-            /**
-             * @brief Filename of project file
-             */
-            smos::smcore::SMString m_ProjectFileName;
-            /**
-             * @brief Location of project file
-             */
-            smos::smcore::SMString m_ProjectFileDirectory;
-            /**
              * @brief Project setting: Include subdirectories yes/no
              */
-            SubdirectoryMode m_includeSubdirectories;
+            smos::smcore::SubdirectoryMode m_includeSubdirectories;
+
             /**
              * @brief Some options - need more inspection for knowing kind of options and what they tweak
              */
             int m_OptionFlags;
+
+            /**
+             * @brief Location of project file
+             */
+            smos::smcore::SMString m_ProjectFileDirectory;
+
+            /**
+             * @brief Filename of project file
+             */
+            smos::smcore::SMString m_ProjectFileName;
+
+            /**
+             * @brief Name of project
+             */
+            smos::smcore::SMString m_ProjectName;
+
+            /**
+             * @brief Location of project source code
+             */
+            smos::smcore::SMString m_sDirectory;
+
             /**
              * @brief Reference to language object
              */

@@ -23,6 +23,8 @@
 #pragma once
 
 #include "archivereader.h"
+#include "smstring.h"
+#include "version.h"
 
 namespace smos
 {
@@ -31,8 +33,57 @@ namespace smos
         class Checkpoint
         {
         public:
+            /**
+             * @brief Default constructor
+             *
+             */
             Checkpoint(void);
+
+            /**
+             * @brief Default destructor
+             *
+             */
             ~Checkpoint(void);
+
+            /**
+             * @brief Get version information object
+             *
+             * @return smos::smcore::Version
+             */
+            smos::smcore::Version versionGet(void);
+
+            /**
+             * @brief Set version information object
+             *
+             * @param version Version information object
+             */
+            void versionSet(const smos::smcore::Version &version);
+
+            /**
+             * @brief Get name of checkpoint
+             *
+             * @return smos::smcore::SMString
+             */
+            smos::smcore::SMString checkpointNameGet(void);
+
+            /**
+             * @brief Set name of checkpoint
+             *
+             * @param checkpointName
+             */
+            void checkpointNameSet(const smos::smcore::SMString &checkpointName);
+
+        protected:
+            /**
+             * @brief Version information of checkpoint
+             *
+             */
+            smos::smcore::Version m_version;
+
+            /**
+             * @brief Name of checkpoins
+             */
+            smos::smcore::SMString m_name;
         };
     }
 }

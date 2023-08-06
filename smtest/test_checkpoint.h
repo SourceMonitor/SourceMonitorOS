@@ -22,16 +22,22 @@
 
 #pragma once
 
-#include "smcore_global.h"
+#include <QTest>
 
 namespace smos
 {
-    namespace smcore
+    namespace smtest
     {
-        class SMCORE_EXPORT SMCore
+        class TestCheckpoint : public QObject
         {
-        public:
-            SMCore(void);
+            Q_OBJECT
+
+        private slots:
+            void initTestCase(void);
+            void TestConstructor(void);
+            void TestVersion(void);
+            void TestName(void);
+            void cleanupTestCase(void);
         };
     }
 }

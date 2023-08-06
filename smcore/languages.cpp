@@ -22,39 +22,43 @@
 
 #pragma once
 
-#include "checkpoint.h"
+#include "languages.h"
 
 namespace smos
 {
     namespace smcore
     {
         //******************************************************************************
-        Checkpoint::Checkpoint(void) : m_version(), m_name("")
+        const char *Languages::languageStrings[] = {
+            "SMC",
+            "SMCpp",
+            "SMCs",
+            "SMDELPHI",
+            "SMHTML",
+            "SMJava",
+            "SMVBNET",
+            "SMVISUALBASIC"};
+        //******************************************************************************
+        const char *Languages::getLanguageString(smos::smcore::Languages::Type lang)
         {
+            return smos::smcore::Languages::languageStrings[static_cast<int>(lang)];
         }
         //******************************************************************************
-        Checkpoint::~Checkpoint(void)
+        bool Languages::caseInsCharCompareN(char a, char b)
         {
+            char x = a;
+            char y = b;
+            return (toupper(x) == toupper(y));
         }
         //******************************************************************************
-        smos::smcore::Version Checkpoint::versionGet(void)
+        bool Languages::isClassOfType(smos::smcore::SMString classString, smos::smcore::Languages::Type classType)
         {
-            return this->m_version;
-        }
-        //******************************************************************************
-        void Checkpoint::versionSet(const smos::smcore::Version &version)
-        {
-            this->m_version = version;
-        }
-        //******************************************************************************
-        smos::smcore::SMString Checkpoint::checkpointNameGet(void)
-        {
-            return this->m_name;
-        }
-        //******************************************************************************
-        void Checkpoint::checkpointNameSet(const smos::smcore::SMString &checkpointName)
-        {
-            this->m_name = checkpointName;
+            smos::smcore::SMString workClass = classString;
+            smos::smcore::SMString workType = smos::smcore::Languages::getLanguageString(classType);
+
+            bool result = ((workClass.size() == workType.size()) &&
+                           equal(workClass.begin(), workClass.end(), workType.begin(), Languages::caseInsCharCompareN));
+            return result;
         }
         //******************************************************************************
     }

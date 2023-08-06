@@ -49,6 +49,29 @@ namespace smos
             this->m_revision = versionObject.m_revision;
         }
         //******************************************************************************
+        smos::smcore::SMString Version::AsString(void) const
+        {
+            std::stringstream os;
+            os << this->m_major << "." << this->m_minor << "." << this->m_revision;
+
+            smos::smcore::SMString result = os.str();
+            return result;
+        }
+        //******************************************************************************
+        bool Version::operator!=(const Version &versionObject) const
+        {
+            bool result = !(*this == versionObject);
+            return result;
+        }
+        //******************************************************************************
+        std::ostream &operator<<(std::ostream &os, const Version &obj)
+        {
+            os << obj.m_major;
+            os << obj.m_minor;
+            os << obj.m_revision;
+            return os;
+        }
+        //******************************************************************************
         Version &Version::operator=(const Version &versionObject)
         {
             if (&versionObject != this)
@@ -66,49 +89,14 @@ namespace smos
             {
                 return true;
             }
-            bool result = (this->m_major == versionObject.m_major)
-                && (this->m_minor == versionObject.m_minor)
-                && (this->m_revision == versionObject.m_revision);
-            return result;
-        }
-        //******************************************************************************
-        bool Version::operator!=(const Version &versionObject) const
-        {
-            bool result = !(*this == versionObject);
+            bool result = (this->m_major == versionObject.m_major) && (this->m_minor == versionObject.m_minor) && (this->m_revision == versionObject.m_revision);
             return result;
         }
         //******************************************************************************
         bool Version::operator>=(const Version &otherVersion) const
         {
-            bool result = (m_major > otherVersion.m_major)
-                || (m_major == otherVersion.m_major && m_minor > otherVersion.m_minor)
-                || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision > otherVersion.m_revision)
-                || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision == otherVersion.m_revision);
+            bool result = (m_major > otherVersion.m_major) || (m_major == otherVersion.m_major && m_minor > otherVersion.m_minor) || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision > otherVersion.m_revision) || (m_major == otherVersion.m_major && m_minor == otherVersion.m_minor && m_revision == otherVersion.m_revision);
             return result;
-        }
-        //******************************************************************************
-        smos::smcore::SMString Version::AsString(void) const
-        {
-            std::stringstream os;
-            os << this->m_major << "." << this->m_minor << "." << this->m_revision;
-
-            smos::smcore::SMString result = os.str();
-            return result;
-        }
-        //******************************************************************************
-        void Version::SetVersion(const uint16_t major, const uint16_t minor, const uint16_t revision)
-        {
-            this->m_major = major;
-            this->m_minor = minor;
-            this->m_revision = revision;
-        }
-        //******************************************************************************
-        std::ostream &operator<<(std::ostream &os, const Version &obj)
-        {
-            os << obj.m_major;
-            os << obj.m_minor;
-            os << obj.m_revision;
-            return os;
         }
         //******************************************************************************
         std::istream &operator>>(std::istream &is, Version &obj)
@@ -117,6 +105,13 @@ namespace smos
             is >> obj.m_minor;
             is >> obj.m_revision;
             return is;
+        }
+        //******************************************************************************
+        void Version::SetVersion(const uint16_t major, const uint16_t minor, const uint16_t revision)
+        {
+            this->m_major = major;
+            this->m_minor = minor;
+            this->m_revision = revision;
         }
         //******************************************************************************
     }

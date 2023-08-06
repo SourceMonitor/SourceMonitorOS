@@ -22,20 +22,12 @@
 
 #pragma once
 
+#include "languagebase.h"
+
 namespace smos
 {
     namespace smcore
     {
-        enum class OptionFlags
-        {
-            None = 0,
-            IgnoreCommentsOnly = 1,
-            IgnoreDOCCommentsOnly = 2,
-            IgnoreAllComments = 3,
-            ModifiedComplexity = 4,
-            IncludeSubdirectoriesFlag = 8,
-            FilesFromXmlFile = 16, // when set, m_sDirectory contains file path DIRECTORY_SEPARATOR XPath spec
-            IgnoreBlankLines = 32,
-        };
+        //******************************************************************************
     }
 }

@@ -23,6 +23,7 @@
 #pragma once
 
 #include "archivereader.h"
+#include "languages.h"
 
 namespace smos
 {
