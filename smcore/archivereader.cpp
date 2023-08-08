@@ -27,6 +27,18 @@ namespace smos
     namespace smcore
     {
         //******************************************************************************
+        unsigned int ArchiveReader::ReadCount()
+        {
+            // reads the size of the container stored in the file
+            std::uint16_t nCount = Read<std::uint16_t>();
+            if (nCount != UINT16_MAX)
+                return nCount;
+
+            // stored size is 32 bits and we need to read it again
+            std::uint32_t dwCount = Read<std::uint32_t>();
+            return dwCount;
+        }
+        //******************************************************************************
         unsigned int ArchiveReader::ReadStringLength()
         {
             // the logic of this function is copied from the CArchive class
@@ -50,16 +62,5 @@ namespace smos
                 return shortLength;
         }
         //******************************************************************************
-        unsigned int ArchiveReader::ReadCount()
-        {
-            // reads the size of the container stored in the file
-            std::uint16_t nCount = Read<std::uint16_t>();
-            if (nCount != UINT16_MAX)
-                return nCount;
-
-            // stored size is 32 bits and we need to read it again
-            std::uint32_t dwCount = Read<std::uint32_t>();
-            return dwCount;
-        }
     }
 }

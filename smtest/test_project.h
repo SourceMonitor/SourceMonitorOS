@@ -33,11 +33,13 @@ namespace smos
             Q_OBJECT
 
         private slots:
-            void initTestCase(void);
-            void TestProjectName(void);
-            void TestPersistence(void);
-            void TestIncludeSubdirectories(void);
             void cleanupTestCase(void);
+            void initTestCase(void);
+            void TestIncludeSubdirectories(void);
+            void TestOptions(void);
+            void TestPersistence(void);
+            void TestProjectName(void);
+            void TestSourcePath(void);
         };
     }
 }

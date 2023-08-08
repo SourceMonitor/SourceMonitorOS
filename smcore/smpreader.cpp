@@ -27,11 +27,11 @@
 #include <map>
 #include <string>
 
-#include "checkpointsreader.h"
-#include "classinfo.h"
-#include "languagereader.h"
-#include "version.h"
 #include "archivereader.h"
+#include "classinfo.h"
+#include "smcheckpointsreader.h"
+#include "smlanguagereader.h"
+#include "version.h"
 
 namespace smos
 {
@@ -76,12 +76,14 @@ namespace smos
                 {
                     std::string m_sDirectory = archiveReader.Read<std::string>();
                     std::cout << "m_sDirectory: " << m_sDirectory << std::endl;
+                    project.setSourcePath(m_sDirectory);
                 }
 
                 if (versionProject >= Version(2, 0))
                 {
                     std::int32_t m_eOptionFlags = archiveReader.Read<std::int32_t>();
                     std::cout << "m_eOptionFlags: " << m_eOptionFlags << std::endl;
+                    project.SetOptionFlags(m_eOptionFlags);
                 }
 
                 if (!(versionProject >= Version(2, 0)))

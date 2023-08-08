@@ -27,6 +27,7 @@
 #include <QTextStream>
 #include <filesystem>
 #include "project.h"
+#include "optionflags.h"
 #include "smstring.h"
 
 namespace smos
@@ -34,20 +35,82 @@ namespace smos
     namespace smtest
     {
         //******************************************************************************
+        void TestProject::cleanupTestCase(void)
+        {
+            smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
+            std::filesystem::remove(filename);
+        }
+        //******************************************************************************
         void TestProject::initTestCase(void)
         {
             smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
             std::filesystem::remove(filename);
         }
         //******************************************************************************
-        void TestProject::TestProjectName(void)
+        void TestProject::TestIncludeSubdirectories(void)
         {
-            // Build about string
-            smos::smcore::SMString projectNameSet = smos::smcore::SMString("ProjectName");
             smos::smcore::Project objProject;
-            objProject.setProjectName(projectNameSet);
-            smos::smcore::SMString projectNameGet = objProject.getProjectName();
-            QCOMPARE(projectNameSet, projectNameGet);
+            smos::smcore::SubdirectoryMode flag = smos::smcore::SubdirectoryMode::NoSubs;
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+            flag = smos::smcore::SubdirectoryMode::SelectedSubs;
+            objProject.setIncludeSubdirectories(flag);
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+            flag = smos::smcore::SubdirectoryMode::AllSubs;
+            objProject.setIncludeSubdirectories(flag);
+            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+        }
+        //******************************************************************************
+        void TestProject::TestOptions(void)
+        {
+            bool flag;
+            smos::smcore::Project objProject;
+
+            int optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::None, optionCurrent);
+
+            flag = true;
+            objProject.UseModifiedComplexity(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::ModifiedComplexity, optionCurrent);
+            QCOMPARE(flag, objProject.UseModifiedComplexity());
+            flag = false;
+            objProject.UseModifiedComplexity(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::None, optionCurrent);
+            QCOMPARE(flag, objProject.UseModifiedComplexity());
+
+            flag = true;
+            objProject.UseIgnoreBlankLines(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::IgnoreBlankLines, optionCurrent);
+            QCOMPARE(flag, objProject.UseIgnoreBlankLines());
+            flag = false;
+            objProject.UseIgnoreBlankLines(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::None, optionCurrent);
+            QCOMPARE(flag, objProject.UseIgnoreBlankLines());
+
+            flag = true;
+            objProject.SetFileListFromXmlFile(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::FilesFromXmlFile, optionCurrent);
+            QCOMPARE(flag, objProject.IsFileListFromXmlFile());
+            flag = false;
+            objProject.SetFileListFromXmlFile(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::None, optionCurrent);
+            QCOMPARE(flag, objProject.IsFileListFromXmlFile());
+
+            flag = true;
+            objProject.IgnoreHeaderFooter(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::IgnoreCommentsOnly, optionCurrent);
+            QCOMPARE(flag, objProject.IgnoreHeaderFooter());
+            flag = false;
+            objProject.IgnoreHeaderFooter(flag);
+            optionCurrent = objProject.GetOptionFlags();
+            QCOMPARE((int)smos::smcore::OptionFlags::None, optionCurrent);
+            QCOMPARE(flag, objProject.IgnoreHeaderFooter());
         }
         //******************************************************************************
         void TestProject::TestPersistence(void)
@@ -66,23 +129,23 @@ namespace smos
             QCOMPARE(objProjectLoad.getProjectName(), objProjectSave.getProjectName());
         }
         //******************************************************************************
-        void TestProject::cleanupTestCase(void)
+        void TestProject::TestProjectName(void)
         {
-            smos::smcore::SMString filename = smos::smcore::SMString("testfile.dat");
-            std::filesystem::remove(filename);
+            smos::smcore::SMString projectNameSet = smos::smcore::SMString("ProjectName");
+            smos::smcore::Project objProject;
+            objProject.setProjectName(projectNameSet);
+            smos::smcore::SMString projectNameGet = objProject.getProjectName();
+            QCOMPARE(projectNameSet, projectNameGet);
         }
         //******************************************************************************
-        void TestProject::TestIncludeSubdirectories(void)
+        void TestProject::TestSourcePath(void)
         {
+            smos::smcore::SMString sourcePathSet = smos::smcore::SMString("C:\\develop\\source");
             smos::smcore::Project objProject;
-            smos::smcore::SubdirectoryMode flag = smos::smcore::SubdirectoryMode::NoSubs;
-            QCOMPARE(flag, objProject.getIncludeSubdirectories());
-            flag = smos::smcore::SubdirectoryMode::SelectedSubs;
-            objProject.setIncludeSubdirectories(flag);
-            QCOMPARE(flag, objProject.getIncludeSubdirectories());
-            flag = smos::smcore::SubdirectoryMode::AllSubs;
-            objProject.setIncludeSubdirectories(flag);
-            QCOMPARE(flag, objProject.getIncludeSubdirectories());
+            objProject.setSourcePath(sourcePathSet);
+            smos::smcore::SMString sourcePathGet = objProject.getSourcePath();
+            QCOMPARE(sourcePathSet, sourcePathGet);
         }
+        //******************************************************************************
     }
 }

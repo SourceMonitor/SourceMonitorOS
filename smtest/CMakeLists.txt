@@ -41,6 +41,7 @@ enable_testing(true)
 
 set(SMTEST_INCLUDE
     test_about.h
+    test_checkpoint.h
     test_license.h
     test_options.h
     test_project.h
@@ -51,6 +52,7 @@ set(SMTEST_INCLUDE
 set(PROJECT_SOURCES
     main.cpp
     test_about.cpp
+    test_checkpoint.cpp
     test_license.cpp
     test_options.cpp
     test_project.cpp

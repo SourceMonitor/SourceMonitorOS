@@ -32,17 +32,19 @@ set(SMCORE_INCLUDE
     about.h
     archivereader.h
     checkpoint.h
-    checkpointsreader.h
     classinfo.h
     error.h
     factory.h
     language.h
-    languagereader.h
+    languages.h
+    languagebase.h
     license.h
     optionflags.h
     options.h
     printvector.h
     project.h
+    smcheckpointsreader.h
+    smlanguagereader.h
     smpreader.h
     smstring.h
     subdirectorymode.h
@@ -53,14 +55,16 @@ set(SMCORE_BODY
     about.cpp
     archivereader.cpp
     checkpoint.cpp
-    checkpointsreader.cpp
     error.cpp
     factory.cpp
     language.cpp
-    languagereader.cpp
+    languages.cpp
+    languagebase.cpp
     license.cpp
     options.cpp
     project.cpp
+    smcheckpointsreader.cpp
+    smlanguagereader.cpp
     smpreader.cpp
     smstring.cpp
     version.cpp
